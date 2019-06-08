@@ -1,0 +1,33 @@
+{
+	"name": "use-expo",
+	"version": "0.0.0",
+	"description": "Complementary hooks for expo-sensors",
+	"keywords": [
+		"expo",
+		"sensors",
+		"hooks"
+	],
+	"author": "Cedric van Putten <me@bycedric.com>",
+	"homepage": "https://github.com/bycedric/use-expo#readme",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bycedric/use-expo.git"
+	},
+	"files": [],
+	"scripts": {
+		"postinstall": "lerna bootstrap",
+		"lint": "lerna run lint",
+		"test": "lerna run test",
+		"build": "lerna run build"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^8.0.0",
+		"@commitlint/config-conventional": "^8.0.0",
+		"@commitlint/travis-cli": "^8.0.0",
+		"lerna": "^3.14.1"
+	}
+}
