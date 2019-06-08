@@ -1,0 +1,51 @@
+{
+	"name": "@use-expo/sensors",
+	"version": "0.0.0",
+	"description": "Complementary hooks for expo-sensors",
+	"keywords": [
+		"expo",
+		"sensors",
+		"hooks"
+	],
+	"author": "Cedric van Putten <me@bycedric.com>",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/sensors#readme",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bycedric/use-expo.git"
+	},
+	"directories": {
+		"lib": "src",
+		"test": "tests"
+	},
+	"main": "build/index.js",
+	"files": [
+		"build"
+	],
+	"scripts": {
+		"lint": "tsc --noEmit",
+		"test": "jest",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"expo-sensors": "^5.0.1",
+		"react": "^16.8.6"
+	},
+	"devDependencies": {
+		"@types/jest": "^24.0.13",
+		"@types/node": "^12.0.7",
+		"@types/react": "^16.8.19",
+		"babel-preset-expo": "^5.1.1",
+		"expo": "^33.0.3",
+		"jest": "^24.8.0",
+		"jest-expo": "^33.0.2",
+		"react-hooks-testing-library": "^0.5.1",
+		"react-native": "github:expo/react-native#sdk-33.0.0",
+		"react-test-renderer": "^16.8.6",
+		"ts-jest": "^24.0.2",
+		"typescript": "^3.5.1"
+	}
+}
