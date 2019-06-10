@@ -7,39 +7,68 @@ jest.mock('expo-sensors', () => ({ MagnetometerUncalibrated }));
 import { renderHook, act } from 'react-hooks-testing-library';
 import { useMagnetometerUncalibrated } from '../src/use-magnetometer-uncalibrated';
 
+const DATA = 0;
+const AVAILABLE = 1;
+
+test('returns state and availability when mounted', () => {
+	const hook = renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
+
+	expect(hook.result.current[DATA]).toBeUndefined();
+	expect(hook.result.current[AVAILABLE]).toBeUndefined();
+});
+
+test('handles new uncalibrated magnetometer availability', async () => {
+	(MagnetometerUncalibrated.isAvailableAsync as jest.Mock).mockResolvedValue(true);
+	const hook = renderHook(useMagnetometerUncalibrated);
+
+	await hook.waitForNextUpdate();
+
+	expect(hook.result.current[AVAILABLE]).toBe(true);
+});
+
+test('handles new uncalibrated magnetometer data', async () => {
+	const hook = renderHook(useMagnetometerUncalibrated);
+	const handler = MagnetometerUncalibrated.addListener.mock.calls[0][0];
+	const newData = { x: 0, y: 1, z: 0.5 };
+
+	act(() => handler(newData));
+	expect(hook.result.current[DATA]).toMatchObject(newData);
+});
+
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(useMagnetometerUncalibrated);
+		renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
 		expect(MagnetometerUncalibrated.addListener).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(useMagnetometerUncalibrated);
+		const hook = renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
 	});
 
-	test('handles new data', async () => {
-		const hook = renderHook(useMagnetometerUncalibrated);
-		const handler = MagnetometerUncalibrated.addListener.mock.calls[0][0];
-		const newData = { x: 0, y: 1, z: 0.5 };
-
-		act(() => handler(newData));
-		expect(hook.result.current).toMatchObject(newData);
+	test('checks availability when mounted', () => {
+		renderHook(useMagnetometerUncalibrated);
+		expect(MagnetometerUncalibrated.isAvailableAsync).toBeCalled();
 	});
 });
 
 describe('options', () => {
 	test('initial data is returned', () => {
 		const initialData = { x: 0.5, y: 0.2, z: 0.3 };
-		const hook = renderHook(() => useMagnetometerUncalibrated({ initialData }));
+		const hook = renderHook(() => useMagnetometerUncalibrated({ initialData, getAvailability: false }));
 
-		expect(hook.result.current).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initialData);
 	});
 
 	test('update interval is set', () => {
-		renderHook(() => useMagnetometerUncalibrated({ updateInterval: 1500 }));
+		renderHook(() => useMagnetometerUncalibrated({ updateInterval: 1500, getAvailability: false }));
 		expect(MagnetometerUncalibrated.setUpdateInterval).toBeCalledWith(1500);
+	});
+
+	test('availability check is skipped', () => {
+		renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
+		expect(MagnetometerUncalibrated.isAvailableAsync).not.toBeCalled();
 	});
 });

@@ -14,18 +14,22 @@
 ```jsx
 usePedometer();
 usePedometer({ initialData: { steps: 5 } });
+usePedometer({ getAvailability: false });
 ```
 
 With the `usePedometer` hook we can create a component based on the [Pedometer example for the Expo docs](https://docs.expo.io/versions/latest/sdk/pedometer/#usage).
 
 ```jsx
 function PedometerSensor() {
-    const data = usePedometer();
+    const [data, isAvailable] = usePedometer();
 
     return (
         <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
             <Text>Pedometer:</Text>
-            <Text>{data.steps} steps</Text>
+            {(isAvailable && data)
+                ? <Text>{data.steps} steps</Text>
+                : <Text>unavailable</Text>
+            }
         </View>
     );
 }
@@ -34,7 +38,10 @@ function PedometerSensor() {
 ## API
 
 ```ts
-function usePedometer(options?: PedometerOptions): PedometerMeasurement | undefined;
+function usePedometer(options?: PedometerOptions): [
+    PedometerMeasurement | undefined,
+    boolean | undefined,
+];
 
 interface PedometerMeasurement {
 	/** The amount of steps made */
@@ -43,7 +50,9 @@ interface PedometerMeasurement {
 
 interface PedometerOptions {
 	/** The initial data to use before the first update. */
-	initialData?: PedometerMeasurement;
+    initialData?: PedometerMeasurement;
+    /** If it should check the availability of the sensor, defaults to `true`. */
+	getAvailability?: boolean;
 }
 ```
 
