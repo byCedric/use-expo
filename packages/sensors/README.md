@@ -18,13 +18,13 @@
     <br />
 </div>
 
-- `useAccelerometer` &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
-- `useBarometer` &mdash; tracks changes in air pressure with [`Barometer`](https://docs.expo.io/versions/latest/sdk/barometer/)
-- `useDeviceMotion` &mdash; tracks device motion and orientation with [`DeviceMotion`](https://docs.expo.io/versions/latest/sdk/devicemotion/)
-- `useGyroscope` &mdash; tracks changes in rotation with [`Gyroscope`](https://docs.expo.io/versions/latest/sdk/gyroscope/)
-- `useMagnetometer` &mdash; tracks changes in the magnetic field with [`Magnetometer`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
-- `useMagnetometerUncalibrated` &mdash; tracks raw changes in the magnetic field with [`MagnetometerUncalibrated`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
-- `usePedometer` &mdash; tracks user step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
+- [`useAccelerometer`](./docs/use-accelerometer.md) &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
+- [`useBarometer`](./docs/use-barometer.md) &mdash; tracks changes in air pressure with [`Barometer`](https://docs.expo.io/versions/latest/sdk/barometer/)
+- [`useDeviceMotion`](./docs/use-device-motion.md) &mdash; tracks device motion and orientation with [`DeviceMotion`](https://docs.expo.io/versions/latest/sdk/devicemotion/)
+- [`useGyroscope`](./docs/use-gyroscope.md) &mdash; tracks changes in rotation with [`Gyroscope`](https://docs.expo.io/versions/latest/sdk/gyroscope/)
+- [`useMagnetometer`](./docs/use-magnetometer.md) &mdash; tracks changes in the magnetic field with [`Magnetometer`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
+- [`useMagnetometerUncalibrated`](./docs/use-magnetometer.md) &mdash; tracks raw changes in the magnetic field with [`MagnetometerUncalibrated`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
+- [`usePedometer`](./docs/use-pedometer.md) &mdash; tracks user step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
 
 <div align="center">
     <br />

@@ -25,13 +25,13 @@
     - [`usePermissions`](./packages/permissions/docs/use-permissions.md) &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
 
 - [**Sensors**](./packages/sensors)
-    - `useAccelerometer` &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
-    - `useBarometer` &mdash; tracks changes in air pressure with [`Barometer`](https://docs.expo.io/versions/latest/sdk/barometer/)
-    - `useDeviceMotion` &mdash; tracks device motion and orientation with [`DeviceMotion`](https://docs.expo.io/versions/latest/sdk/devicemotion/)
-    - `useGyroscope` &mdash; tracks changes in rotation with [`Gyroscope`](https://docs.expo.io/versions/latest/sdk/gyroscope/)
-    - `useMagnetometer` &mdash; tracks changes in the magnetic field with [`Magnetometer`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
-    - `useMagnetometerUncalibrated` &mdash; tracks raw changes in the magnetic field with [`MagnetometerUncalibrated`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
-    - `usePedometer` &mdash; tracks user step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
+    - [`useAccelerometer`](./packages/sensors/docs/use-accelerometer.md) &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
+    - [`useBarometer`](./packages/sensors/docs/use-barometer.md) &mdash; tracks changes in air pressure with [`Barometer`](https://docs.expo.io/versions/latest/sdk/barometer/)
+    - [`useDeviceMotion`](./packages/sensors/docs/use-device-motion.md) &mdash; tracks device motion and orientation with [`DeviceMotion`](https://docs.expo.io/versions/latest/sdk/devicemotion/)
+    - [`useGyroscope`](./packages/sensors/docs/use-gyroscope.md) &mdash; tracks changes in rotation with [`Gyroscope`](https://docs.expo.io/versions/latest/sdk/gyroscope/)
+    - [`useMagnetometer`](./packages/sensors/docs/use-magnetometer.md) &mdash; tracks changes in the magnetic field with [`Magnetometer`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
+    - [`useMagnetometerUncalibrated`](./packages/sensors/docs/use-magnetometer.md) &mdash; tracks raw changes in the magnetic field with [`MagnetometerUncalibrated`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
+    - [`usePedometer`](./packages/sensors/docs/use-pedometer.md) &mdash; tracks user step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
 
 <div align="center">
     <br />
