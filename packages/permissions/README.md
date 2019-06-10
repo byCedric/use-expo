@@ -18,7 +18,7 @@
     <br />
 </div>
 
-- `usePermissions` &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
+- [`usePermissions`](./docs/use-permissions.md) &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
 
 <div align="center">
     <br />
