@@ -1,6 +1,6 @@
 {
 	"name": "use-expo",
-	"version": "0.0.0",
+	"version": "0.3.0",
 	"description": "Complementary hooks for expo",
 	"keywords": [
 		"expo",
@@ -30,8 +30,8 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"@use-expo/permissions": "^0.2.0",
-		"@use-expo/sensors": "^0.2.0"
+		"@use-expo/permissions": "^0.3.0",
+		"@use-expo/sensors": "^0.3.0"
 	},
 	"devDependencies": {
 		"@types/node": "^12.0.7",
