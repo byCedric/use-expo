@@ -1,0 +1,10 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"plugin:@typescript-eslint/recommended"
+	],
+	"rules": {
+		"@typescript-eslint/indent": ["error", "tab"],
+		"@typescript-eslint/explicit-function-return-type": "off"
+	}
+}
