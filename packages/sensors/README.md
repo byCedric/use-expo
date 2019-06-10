@@ -25,6 +25,7 @@
 - [`useMagnetometer`](./docs/use-magnetometer.md) &mdash; tracks changes in the magnetic field with [`Magnetometer`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
 - [`useMagnetometerUncalibrated`](./docs/use-magnetometer.md) &mdash; tracks raw changes in the magnetic field with [`MagnetometerUncalibrated`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
 - [`usePedometer`](./docs/use-pedometer.md) &mdash; tracks user step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
+- [`usePedometerHistory`](./docs/use-pedometer-history.md) &mdash; get historical step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
 
 <div align="center">
     <br />
