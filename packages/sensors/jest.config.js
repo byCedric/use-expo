@@ -5,10 +5,10 @@ module.exports = {
     ...jestExpoPreset,
     clearMocks: true,
     transform: {
-      ...tsJestPreset.transform,
-      ...jestExpoPreset.transform,
+		...tsJestPreset.transform,
+		...jestExpoPreset.transform,
 	},
 	testMatch: [
-		'**/*.test.ts'
-	]
-  };
+		'**/*.test.ts',
+	],
+};
