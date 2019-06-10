@@ -14,7 +14,7 @@
     <br />
     <br />
     <br />
-    <pre>npm i <a href="https://www.npmjs.com/package/@use-expo/sensors">@use-expo/sensors</a></pre>
+    <pre>npm i <a href="https://www.npmjs.com/package/@use-expo/sensors">@use-expo/sensors</a> <a href="https://www.npmjs.com/package/expo-sensors">expo-sensors</a></pre>
     <br />
 </div>
 

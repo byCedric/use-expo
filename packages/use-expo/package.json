@@ -1,0 +1,40 @@
+{
+	"name": "use-expo",
+	"version": "0.0.0",
+	"description": "Complementary hooks for expo",
+	"keywords": [
+		"expo",
+		"hooks"
+	],
+	"author": "Cedric van Putten <me@bycedric.com>",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/use-expo#readme",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bycedric/use-expo.git"
+	},
+	"directories": {
+		"lib": "src",
+		"test": "tests"
+	},
+	"main": "build/index.js",
+	"files": [
+		"build"
+	],
+	"scripts": {
+		"lint": "tsc --noEmit",
+		"test": "tsc --noEmit",
+		"build": "tsc"
+	},
+	"dependencies": {
+		"@use-expo/permissions": "^0.2.0",
+		"@use-expo/sensors": "^0.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^12.0.7",
+		"typescript": "^3.5.1"
+	}
+}

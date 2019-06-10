@@ -1,10 +1,10 @@
 {
+	"private": true,
 	"name": "use-expo",
 	"version": "0.0.0",
 	"description": "Complementary hooks for expo-sensors",
 	"keywords": [
 		"expo",
-		"sensors",
 		"hooks"
 	],
 	"author": "Cedric van Putten <me@bycedric.com>",

@@ -12,7 +12,7 @@ before_install:
 install:
   - npm ci
 script:
+  - npm run build
   - npm run lint
   - npm run test
-  - npm run build
   - npx commitlint-travis

@@ -14,7 +14,7 @@
     <br />
     <br />
     <br />
-    <pre>npm i <a href="https://www.npmjs.com/package/@use-expo/permissions">@use-expo/permissions</a></pre>
+    <pre>npm i <a href="https://www.npmjs.com/package/@use-expo/permissions">@use-expo/permissions</a> <a href="https://www.npmjs.com/package/expo-permissions">expo-permissions</a></pre>
     <br />
 </div>
 
