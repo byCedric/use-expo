@@ -21,6 +21,9 @@
     <br />
 </div>
 
+- [**Permissions**](./packages/permissions)
+    - `usePermissions` &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
+
 - [**Sensors**](./packages/sensors)
     - `useAccelerometer` &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
     - `useBarometer` &mdash; tracks changes in air pressure with [`Barometer`](https://docs.expo.io/versions/latest/sdk/barometer/)
