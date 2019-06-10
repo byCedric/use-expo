@@ -17,7 +17,7 @@
     </sup>
     <br />
     <br />
-    <pre>npm i <a href="https://www.npmjs.com/org/use-expo">@use-expo/*</a></pre>
+    <pre>npm i <a href="https://www.npmjs.com/package/use-expo">use-expo</a></pre>
     <br />
 </div>
 
