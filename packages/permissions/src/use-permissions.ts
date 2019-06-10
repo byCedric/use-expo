@@ -9,8 +9,8 @@ import {
 
 export function usePermissions(
 	type: PermissionType | PermissionType[],
-	options: PermissionsOptions = {}
-): usePermissionsSignature {
+	options: PermissionsOptions = {},
+): UsePermissionsSignature {
 	const [data, setData] = useState<PermissionResponse>();
 	const types = castArray(type);
 	const {
@@ -34,7 +34,7 @@ export function usePermissions(
 	return [data, askPermissions, getPermissions];
 }
 
-type usePermissionsSignature = [
+type UsePermissionsSignature = [
 	PermissionResponse | undefined,
 	() => Promise<void>,
 	() => Promise<void>,
