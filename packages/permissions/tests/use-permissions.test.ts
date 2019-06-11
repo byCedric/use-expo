@@ -9,7 +9,7 @@ const ASK = 1;
 const GET = 2;
 
 test('returns state, ask and get callbacks when mounted', () => {
-	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { autoGet: false }));
+	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[ASK]).toBeInstanceOf(Function);
@@ -17,7 +17,7 @@ test('returns state, ask and get callbacks when mounted', () => {
 });
 
 test('handles state with get callback', async () => {
-	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { autoGet: false }));
+	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
 	const response = { status: 'granted' };
 
 	(Permissions.getAsync as jest.Mock).mockResolvedValue(response);
@@ -31,7 +31,7 @@ test('handles state with get callback', async () => {
 });
 
 test('handles state with ask callback', async () => {
-	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { autoGet: false }));
+	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
 	const response = { status: 'granted' };
 
 	(Permissions.askAsync as jest.Mock).mockResolvedValue(response);
@@ -47,23 +47,21 @@ test('handles state with ask callback', async () => {
 test('accepts multiple permission types', () => {
 	const hook = renderHook(() => usePermissions(
 		[Permissions.CAMERA, Permissions.CAMERA_ROLL],
-		{ autoGet: false },
+		{ get: false },
 	));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 });
 
-test('auto gets the permissions by default', async () => {
+test('gets the permissions when mounted, by default', async () => {
 	(Permissions.getAsync as jest.Mock).mockResolvedValue({ status: 'granted' });
-	const hook = renderHook(() => usePermissions(Permissions.CAMERA));
-
+	renderHook(() => usePermissions(Permissions.CAMERA));
 	expect(Permissions.getAsync).toBeCalledWith(Permissions.CAMERA);
 });
 
 
-test('auto asks the permissions', async () => {
+test('asks the permissions when mounted', async () => {
 	(Permissions.askAsync as jest.Mock).mockResolvedValue({ status: 'granted' });
-	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { autoAsk: true }));
-
+	renderHook(() => usePermissions(Permissions.CAMERA, { ask: true }));
 	expect(Permissions.askAsync).toBeCalledWith(Permissions.CAMERA);
 });

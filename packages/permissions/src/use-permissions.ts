@@ -14,8 +14,8 @@ export function usePermissions(
 	const [data, setData] = useState<PermissionResponse>();
 	const types = castArray(type);
 	const {
-		autoAsk = false,
-		autoGet = true,
+		ask = false,
+		get = true,
 	} = options;
 
 	function askPermissions() {
@@ -27,8 +27,8 @@ export function usePermissions(
 	}
 
 	useEffect(() => {
-		if (autoAsk) askPermissions();
-		if (!autoAsk && autoGet) getPermissions();
+		if (ask) askPermissions();
+		if (!ask && get) getPermissions();
 	}, []);
 
 	return [data, askPermissions, getPermissions];
@@ -42,7 +42,7 @@ type UsePermissionsSignature = [
 
 export interface PermissionsOptions {
 	/** If it should ask the permissions when mounted, defaults to `false` */
-	autoAsk?: boolean;
+	ask?: boolean;
 	/** If it should fetch information about the permissions when mounted, defaults to `true` */
-	autoGet?: boolean;
+	get?: boolean;
 }
