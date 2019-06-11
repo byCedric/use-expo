@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { castArray } from 'lodash';
 import {
 	PermissionType,
 	PermissionResponse,
@@ -12,7 +11,7 @@ export function usePermissions(
 	options: PermissionsOptions = {},
 ): UsePermissionsSignature {
 	const [data, setData] = useState<PermissionResponse>();
-	const types = castArray(type);
+	const types = Array.isArray(type) ? type : [type];
 	const {
 		ask = false,
 		get = true,
