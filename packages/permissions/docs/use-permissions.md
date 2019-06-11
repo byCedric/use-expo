@@ -14,8 +14,8 @@
 ```jsx
 usePermissions(Permissions.CAMERA);
 usePermissions([Permissions.CAMERA, Permissions.CAMERA_ROLL]);
-usePermissions(Permissions.LOCATION, { autoAsk: true });
-usePermissions(Permissions.NOTIFICATIONS, { autoGet: false });
+usePermissions(Permissions.LOCATION, { ask: true });
+usePermissions(Permissions.NOTIFICATIONS, { get: false });
 ```
 
 With the `usePermissions` hook we can simplify the [Camera example for the Expo docs](https://docs.expo.io/versions/latest/sdk/camera/).
@@ -23,7 +23,7 @@ With the `usePermissions` hook we can simplify the [Camera example for the Expo 
 ```jsx
 function CameraExample() {
     const [camera, setCamera] = useState(Camera.Constants.Type.back);
-	const [permission] = usePermissions(Permissions.CAMERA, { autoAsk: true });
+	const [permission] = usePermissions(Permissions.CAMERA, { ask: true });
 
 	if (!permission) {
 		return <View />;
@@ -82,9 +82,9 @@ function usePermissions(
 
 interface PermissionsOptions {
     /** If it should ask the permissions when mounted, defaults to `false` */
-	autoAsk?: boolean;
+	ask?: boolean;
 	/** If it should fetch information about the permissions when mounted, defaults to `true` */
-	autoGet?: boolean;
+	get?: boolean;
 }
 ```
 
