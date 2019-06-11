@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { Gyroscope, ThreeAxisMeasurement } from 'expo-sensors';
 
 export function useGyroscope(options: GyroscopeOptions = {}): UseGyroscopeSignature {
-	const [data, setData] = useState(options.initialData);
+	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { getAvailability = true } = options;
+	const { availability = true } = options;
 
 	useEffect(() => {
-		if (getAvailability) {
+		if (availability) {
 			Gyroscope.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.updateInterval !== undefined) {
-			Gyroscope.setUpdateInterval(options.updateInterval);
+		if (options.interval !== undefined) {
+			Gyroscope.setUpdateInterval(options.interval);
 		}
 
 		return Gyroscope.addListener(setData).remove;
@@ -28,12 +28,13 @@ type UseGyroscopeSignature = [
 
 export interface GyroscopeOptions {
 	/** The initial data to use before the first update. */
-	initialData?: ThreeAxisMeasurement;
+	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the gyroscope data.
 	 * Note, this is set globally through `Gyroscope.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }

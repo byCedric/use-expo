@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Pedometer } from 'expo-sensors';
 
 export function usePedometer(options: PedometerOptions = {}): UsePedometerSignature {
-	const [data, setData] = useState(options.initialData);
+	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { getAvailability = true } = options;
+	const { availability = true } = options;
 
 	useEffect(() => {
-		if (getAvailability) {
+		if (availability) {
 			Pedometer.isAvailableAsync().then(setAvailable);
 		}
 
@@ -29,7 +29,7 @@ export interface PedometerMeasurement {
 
 export interface PedometerOptions {
 	/** The initial data to use before the first update. */
-	initialData?: PedometerMeasurement;
+	initial?: PedometerMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	availability?: boolean;
 }

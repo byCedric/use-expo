@@ -4,7 +4,7 @@ const Subscription = { remove: jest.fn() };
 Pedometer.watchStepCount.mockReturnValue(Subscription);
 jest.mock('expo-sensors', () => ({ Pedometer }));
 
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook } from 'react-hooks-testing-library';
 import { usePedometerHistory } from '../src/use-pedometer-history';
 
 const DATA = 0;
@@ -15,7 +15,7 @@ const end = new Date(Number(start) + 5000);
 
 test('returns state and availability when mounted', async () => {
 	(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
-	const hook = renderHook(() => usePedometerHistory(start, end, { getAvailability: false }));
+	const hook = renderHook(() => usePedometerHistory(start, end, { availability: false }));
 
 	await hook.waitForNextUpdate();
 
@@ -47,17 +47,17 @@ describe('options', () => {
 	test('initial data is returned', () => {
 		(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
 
-		const initialData = { steps: 10 };
-		const hook = renderHook(() => usePedometerHistory(start, end, { initialData, getAvailability: false }));
+		const initial = { steps: 10 };
+		const hook = renderHook(() => usePedometerHistory(start, end, { initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('availability check is skipped', () => {
 		(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
 		(Pedometer.isAvailableAsync as jest.Mock).mockResolvedValue(true);
 
-		renderHook(() => usePedometerHistory(start, end, { getAvailability: false }));
+		renderHook(() => usePedometerHistory(start, end, { availability: false }));
 		expect(Pedometer.isAvailableAsync).not.toBeCalled();
 	});
 });

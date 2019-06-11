@@ -13,16 +13,16 @@
 
 ```jsx
 useBarometer();
-useBarometer({ updateInterval: 1000 });
-useBarometer({ initialData: { pressure: 0 } });
-useBarometer({ getAvailability: false });
+useBarometer({ interval: 1000 });
+useBarometer({ initial: { pressure: 0 } });
+useBarometer({ availability: false });
 ```
 
 With the `useBarometer` hook we can simplify the [Barometer example for the Expo docs](https://docs.expo.io/versions/latest/sdk/barometer/#example-basic-subscription).
 
 ```jsx
 function BarometerSensor() {
-    const [data, isAvailable] = useBarometer({ initialData: { pressure: 0 } });
+    const [data, isAvailable] = useBarometer({ initial: { pressure: 0 } });
 
     return (
         <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
@@ -48,14 +48,15 @@ function useBarometer(options?: BarometerOptions): [
 
 interface BarometerOptions {
 	/** The initial data to use before the first update. */
-    initialData?: BarometerMeasurement;
-    /** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	initial?: BarometerMeasurement;
+	/** If it should check the availability of the sensor, defaults to `true`. */
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the barometer data.
 	 * Note, this is set globally through `Barometer.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }
 ```
 

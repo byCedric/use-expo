@@ -13,16 +13,16 @@
 
 ```jsx
 useGyroscope();
-useGyroscope({ updateInterval: 1000 });
-useGyroscope({ initialData: { x: 1, y: 1, z: 1 } });
-useGyroscope({ getAvailability: false });
+useGyroscope({ interval: 1000 });
+useGyroscope({ initial: { x: 1, y: 1, z: 1 } });
+useGyroscope({ availability: false });
 ```
 
 With the `useGyroscope` hook we can simplify the [Gyroscope example for the Expo docs](https://docs.expo.io/versions/latest/sdk/gyroscope/#example-basic-subscription).
 
 ```jsx
 function GyroscopeSensor() {
-    const [data, isAvailable] = useGyroscope({ updateInterval: 100 });
+    const [data, isAvailable] = useGyroscope({ interval: 100 });
 
     return (
         <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
@@ -55,15 +55,16 @@ function useGyroscope(options?: GyroscopeOptions): [
 ];
 
 interface GyroscopeOptions {
-	/** The initial data to use before the first update. */
-    initialData?: ThreeAxisMeasurement;
-    /** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+    /** The initial data to use before the first update. */
+	initial?: ThreeAxisMeasurement;
+	/** If it should check the availability of the sensor, defaults to `true`. */
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the gyroscope data.
 	 * Note, this is set globally through `Gyroscope.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }
 ```
 

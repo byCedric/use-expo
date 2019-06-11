@@ -11,7 +11,7 @@ const DATA = 0;
 const AVAILABLE = 1;
 
 test('returns state and availability when mounted', () => {
-	const hook = renderHook(() => useBarometer({ getAvailability: false }));
+	const hook = renderHook(() => useBarometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
@@ -28,7 +28,7 @@ test('handles new barometer availability', async () => {
 
 // todo: check why this is failing in combination with all these other tests, alone it works fine
 // test('handles new barometer data', () => {
-// 	const hook = renderHook(() => useBarometer({ getAvailability: false }));
+// 	const hook = renderHook(() => useBarometer({ availability: false }));
 // 	const handler = Barometer.addListener.mock.calls[0][0];
 // 	const newData = { pressure: 5, relativeAltitude: 0 };
 
@@ -38,12 +38,12 @@ test('handles new barometer availability', async () => {
 
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(() => useBarometer({ getAvailability: false }));
+		renderHook(() => useBarometer({ availability: false }));
 		expect(Barometer.addListener).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useBarometer({ getAvailability: false }));
+		const hook = renderHook(() => useBarometer({ availability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
@@ -57,19 +57,19 @@ describe('event listener', () => {
 
 describe('options', () => {
 	test('initial data is returned', () => {
-		const initialData = { pressure: 5, relativeAltitude: 0 };
-		const hook = renderHook(() => useBarometer({ initialData, getAvailability: false }));
+		const initial = { pressure: 5, relativeAltitude: 0 };
+		const hook = renderHook(() => useBarometer({ initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('update interval is set', () => {
-		renderHook(() => useBarometer({ updateInterval: 1500, getAvailability: false }));
+		renderHook(() => useBarometer({ interval: 1500, availability: false }));
 		expect(Barometer.setUpdateInterval).toBeCalledWith(1500);
 	});
 
 	test('availability check is skipped', () => {
-		renderHook(() => useBarometer({ getAvailability: false }));
+		renderHook(() => useBarometer({ availability: false }));
 		expect(Barometer.isAvailableAsync).not.toBeCalled();
 	});
 });

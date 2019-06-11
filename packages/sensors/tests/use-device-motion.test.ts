@@ -11,7 +11,7 @@ const DATA = 0;
 const AVAILABLE = 1;
 
 test('returns state and availability when mounted', () => {
-	const hook = renderHook(() => useDeviceMotion({ getAvailability: false }));
+	const hook = renderHook(() => useDeviceMotion({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
@@ -27,7 +27,7 @@ test('handles new device motion availability', async () => {
 });
 
 test('handles new device motion data', async () => {
-	const hook = renderHook(() => useDeviceMotion({ getAvailability: false }));
+	const hook = renderHook(() => useDeviceMotion({ availability: false }));
 	const handler = DeviceMotion.addListener.mock.calls[0][0];
 	const newData = {
 		acceleration: { x: 0.5, y: 0, z: 0.25 },
@@ -43,12 +43,12 @@ test('handles new device motion data', async () => {
 
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(() => useDeviceMotion({ getAvailability: false }));
+		renderHook(() => useDeviceMotion({ availability: false }));
 		expect(DeviceMotion.addListener).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useDeviceMotion({ getAvailability: false }));
+		const hook = renderHook(() => useDeviceMotion({ availability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
@@ -62,7 +62,7 @@ describe('event listener', () => {
 
 describe('options', () => {
 	test('initial data is returned', () => {
-		const initialData = {
+		const initial = {
 			acceleration: { x: 0.5, y: 0, z: 0.25 },
 			accelerationIncludingGravity: { x: 0.4, y: -0.3, z: 0.25 },
 			rotation: { alpha: 0, beta: 1, gamma: 0 },
@@ -70,18 +70,18 @@ describe('options', () => {
 			orientation: 5,
 		};
 
-		const hook = renderHook(() => useDeviceMotion({ initialData, getAvailability: false }));
+		const hook = renderHook(() => useDeviceMotion({ initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('update interval is set', () => {
-		renderHook(() => useDeviceMotion({ updateInterval: 1500, getAvailability: false }));
+		renderHook(() => useDeviceMotion({ interval: 1500, availability: false }));
 		expect(DeviceMotion.setUpdateInterval).toBeCalledWith(1500);
 	});
 
 	test('availability check is skipped', () => {
-		renderHook(() => useDeviceMotion({ getAvailability: false }));
+		renderHook(() => useDeviceMotion({ availability: false }));
 		expect(DeviceMotion.isAvailableAsync).not.toBeCalled();
 	});
 });

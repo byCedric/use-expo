@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { Barometer, BarometerMeasurement } from 'expo-sensors';
 
 export function useBarometer(options: BarometerOptions = {}): UseBarometerSignature {
-	const [data, setData] = useState(options.initialData);
+	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { getAvailability = true } = options;
+	const { availability = true } = options;
 
 	useEffect(() => {
-		if (getAvailability) {
+		if (availability) {
 			Barometer.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.updateInterval !== undefined) {
-			Barometer.setUpdateInterval(options.updateInterval);
+		if (options.interval !== undefined) {
+			Barometer.setUpdateInterval(options.interval);
 		}
 
 		return Barometer.addListener(setData).remove;
@@ -28,12 +28,13 @@ type UseBarometerSignature = [
 
 export interface BarometerOptions {
 	/** The initial data to use before the first update. */
-	initialData?: BarometerMeasurement;
+	initial?: BarometerMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the barometer data.
 	 * Note, this is set globally through `Barometer.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }

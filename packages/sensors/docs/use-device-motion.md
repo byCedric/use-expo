@@ -13,16 +13,16 @@
 
 ```jsx
 useDeviceMotion();
-useDeviceMotion({ updateInterval: 1000 });
-useDeviceMotion({ initialData: { ... } });
-useDeviceMotion({ getAvailability: false });
+useDeviceMotion({ interval: 1000 });
+useDeviceMotion({ initial: { ... } });
+useDeviceMotion({ availability: false });
 ```
 
 With the `useDeviceMotion` hook we can create a simple component.
 
 ```jsx
 function DeviceMotionSensor() {
-    const [data, isAvailable] = useDeviceMotion({ updateInterval: 100 });
+    const [data, isAvailable] = useDeviceMotion({ interval: 100 });
 
     return (
         <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
@@ -48,14 +48,15 @@ function useDeviceMotion(options?: DeviceMotionOptions): [
 
 interface DeviceMotionOptions {
 	/** The initial data to use before the first update. */
-    initialData?: DeviceMotionMeasurement;
-    /** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	initial?: DeviceMotionMeasurement;
+	/** If it should check the availability of the sensor, defaults to `true`. */
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the device motion data.
 	 * Note, this is set globally through `DeviceMotion.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }
 ```
 

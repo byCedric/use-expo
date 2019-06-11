@@ -11,7 +11,7 @@ const DATA = 0;
 const AVAILABLE = 1;
 
 test('returns state and availability when mounted', () => {
-	const hook = renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
+	const hook = renderHook(() => useMagnetometerUncalibrated({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
@@ -37,12 +37,12 @@ test('handles new uncalibrated magnetometer data', async () => {
 
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
+		renderHook(() => useMagnetometerUncalibrated({ availability: false }));
 		expect(MagnetometerUncalibrated.addListener).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
+		const hook = renderHook(() => useMagnetometerUncalibrated({ availability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
@@ -56,19 +56,19 @@ describe('event listener', () => {
 
 describe('options', () => {
 	test('initial data is returned', () => {
-		const initialData = { x: 0.5, y: 0.2, z: 0.3 };
-		const hook = renderHook(() => useMagnetometerUncalibrated({ initialData, getAvailability: false }));
+		const initial = { x: 0.5, y: 0.2, z: 0.3 };
+		const hook = renderHook(() => useMagnetometerUncalibrated({ initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('update interval is set', () => {
-		renderHook(() => useMagnetometerUncalibrated({ updateInterval: 1500, getAvailability: false }));
+		renderHook(() => useMagnetometerUncalibrated({ interval: 1500, availability: false }));
 		expect(MagnetometerUncalibrated.setUpdateInterval).toBeCalledWith(1500);
 	});
 
 	test('availability check is skipped', () => {
-		renderHook(() => useMagnetometerUncalibrated({ getAvailability: false }));
+		renderHook(() => useMagnetometerUncalibrated({ availability: false }));
 		expect(MagnetometerUncalibrated.isAvailableAsync).not.toBeCalled();
 	});
 });

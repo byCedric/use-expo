@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { Magnetometer, ThreeAxisMeasurement } from 'expo-sensors';
 
 export function useMagnetometer(options: MagnetometerOptions = {}): UseMagnetometerSignature {
-	const [data, setData] = useState(options.initialData);
+	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { getAvailability = true } = options;
+	const { availability = true } = options;
 
 	useEffect(() => {
-		if (getAvailability) {
+		if (availability) {
 			Magnetometer.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.updateInterval !== undefined) {
-			Magnetometer.setUpdateInterval(options.updateInterval);
+		if (options.interval !== undefined) {
+			Magnetometer.setUpdateInterval(options.interval);
 		}
 
 		return Magnetometer.addListener(setData).remove;
@@ -28,12 +28,13 @@ type UseMagnetometerSignature = [
 
 export interface MagnetometerOptions {
 	/** The initial data to use before the first update. */
-	initialData?: ThreeAxisMeasurement;
+	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the magnetometer data.
 	 * Note, this is set globally through `Magnetometer.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }

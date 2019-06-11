@@ -13,22 +13,22 @@
 
 ```jsx
 useMagnetometer();
-useMagnetometer({ updateInterval: 1000 });
-useMagnetometer({ initialData: { x: 1, y: 1, z: 1 } });
-useMagnetometer({ getAvailability: false });
+useMagnetometer({ interval: 1000 });
+useMagnetometer({ initial: { x: 1, y: 1, z: 1 } });
+useMagnetometer({ availability: false });
 
 // or use the raw data with:
 useMagnetometerUncalibrated();
-useMagnetometerUncalibrated({ updateInterval: 1000 });
-useMagnetometerUncalibrated({ initialData: { x: 1, y: 1, z: 1 } });
-useMagnetometerUncalibrated({ getAvailability: false });
+useMagnetometerUncalibrated({ interval: 1000 });
+useMagnetometerUncalibrated({ initial: { x: 1, y: 1, z: 1 } });
+useMagnetometerUncalibrated({ availability: false });
 ```
 
 With the `useMagnetometer` hook we can simplify the [Magnetometer example for the Expo docs](https://docs.expo.io/versions/latest/sdk/magnetometer/#example-basic-subscription).
 
 ```jsx
 function MagnetometerSensor() {
-    const [data, isAvailable] = useMagnetometer({ updateInterval: 100 });
+    const [data, isAvailable] = useMagnetometer({ interval: 100 });
 
     return (
         <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
@@ -62,14 +62,15 @@ function useMagnetometer(options?: MagnetometerOptions): [
 
 interface MagnetometerOptions {
 	/** The initial data to use before the first update. */
-    initialData?: ThreeAxisMeasurement;
-    /** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	initial?: ThreeAxisMeasurement;
+	/** If it should check the availability of the sensor, defaults to `true`. */
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the magnetometer data.
 	 * Note, this is set globally through `Magnetometer.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }
 ```
 

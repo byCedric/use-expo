@@ -7,12 +7,12 @@ export function usePedometerHistory(
 	end: Date,
 	options: PedometerOptions = {},
 ): UsePedometerHistorySignature {
-	const [data, setData] = useState(options.initialData);
+	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { getAvailability = true } = options;
+	const { availability = true } = options;
 
 	useEffect(() => {
-		if (getAvailability) {
+		if (availability) {
 			Pedometer.isAvailableAsync().then(setAvailable);
 		}
 
