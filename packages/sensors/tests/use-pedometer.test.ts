@@ -11,7 +11,7 @@ const DATA = 0;
 const AVAILABLE = 1;
 
 test('returns state and availability when mounted', () => {
-	const hook = renderHook(() => usePedometer({ getAvailability: false }));
+	const hook = renderHook(() => usePedometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
@@ -27,7 +27,7 @@ test('handles new pedometer availability', async () => {
 });
 
 test('handles new pedometer data', async () => {
-	const hook = renderHook(() => usePedometer({ getAvailability: false }));
+	const hook = renderHook(() => usePedometer({ availability: false }));
 	const handler = Pedometer.watchStepCount.mock.calls[0][0];
 	const newData = { steps: 5 };
 
@@ -37,12 +37,12 @@ test('handles new pedometer data', async () => {
 
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(() => usePedometer({ getAvailability: false }));
+		renderHook(() => usePedometer({ availability: false }));
 		expect(Pedometer.watchStepCount).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(() => usePedometer({ getAvailability: false }));
+		const hook = renderHook(() => usePedometer({ availability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
@@ -56,14 +56,14 @@ describe('event listener', () => {
 
 describe('options', () => {
 	test('initial data is returned', () => {
-		const initialData = { steps: 10 };
-		const hook = renderHook(() => usePedometer({ initialData, getAvailability: false }));
+		const initial = { steps: 10 };
+		const hook = renderHook(() => usePedometer({ initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('availability check is skipped', () => {
-		renderHook(() => usePedometer({ getAvailability: false }));
+		renderHook(() => usePedometer({ availability: false }));
 		expect(Pedometer.isAvailableAsync).not.toBeCalled();
 	});
 });

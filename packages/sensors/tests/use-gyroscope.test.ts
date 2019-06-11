@@ -11,7 +11,7 @@ const DATA = 0;
 const AVAILABLE = 1;
 
 test('returns state and availability when mounted', () => {
-	const hook = renderHook(() => useGyroscope({ getAvailability: false }));
+	const hook = renderHook(() => useGyroscope({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
@@ -27,7 +27,7 @@ test('handles new gyroscope availability', async () => {
 });
 
 test('handles new gyroscope data', async () => {
-	const hook = renderHook(() => useGyroscope({ getAvailability: false }));
+	const hook = renderHook(() => useGyroscope({ availability: false }));
 	const handler = Gyroscope.addListener.mock.calls[0][0];
 	const newData = { x: 0, y: 1, z: 0.5 };
 
@@ -37,12 +37,12 @@ test('handles new gyroscope data', async () => {
 
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(() => useGyroscope({ getAvailability: false }));
+		renderHook(() => useGyroscope({ availability: false }));
 		expect(Gyroscope.addListener).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useGyroscope({ getAvailability: false }));
+		const hook = renderHook(() => useGyroscope({ availability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
@@ -56,19 +56,19 @@ describe('event listener', () => {
 
 describe('options', () => {
 	test('initial data is returned', () => {
-		const initialData = { x: 1, y: 1, z: 1 };
-		const hook = renderHook(() => useGyroscope({ initialData, getAvailability: false }));
+		const initial = { x: 1, y: 1, z: 1 };
+		const hook = renderHook(() => useGyroscope({ initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('update interval is set', () => {
-		renderHook(() => useGyroscope({ updateInterval: 1500, getAvailability: false }));
+		renderHook(() => useGyroscope({ interval: 1500, availability: false }));
 		expect(Gyroscope.setUpdateInterval).toBeCalledWith(1500);
 	});
 
 	test('availability check is skipped', () => {
-		renderHook(() => useGyroscope({ getAvailability: false }));
+		renderHook(() => useGyroscope({ availability: false }));
 		expect(Gyroscope.isAvailableAsync).not.toBeCalled();
 	});
 });

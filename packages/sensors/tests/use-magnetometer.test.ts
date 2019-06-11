@@ -11,7 +11,7 @@ const DATA = 0;
 const AVAILABLE = 1;
 
 test('returns state and availability when mounted', () => {
-	const hook = renderHook(() => useMagnetometer({ getAvailability: false }));
+	const hook = renderHook(() => useMagnetometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
@@ -27,7 +27,7 @@ test('handles new magnetometer availability', async () => {
 });
 
 test('handles new magnetometer data', async () => {
-	const hook = renderHook(() => useMagnetometer({ getAvailability: false }));
+	const hook = renderHook(() => useMagnetometer({ availability: false }));
 	const handler = Magnetometer.addListener.mock.calls[0][0];
 	const newData = { x: 0, y: 1, z: 0.5 };
 
@@ -37,12 +37,12 @@ test('handles new magnetometer data', async () => {
 
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(() => useMagnetometer({ getAvailability: false }));
+		renderHook(() => useMagnetometer({ availability: false }));
 		expect(Magnetometer.addListener).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useMagnetometer({ getAvailability: false }));
+		const hook = renderHook(() => useMagnetometer({ availability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
@@ -56,19 +56,19 @@ describe('event listener', () => {
 
 describe('options', () => {
 	test('initial data is returned', () => {
-		const initialData = { x: 0.5, y: 0.2, z: 0.3 };
-		const hook = renderHook(() => useMagnetometer({ initialData, getAvailability: false }));
+		const initial = { x: 0.5, y: 0.2, z: 0.3 };
+		const hook = renderHook(() => useMagnetometer({ initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('update interval is set', () => {
-		renderHook(() => useMagnetometer({ updateInterval: 1500, getAvailability: false }));
+		renderHook(() => useMagnetometer({ interval: 1500, availability: false }));
 		expect(Magnetometer.setUpdateInterval).toBeCalledWith(1500);
 	});
 
 	test('availability check is skipped', () => {
-		renderHook(() => useMagnetometer({ getAvailability: false }));
+		renderHook(() => useMagnetometer({ availability: false }));
 		expect(Magnetometer.isAvailableAsync).not.toBeCalled();
 	});
 });

@@ -13,16 +13,16 @@
 
 ```jsx
 useAccelerometer();
-useAccelerometer({ updateInterval: 1000 });
-useAccelerometer({ initialData: { x: 1, y: 1, z: 1 } });
-useAccelerometer({ getAvailability: false });
+useAccelerometer({ interval: 1000 });
+useAccelerometer({ initial: { x: 1, y: 1, z: 1 } });
+useAccelerometer({ availability: false });
 ```
 
 With the `useAccelerometer` hook we can simplify the [Accelerometer example for the Expo docs](https://docs.expo.io/versions/latest/sdk/accelerometer/#example-basic-subscription).
 
 ```jsx
 function AccelerometerSensor() {
-    const [data, isAvailable] = useAccelerometer({ updateInterval: 100 });
+    const [data, isAvailable] = useAccelerometer({ interval: 100 });
 
     return (
         <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
@@ -56,14 +56,15 @@ function useAccelerometer(options?: AccelerometerOptions): [
 
 interface AccelerometerOptions {
 	/** The initial data to use before the first update. */
-	initialData?: ThreeAxisMeasurement;
+	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the accelerometer data.
 	 * Note, this is set globally through `Accelerometer.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }
 ```
 

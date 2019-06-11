@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { Accelerometer, ThreeAxisMeasurement } from 'expo-sensors';
 
 export function useAccelerometer(options: AccelerometerOptions = {}): UseAccelerometerSignature {
-	const [data, setData] = useState(options.initialData);
+	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { getAvailability = true } = options;
+	const { availability = true } = options;
 
 	useEffect(() => {
-		if (getAvailability) {
+		if (availability) {
 			Accelerometer.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.updateInterval !== undefined) {
-			Accelerometer.setUpdateInterval(options.updateInterval);
+		if (options.interval !== undefined) {
+			Accelerometer.setUpdateInterval(options.interval);
 		}
 
 		return Accelerometer.addListener(setData).remove;
@@ -28,12 +28,13 @@ type UseAccelerometerSignature = [
 
 export interface AccelerometerOptions {
 	/** The initial data to use before the first update. */
-	initialData?: ThreeAxisMeasurement;
+	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
-	getAvailability?: boolean;
+	availability?: boolean;
 	/**
 	 * The interval, in ms, to update the accelerometer data.
 	 * Note, this is set globally through `Accelerometer.setUpdateInterval`.
+	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
 	 */
-	updateInterval?: number;
+	interval?: number;
 }

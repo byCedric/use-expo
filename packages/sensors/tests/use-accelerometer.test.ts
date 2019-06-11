@@ -11,7 +11,7 @@ const DATA = 0;
 const AVAILABLE = 1;
 
 test('returns state and availability when mounted', () => {
-	const hook = renderHook(() => useAccelerometer({ getAvailability: false }));
+	const hook = renderHook(() => useAccelerometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
@@ -27,7 +27,7 @@ test('handles new accelerometer availability', async () => {
 });
 
 test('handles new accelerometer data', () => {
-	const hook = renderHook(() => useAccelerometer({ getAvailability: false }));
+	const hook = renderHook(() => useAccelerometer({ availability: false }));
 	const handler = Accelerometer.addListener.mock.calls[0][0];
 	const newData = { x: 0, y: 1, z: 0.5 };
 
@@ -37,12 +37,12 @@ test('handles new accelerometer data', () => {
 
 describe('event listener', () => {
 	test('is added when mounted', () => {
-		renderHook(() => useAccelerometer({ getAvailability: false }));
+		renderHook(() => useAccelerometer({ availability: false }));
 		expect(Accelerometer.addListener).toBeCalled();
 	});
 
 	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useAccelerometer({ getAvailability: false }));
+		const hook = renderHook(() => useAccelerometer({ availability: false }));
 
 		hook.unmount();
 		expect(Subscription.remove).toBeCalled();
@@ -56,19 +56,19 @@ describe('event listener', () => {
 
 describe('options', () => {
 	test('initial data is returned', () => {
-		const initialData = { x: 0.5, y: 0.2, z: 0.3 };
-		const hook = renderHook(() => useAccelerometer({ initialData, getAvailability: false }));
+		const initial = { x: 0.5, y: 0.2, z: 0.3 };
+		const hook = renderHook(() => useAccelerometer({ initial, availability: false }));
 
-		expect(hook.result.current[DATA]).toMatchObject(initialData);
+		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
 	test('update interval is set', () => {
-		renderHook(() => useAccelerometer({ updateInterval: 1500, getAvailability: false }));
+		renderHook(() => useAccelerometer({ interval: 1500, availability: false }));
 		expect(Accelerometer.setUpdateInterval).toBeCalledWith(1500);
 	});
 
 	test('availability check is skipped', () => {
-		renderHook(() => useAccelerometer({ getAvailability: false }));
+		renderHook(() => useAccelerometer({ availability: false }));
 		expect(Accelerometer.isAvailableAsync).not.toBeCalled();
 	});
 });
