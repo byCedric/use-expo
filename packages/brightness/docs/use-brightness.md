@@ -5,7 +5,7 @@
         <br />
         <br />
     </h1>
-    change the brightness of the screen with <a href="https://docs.expo.io/versions/latest/sdk/brightness/"><code>Brightness</code></a>
+    change the screen brightness with <a href="https://docs.expo.io/versions/latest/sdk/brightness/"><code>Brightness</code></a>
     <br />
 </div>
 
@@ -52,7 +52,7 @@ function percentage(n) {
 ## API
 
 ```ts
-function useBrightness(): [
+function useBrightness(options?: BrightnessOptions): [
     number | undefined,
     (brightness: number) => Promise<void>,
     () => Promise<void>,
