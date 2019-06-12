@@ -20,6 +20,7 @@
 
 - [`useBrightness`](./docs/use-brightness.md) &mdash; change the screen brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
 - [`useSystemBrightness`](./docs/use-system-brightness.md) &mdash; change the system brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
+- [`useSystemBrightnessMode`](./docs/use-system-brightness-mode.md) &mdash; change the brightness mode with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
 
 <div align="center">
     <br />
