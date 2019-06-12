@@ -22,7 +22,8 @@
 </div>
 
 - [**Brightness**](./packages/brightness)
-    - [`useBrightness`](./packages/brightness/docs/use-brightness.md) &mdash; change the brightness of the screen with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
+    - [`useBrightness`](./packages/brightness/docs/use-brightness.md) &mdash; change the screen brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
+    - [`useSystemBrightness`](./packages/brightness/docs/use-system-brightness.md) &mdash; change the system brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
 
 - [**Permissions**](./packages/permissions)
     - [`usePermissions`](./packages/permissions/docs/use-permissions.md) &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
