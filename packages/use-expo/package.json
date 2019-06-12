@@ -30,6 +30,7 @@
 		"build": "tsc"
 	},
 	"dependencies": {
+		"@use-expo/brightness": "^0.3.0",
 		"@use-expo/permissions": "^0.4.0",
 		"@use-expo/sensors": "^0.4.0"
 	},
