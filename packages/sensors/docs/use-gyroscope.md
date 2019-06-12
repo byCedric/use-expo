@@ -12,7 +12,10 @@
 ## Examples
 
 ```jsx
-useGyroscope();
+// full hook
+const [data, isAvailable] = useGyroscope();
+
+// other options
 useGyroscope({ interval: 1000 });
 useGyroscope({ initial: { x: 1, y: 1, z: 1 } });
 useGyroscope({ availability: false });
@@ -56,15 +59,15 @@ function useGyroscope(options?: GyroscopeOptions): [
 
 interface GyroscopeOptions {
     /** The initial data to use before the first update. */
-	initial?: ThreeAxisMeasurement;
-	/** If it should check the availability of the sensor, defaults to `true`. */
-	availability?: boolean;
-	/**
-	 * The interval, in ms, to update the gyroscope data.
-	 * Note, this is set globally through `Gyroscope.setUpdateInterval`.
-	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
-	 */
-	interval?: number;
+    initial?: ThreeAxisMeasurement;
+    /** If it should check the availability of the sensor, defaults to `true`. */
+    availability?: boolean;
+    /**
+     * The interval, in ms, to update the gyroscope data.
+     * Note, this is set globally through `Gyroscope.setUpdateInterval`.
+     * When used in 2 or more components, only the last rendered component's interval will be used for all.
+     */
+    interval?: number;
 }
 ```
 

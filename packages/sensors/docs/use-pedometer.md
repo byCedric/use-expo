@@ -12,7 +12,10 @@
 ## Examples
 
 ```jsx
-usePedometer();
+// full hook
+const [data, isAvailable] = usePedometer();
+
+// other options
 usePedometer({ initial: { steps: 5 } });
 usePedometer({ availability: false });
 ```
@@ -44,15 +47,15 @@ function usePedometer(options?: PedometerOptions): [
 ];
 
 interface PedometerMeasurement {
-	/** The amount of steps made */
-	steps: number;
+    /** The amount of steps made */
+    steps: number;
 }
 
 interface PedometerOptions {
-	/** The initial data to use before the first update. */
-	initial?: PedometerMeasurement;
-	/** If it should check the availability of the sensor, defaults to `true`. */
-	availability?: boolean;
+    /** The initial data to use before the first update. */
+    initial?: PedometerMeasurement;
+    /** If it should check the availability of the sensor, defaults to `true`. */
+    availability?: boolean;
 }
 ```
 

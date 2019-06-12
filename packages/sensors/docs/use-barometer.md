@@ -12,7 +12,10 @@
 ## Examples
 
 ```jsx
-useBarometer();
+// full hook
+const [data, isAvailable] = useBarometer();
+
+// other options
 useBarometer({ interval: 1000 });
 useBarometer({ initial: { pressure: 0 } });
 useBarometer({ availability: false });
@@ -47,16 +50,16 @@ function useBarometer(options?: BarometerOptions): [
 ];
 
 interface BarometerOptions {
-	/** The initial data to use before the first update. */
-	initial?: BarometerMeasurement;
-	/** If it should check the availability of the sensor, defaults to `true`. */
-	availability?: boolean;
-	/**
-	 * The interval, in ms, to update the barometer data.
-	 * Note, this is set globally through `Barometer.setUpdateInterval`.
-	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
-	 */
-	interval?: number;
+    /** The initial data to use before the first update. */
+    initial?: BarometerMeasurement;
+    /** If it should check the availability of the sensor, defaults to `true`. */
+    availability?: boolean;
+    /**
+     * The interval, in ms, to update the barometer data.
+     * Note, this is set globally through `Barometer.setUpdateInterval`.
+     * When used in 2 or more components, only the last rendered component's interval will be used for all.
+     */
+    interval?: number;
 }
 ```
 

@@ -12,7 +12,10 @@
 ## Examples
 
 ```jsx
-useAccelerometer();
+// full hook
+const [data, isAvailable] = useAccelerometer();
+
+// other options
 useAccelerometer({ interval: 1000 });
 useAccelerometer({ initial: { x: 1, y: 1, z: 1 } });
 useAccelerometer({ availability: false });
@@ -55,16 +58,16 @@ function useAccelerometer(options?: AccelerometerOptions): [
 ];
 
 interface AccelerometerOptions {
-	/** The initial data to use before the first update. */
-	initial?: ThreeAxisMeasurement;
-	/** If it should check the availability of the sensor, defaults to `true`. */
-	availability?: boolean;
-	/**
-	 * The interval, in ms, to update the accelerometer data.
-	 * Note, this is set globally through `Accelerometer.setUpdateInterval`.
-	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
-	 */
-	interval?: number;
+    /** The initial data to use before the first update. */
+    initial?: ThreeAxisMeasurement;
+    /** If it should check the availability of the sensor, defaults to `true`. */
+    availability?: boolean;
+    /**
+     * The interval, in ms, to update the accelerometer data.
+     * Note, this is set globally through `Accelerometer.setUpdateInterval`.
+     * When used in 2 or more components, only the last rendered component's interval will be used for all.
+     */
+    interval?: number;
 }
 ```
 

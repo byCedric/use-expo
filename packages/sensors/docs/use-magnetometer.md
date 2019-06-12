@@ -12,7 +12,10 @@
 ## Examples
 
 ```jsx
-useMagnetometer();
+// full hook
+const [data, isAvailable] = useMagnetometer();
+
+// other options
 useMagnetometer({ interval: 1000 });
 useMagnetometer({ initial: { x: 1, y: 1, z: 1 } });
 useMagnetometer({ availability: false });
@@ -61,16 +64,16 @@ function useMagnetometer(options?: MagnetometerOptions): [
 ];
 
 interface MagnetometerOptions {
-	/** The initial data to use before the first update. */
-	initial?: ThreeAxisMeasurement;
-	/** If it should check the availability of the sensor, defaults to `true`. */
-	availability?: boolean;
-	/**
-	 * The interval, in ms, to update the magnetometer data.
-	 * Note, this is set globally through `Magnetometer.setUpdateInterval`.
-	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
-	 */
-	interval?: number;
+    /** The initial data to use before the first update. */
+    initial?: ThreeAxisMeasurement;
+    /** If it should check the availability of the sensor, defaults to `true`. */
+    availability?: boolean;
+    /**
+     * The interval, in ms, to update the magnetometer data.
+     * Note, this is set globally through `Magnetometer.setUpdateInterval`.
+     * When used in 2 or more components, only the last rendered component's interval will be used for all.
+     */
+    interval?: number;
 }
 ```
 

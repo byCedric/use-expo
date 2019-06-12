@@ -12,7 +12,10 @@
 ## Examples
 
 ```jsx
-useDeviceMotion();
+// full hook
+const [data, isAvailable] = useDeviceMotion();
+
+// other options
 useDeviceMotion({ interval: 1000 });
 useDeviceMotion({ initial: { ... } });
 useDeviceMotion({ availability: false });
@@ -47,16 +50,16 @@ function useDeviceMotion(options?: DeviceMotionOptions): [
 ];
 
 interface DeviceMotionOptions {
-	/** The initial data to use before the first update. */
-	initial?: DeviceMotionMeasurement;
-	/** If it should check the availability of the sensor, defaults to `true`. */
-	availability?: boolean;
-	/**
-	 * The interval, in ms, to update the device motion data.
-	 * Note, this is set globally through `DeviceMotion.setUpdateInterval`.
-	 * When used in 2 or more components, only the last rendered component's interval will be used for all.
-	 */
-	interval?: number;
+    /** The initial data to use before the first update. */
+    initial?: DeviceMotionMeasurement;
+    /** If it should check the availability of the sensor, defaults to `true`. */
+    availability?: boolean;
+    /**
+     * The interval, in ms, to update the device motion data.
+     * Note, this is set globally through `DeviceMotion.setUpdateInterval`.
+     * When used in 2 or more components, only the last rendered component's interval will be used for all.
+     */
+    interval?: number;
 }
 ```
 

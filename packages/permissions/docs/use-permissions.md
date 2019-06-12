@@ -12,6 +12,10 @@
 ## Examples
 
 ```jsx
+// full hook
+const [permission, askPermission, getPermission] = usePermissions(Permissions.CAMERA);
+
+// other options
 usePermissions(Permissions.CAMERA);
 usePermissions([Permissions.CAMERA, Permissions.CAMERA_ROLL]);
 usePermissions(Permissions.LOCATION, { ask: true });
@@ -23,35 +27,25 @@ With the `usePermissions` hook we can simplify the [Camera example for the Expo 
 ```jsx
 function CameraExample() {
     const [camera, setCamera] = useState(Camera.Constants.Type.back);
-	const [permission] = usePermissions(Permissions.CAMERA, { ask: true });
+    const [permission] = usePermissions(Permissions.CAMERA, { ask: true });
 
-	if (!permission) {
-		return <View />;
-	} else if (permission.status !== 'granted') {
-		return <Text>No access to camera</Text>;
-	} else {
+    if (!permission) {
+        return <View />;
+    } else if (permission.status !== 'granted') {
+        return <Text>No access to camera</Text>;
+    } else {
         return (
             <View style={{ flex: 1 }}>
                 <Camera style={{ flex: 1 }} type={camera}>
-                    <View
-                        style={{
-                            flex: 1,
-                            backgroundColor: 'transparent',
-                            flexDirection: 'row',
-                        }}
-                    >
+                    <View style={{ flex: 1, backgroundColor: 'transparent', flexDirection: 'row' }}>
                         <TouchableOpacity
-                            style={{
-                                flex: 0.1,
-                                alignSelf: 'flex-end',
-                                alignItems: 'center',
-                            }}
+                            style={{ flex: 0.1, alignSelf: 'flex-end', alignItems: 'center' }}
                             onPress={() => {
                                 setCamera(
                                     camera === Camera.Constants.Type.back
                                         ? Camera.Constants.Type.front
                                         : Camera.Constants.Type.back
-                                );
+                                    );
                             }}
                         >
                             <Text style={{ fontSize: 18, marginBottom: 10, color: 'white' }}>
@@ -76,15 +70,15 @@ function usePermissions(
     options?: PermissionsOptions,
 ): [
     PermissionResponse | undefined,
-    askAsync(): Promise<void>,
-    getAsync(): Promise<void>,
+    (): Promise<void>,
+    (): Promise<void>,
 ];
 
 interface PermissionsOptions {
     /** If it should ask the permissions when mounted, defaults to `false` */
-	ask?: boolean;
-	/** If it should fetch information about the permissions when mounted, defaults to `true` */
-	get?: boolean;
+    ask?: boolean;
+    /** If it should fetch information about the permissions when mounted, defaults to `true` */
+    get?: boolean;
 }
 ```
 
