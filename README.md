@@ -29,6 +29,9 @@
 - [**Permissions**](./packages/permissions)
     - [`usePermissions`](./packages/permissions/docs/use-permissions.md) &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
 
+- [**Screen Orientation**](./packages/screen-orientation)
+    - [`useScreenOrientation`](./packages/screen-orientation/docs/use-screen-orientation.md) &mdash; tracks changes in screen orientation with [`ScreenOrientation`](https://docs.expo.io/versions/latest/sdk/screen-orientation/)
+
 - [**Sensors**](./packages/sensors)
     - [`useAccelerometer`](./packages/sensors/docs/use-accelerometer.md) &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
     - [`useBarometer`](./packages/sensors/docs/use-barometer.md) &mdash; tracks changes in air pressure with [`Barometer`](https://docs.expo.io/versions/latest/sdk/barometer/)
