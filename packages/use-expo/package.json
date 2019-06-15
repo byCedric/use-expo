@@ -32,6 +32,7 @@
 	"dependencies": {
 		"@use-expo/brightness": "^0.5.0",
 		"@use-expo/permissions": "^0.5.0",
+		"@use-expo/screen-orientation": "^0.5.0",
 		"@use-expo/sensors": "^0.5.0"
 	},
 	"devDependencies": {
