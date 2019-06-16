@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/screen-orientation",
-	"version": "0.5.0",
+	"version": "0.6.0",
 	"description": "Complementary hooks for expo's screen orientation",
 	"keywords": [
 		"expo",
@@ -39,14 +39,14 @@
 		"@typescript-eslint/parser": "^1.10.2",
 		"babel-preset-expo": "^5.1.1",
 		"eslint": "^5.16.0",
-		"expo-permissions": "^5.0.1",
 		"expo": "^33.0.3",
-		"jest-expo": "^33.0.2",
+		"expo-permissions": "^5.0.1",
 		"jest": "^24.8.0",
+		"jest-expo": "^33.0.2",
+		"react": "^16.8.6",
 		"react-hooks-testing-library": "^0.5.1",
 		"react-native": "github:expo/react-native#sdk-33.0.0",
 		"react-test-renderer": "^16.8.6",
-		"react": "^16.8.6",
 		"ts-jest": "^24.0.2",
 		"typescript": "^3.5.1"
 	},
