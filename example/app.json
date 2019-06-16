@@ -1,0 +1,30 @@
+{
+	"expo": {
+		"name": "use-expo",
+		"slug": "use-expo",
+		"privacy": "public",
+		"sdkVersion": "33.0.0",
+		"platforms": [
+			"ios",
+			"android",
+			"web"
+		],
+		"version": "0.0.0",
+		"orientation": "portrait",
+		"icon": "./src/assets/app-icon.png",
+		"splash": {
+			"image": "./src/assets/app-splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": [
+			"**/*"
+		],
+		"ios": {
+			"supportsTablet": true
+		}
+	}
+}

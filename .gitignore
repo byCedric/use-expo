@@ -9,3 +9,13 @@ yarn-debug.log*
 yarn-error.log*
 
 lerna-debug.log
+
+.expo
+.expo-shared
+*.jks
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build
+web-report
