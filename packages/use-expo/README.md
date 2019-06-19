@@ -12,6 +12,9 @@
         <a href="https://travis-ci.com/byCedric/use-expo">
             <img src="https://img.shields.io/travis/com/byCedric/use-expo/master.svg" alt="builds" />
         </a>
+        <a href="https://exp.host/@bycedric/use-expo">
+            <img src="https://img.shields.io/badge/demo-expo-lightgrey.svg" alt="demo" />
+        </a>
         <br />
         Complementary hooks for Expo
     </sup>
