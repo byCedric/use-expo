@@ -10,10 +10,9 @@
 			"web"
 		],
 		"version": "0.0.0",
-		"orientation": "portrait",
-		"icon": "./src/assets/app-icon.png",
+		"icon": "./src/assets/images/app-icon.png",
 		"splash": {
-			"image": "./src/assets/app-splash.png",
+			"image": "./src/assets/images/app-splash.png",
 			"resizeMode": "contain",
 			"backgroundColor": "#ffffff"
 		},

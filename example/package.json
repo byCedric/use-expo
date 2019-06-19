@@ -7,21 +7,33 @@
 		"start": "expo start",
 		"android": "expo start --android",
 		"ios": "expo start --ios",
-		"web": "expo start --web"
+		"web": "expo start --web",
+		"lint": "eslint App.tsx src --ext js,ts,tsx"
 	},
 	"dependencies": {
 		"expo": "^33.0.0",
+		"expo-camera": "^5.0.1",
+		"expo-constants": "^5.0.1",
+		"expo-font": "^5.0.1",
+		"expo-permissions": "^5.0.1",
+		"lodash": "^4.17.11",
 		"react": "16.8.3",
 		"react-dom": "^16.8.6",
 		"react-native": "github:expo/react-native#sdk-33.0.0",
 		"react-native-paper": "^2.16.0",
 		"react-native-web": "^0.11.4",
-		"use-expo": "^0.6.0"
+		"react-navigation": "^3.11.0",
+		"use-expo": "^0.6.1"
 	},
 	"devDependencies": {
+		"@types/lodash": "^4.14.134",
 		"@types/react": "^16.8.19",
 		"@types/react-native": "^0.57.60",
+		"@typescript-eslint/eslint-plugin": "^1.10.2",
+		"@typescript-eslint/parser": "^1.10.2",
 		"babel-preset-expo": "^5.1.1",
+		"eslint": "^5.16.0",
+		"eslint-plugin-react": "^7.13.0",
 		"typescript": "^3.4.5"
 	}
 }
