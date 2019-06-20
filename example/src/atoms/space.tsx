@@ -52,23 +52,23 @@ const getSizeFor = (props: SpaceProps & WithThemeProp, specific: SpaceDimension)
 };
 
 /**
- * Create an inline styling object with the desired margin.
+ * Create an inline styling object with the desired padding.
  * This first extracts the size from the theme and applies it where necessary.
  */
 const createStyle = (props: SpaceProps & WithThemeProp) => {
 	const { top, right, bottom, left, horizontal, vertical } = props;
 
 	if (!top && !right && !bottom && !left && !horizontal && !vertical) {
-		return { margin: getSizeFor(props, true) };
+		return { padding: getSizeFor(props, true) };
 	}
 
 	return {
-		...(horizontal && { marginHorizontal: getSizeFor(props, horizontal) }),
-		...(vertical && { marginVertical: getSizeFor(props, vertical) }),
-		...(top && { marginTop: getSizeFor(props, top) }),
-		...(right && { marginRight: getSizeFor(props, right) }),
-		...(bottom && { marginBottom: getSizeFor(props, bottom) }),
-		...(left && { marginLeft: getSizeFor(props, left) }),
+		...(horizontal && { paddingHorizontal: getSizeFor(props, horizontal) }),
+		...(vertical && { paddingVertical: getSizeFor(props, vertical) }),
+		...(top && { paddingTop: getSizeFor(props, top) }),
+		...(right && { paddingRight: getSizeFor(props, right) }),
+		...(bottom && { paddingBottom: getSizeFor(props, bottom) }),
+		...(left && { paddingLeft: getSizeFor(props, left) }),
 	};
 };
 
