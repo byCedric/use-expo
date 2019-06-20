@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
+import { Space } from './space';
 
 class ExampleComponent extends Component<ExampleProps & NavigationInjectedProps, ExampleState> {
 	state: ExampleState = {
@@ -23,9 +24,9 @@ class ExampleComponent extends Component<ExampleProps & NavigationInjectedProps,
 		}
 
 		return (
-			<View style={styles.content}>
+			<Space style={styles.content} size='large'>
 				{this.props.children}
-			</View>
+			</Space>
 		);
 	}
 }

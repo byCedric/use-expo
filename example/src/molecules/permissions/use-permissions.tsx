@@ -13,18 +13,19 @@ export const UsePermissions: React.SFC = () => {
 	return (
 		<Page
 			title='usePermissions'
-			subtitle='get or ask permissions with Permissions'
+			subtitle='get or ask permissions'
 		>
 			<Information>
-				This is example uses both the <Link url={docs.permissions}>Permissions</Link> and <Link url={docs.camera}>Camera</Link>.
-				When the permission is granted, it renders the camera with some captions.
-				Else it shows a button with explaination for the required permission.
+				Here you can see an example using both the <Link url={docs.permissions}>Permissions</Link> and <Link url={docs.camera}>Camera</Link>.
+				When the permission is granted, it renders a simple camera with a text overlay.
 			</Information>
 			<Example>
 				{(permission && permission.status !== 'granted') && (
 					<>
-						<Caption>We need additional permissions to use the camera.</Caption>
-						<Button onPress={askPermission} color='#333'>
+						<Space bottom>
+							<Caption>We need permission to use the camera.</Caption>
+						</Space>
+						<Button onPress={askPermission} mode='outlined' color='#333'>
 							Give permission
 						</Button>
 					</>
@@ -34,7 +35,7 @@ export const UsePermissions: React.SFC = () => {
 						style={styles.camera}
 						type={CameraConstants.Type.front}
 					>
-						<Space>
+						<Space bottom top='huge'>
 							<Caption style={{ color: '#fff' }}>
 								^ most handsome in the world
 							</Caption>
