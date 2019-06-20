@@ -1,14 +1,8 @@
 import React from 'react';
 import { Caption } from 'react-native-paper';
 import { useGyroscope } from 'use-expo';
+import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { docs } from '../../providers/urls';
-import {
-	ExampleContent,
-	ExampleDescription,
-	Link,
-	Measurement,
-	Page,
-} from '../../atoms';
 
 export const UseGyroscope: React.SFC = () => {
 	const [data, available] = useGyroscope({ interval: 100 });
@@ -18,11 +12,11 @@ export const UseGyroscope: React.SFC = () => {
 			title='useGyroscope'
 			subtitle='tracks changes in rotation'
 		>
-			<ExampleDescription>
+			<Information>
 				This example fetches the data from the <Link url={docs.gyroscope}>Gyroscope</Link>.
 				It renders the three dimensional data in a list, prefixed with the axis.
-			</ExampleDescription>
-			<ExampleContent>
+			</Information>
+			<Example>
 				{!available && (
 					<Caption>gyroscope is unavailable on this device</Caption>
 				)}
@@ -33,7 +27,7 @@ export const UseGyroscope: React.SFC = () => {
 						<Measurement name='z' value={data.z} precision={5} />
 					</>
 				)}
-			</ExampleContent>
+			</Example>
 		</Page>
 	);
 };

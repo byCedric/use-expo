@@ -1,14 +1,8 @@
 import React from 'react';
 import { Caption } from 'react-native-paper';
 import { usePedometer, usePedometerHistory } from 'use-expo';
+import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { docs } from '../../providers/urls';
-import {
-	ExampleContent,
-	ExampleDescription,
-	Link,
-	Measurement,
-	Page,
-} from '../../atoms';
 
 export const UsePedometer: React.SFC = () => {
 	const [live, liveAvailable] = usePedometer();
@@ -22,19 +16,17 @@ export const UsePedometer: React.SFC = () => {
 			title='usePedometer'
 			subtitle='tracks user step count'
 		>
-			<ExampleDescription>
+			<Information>
 				This example fetches the data from the <Link url={docs.pedometer}>Pedometer</Link>.
 				It renders the current "live" steps as well as the fetched steps for the past week.
-			</ExampleDescription>
-			<ExampleContent>
+			</Information>
+			<Example>
 				<Caption>Live</Caption>
 				{!liveAvailable && (
 					<Caption>unavailable on this device</Caption>
 				)}
 				{(liveAvailable && live) && (
-					<>
-						<Measurement name='steps' value={live.steps} precision={0} />
-					</>
+					<Measurement name='steps' value={live.steps} precision={0} />
 				)}
 
 				<Caption>Last two weeks</Caption>
@@ -42,11 +34,9 @@ export const UsePedometer: React.SFC = () => {
 					<Caption>unavailable on this device</Caption>
 				)}
 				{(historyAvailable && history) && (
-					<>
-						<Measurement name='steps' value={history.steps} precision={0} />
-					</>
+					<Measurement name='steps' value={history.steps} precision={0} />
 				)}
-			</ExampleContent>
+			</Example>
 		</Page>
 	);
 };

@@ -1,14 +1,8 @@
 import React from 'react';
 import { Caption } from 'react-native-paper';
 import { useMagnetometer, useMagnetometerUncalibrated } from 'use-expo';
+import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { docs } from '../../providers/urls';
-import {
-	ExampleContent,
-	ExampleDescription,
-	Link,
-	Measurement,
-	Page,
-} from '../../atoms';
 
 export const UseMagnetometer: React.SFC = () => {
 	const [calibrated, calibratedAvailable] = useMagnetometer({ interval: 200 });
@@ -19,11 +13,11 @@ export const UseMagnetometer: React.SFC = () => {
 			title='useMagnetometer'
 			subtitle='tracks changes in the magnetic field'
 		>
-			<ExampleDescription>
+			<Information>
 				This example fetches the data from the <Link url={docs.magnetometer}>Magnetometer</Link>.
 				It renders the three dimensional data in a list, prefixed with the axis.
-			</ExampleDescription>
-			<ExampleContent>
+			</Information>
+			<Example>
 				<Caption>Calibrated</Caption>
 				{!calibratedAvailable && (
 					<Caption>unavailable on this device</Caption>
@@ -47,7 +41,7 @@ export const UseMagnetometer: React.SFC = () => {
 						<Measurement name='z' value={uncalibrated.z} precision={2} />
 					</>
 				)}
-			</ExampleContent>
+			</Example>
 		</Page>
 	);
 };

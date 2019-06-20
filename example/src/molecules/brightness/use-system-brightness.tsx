@@ -4,13 +4,8 @@ import { Button, Caption } from 'react-native-paper';
 import { SYSTEM_BRIGHTNESS } from 'expo-permissions';
 import { usePermissions, useSystemBrightness } from 'use-expo';
 import { round } from 'lodash';
+import { Example, Information, Link, Page } from '../../atoms';
 import { docs } from '../../providers/urls';
-import {
-	ExampleContent,
-	ExampleDescription,
-	Link,
-	Page,
-} from '../../atoms';
 
 export const UseSystemBrightness: React.SFC = () => {
 	const [permission, askPermission] = usePermissions(SYSTEM_BRIGHTNESS);
@@ -21,12 +16,12 @@ export const UseSystemBrightness: React.SFC = () => {
 			title='useSystemBrightness'
 			subtitle='change the system brightness'
 		>
-			<ExampleDescription>
+			<Information>
 				This is example uses both the <Link url={docs.brightness}>Brightness</Link> and <Link url={docs.permissions}>Permissions</Link>.
 				When the <Link url={docs.permissions}>SYSTEM_BRIGHTNESS</Link> permission is granted, it renders a slider to change the system brightness.
 				Else it shows a button with explaination for the required permission.
-			</ExampleDescription>
-			<ExampleContent>
+			</Information>
+			<Example>
 				{(permission && permission.status !== 'granted') && (
 					<>
 						<Caption>we need additional permissions to modify the system brightness</Caption>
@@ -50,7 +45,7 @@ export const UseSystemBrightness: React.SFC = () => {
 						/>
 					</>
 				)}
-			</ExampleContent>
+			</Example>
 		</Page>
 	);
 };

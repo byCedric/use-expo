@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
-import { Paragraph } from 'react-native-paper';
-import { Space } from './space';
 
-class ExampleContentComponent extends Component<ExampleContentProps & NavigationInjectedProps, ExampleContentState> {
-	state: ExampleContentState = {
+class ExampleComponent extends Component<ExampleProps & NavigationInjectedProps, ExampleState> {
+	state: ExampleState = {
 		ready: false,
 	};
 
@@ -32,21 +30,15 @@ class ExampleContentComponent extends Component<ExampleContentProps & Navigation
 	}
 }
 
-export const ExampleContent = withNavigation(ExampleContentComponent);
+export const Example = withNavigation(ExampleComponent);
 
-export interface ExampleContentProps {
+export interface ExampleProps {
 	children: React.ReactNode;
 }
 
-export interface ExampleContentState {
+export interface ExampleState {
 	ready: boolean;
 }
-
-export const ExampleDescription: React.SFC = (props) => (
-	<Space bottom='large'>
-		<Paragraph>{props.children}</Paragraph>
-	</Space>
-);
 
 const styles = StyleSheet.create({
 	content: {

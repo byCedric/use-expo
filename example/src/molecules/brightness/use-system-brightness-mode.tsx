@@ -2,14 +2,8 @@ import React from 'react';
 import { Button, Caption } from 'react-native-paper';
 import { SYSTEM_BRIGHTNESS } from 'expo-permissions';
 import { usePermissions, useSystemBrightnessMode } from 'use-expo';
+import { Example, Information, Link, Page, Space } from '../../atoms';
 import { docs } from '../../providers/urls';
-import {
-	ExampleContent,
-	ExampleDescription,
-	Link,
-	Page,
-	Space,
-} from '../../atoms';
 
 const MODE_AUTOMATIC = 1;
 const MODE_MANUAL = 2;
@@ -23,12 +17,12 @@ export const UseSystemBrightnessMode: React.SFC = () => {
 			title='useSystemBrightnessMode'
 			subtitle='change the system brightness mode'
 		>
-			<ExampleDescription>
+			<Information>
 				This is example uses both the <Link url={docs.brightness}>Brightness</Link> and <Link url={docs.permissions}>Permissions</Link>.
 				When the <Link url={docs.permissions}>SYSTEM_BRIGHTNESS</Link> permission is granted, it renders two buttons to change the system brightness mode.
 				Else it shows a button with explaination for the required permission.
-			</ExampleDescription>
-			<ExampleContent>
+			</Information>
+			<Example>
 				{(permission && permission.status !== 'granted') && (
 					<>
 						<Caption>we need additional permissions to modify the system brightness mode</Caption>
@@ -59,7 +53,7 @@ export const UseSystemBrightnessMode: React.SFC = () => {
 						</Space>
 					</>
 				)}
-			</ExampleContent>
+			</Example>
 		</Page>
 	);
 };

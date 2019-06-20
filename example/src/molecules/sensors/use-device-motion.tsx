@@ -1,14 +1,8 @@
 import React from 'react';
 import { Caption } from 'react-native-paper';
 import { useDeviceMotion } from 'use-expo';
+import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { docs } from '../../providers/urls';
-import {
-	ExampleContent,
-	ExampleDescription,
-	Link,
-	Measurement,
-	Page,
-} from '../../atoms';
 
 const DEFAULT_3D = { x: 0, y: 0, z: 0 };
 const DEFAULT_RATE = { alpha: 0, beta: 0, gamma: 0 };
@@ -28,11 +22,11 @@ export const UseDeviceMotion: React.SFC = () => {
 			title='useDeviceMotion'
 			subtitle='tracks device motion and orientation'
 		>
-			<ExampleDescription>
+			<Information>
 				This example fetches the data from the <Link url={docs.deviceMotion}>DeviceMotion</Link>.
 				It renders all categories in a list with additional captions.
-			</ExampleDescription>
-			<ExampleContent>
+			</Information>
+			<Example>
 				{!available && (
 					<Caption>device motion is unavailable on this device</Caption>
 				)}
@@ -62,7 +56,7 @@ export const UseDeviceMotion: React.SFC = () => {
 						<Measurement name='γ' value={rotationRate.gamma} precision={5} />
 					</>
 				)}
-			</ExampleContent>
+			</Example>
 		</Page>
 	);
 };

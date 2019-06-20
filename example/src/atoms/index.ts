@@ -1,5 +1,6 @@
 export * from './author';
 export * from './example';
+export * from './information';
 export * from './link';
 export * from './list';
 export * from './measurement';

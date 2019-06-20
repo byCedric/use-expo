@@ -4,13 +4,8 @@ import { Button, Caption } from 'react-native-paper';
 import { Camera, Constants as CameraConstants } from 'expo-camera';
 import { CAMERA } from 'expo-permissions';
 import { usePermissions } from 'use-expo';
+import { Example, Information, Link, Page, Space } from '../../atoms';
 import { docs } from '../../providers/urls';
-import {
-	ExampleContent, ExampleDescription,
-	Link,
-	Page,
-	Space,
-} from '../../atoms';
 
 export const UsePermissions: React.SFC = () => {
 	const [permission, askPermission] = usePermissions(CAMERA);
@@ -20,12 +15,12 @@ export const UsePermissions: React.SFC = () => {
 			title='usePermissions'
 			subtitle='get or ask permissions with Permissions'
 		>
-			<ExampleDescription>
+			<Information>
 				This is example uses both the <Link url={docs.permissions}>Permissions</Link> and <Link url={docs.camera}>Camera</Link>.
 				When the permission is granted, it renders the camera with some captions.
 				Else it shows a button with explaination for the required permission.
-			</ExampleDescription>
-			<ExampleContent>
+			</Information>
+			<Example>
 				{(permission && permission.status !== 'granted') && (
 					<>
 						<Caption>We need additional permissions to use the camera.</Caption>
@@ -46,7 +41,7 @@ export const UsePermissions: React.SFC = () => {
 						</Space>
 					</Camera>
 				)}
-			</ExampleContent>
+			</Example>
 		</Page>
 	);
 };
