@@ -1,45 +1,31 @@
-import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
 import { Space } from './space';
 
-class ExampleComponent extends Component<ExampleProps & NavigationInjectedProps, ExampleState> {
-	state: ExampleState = {
-		ready: false,
-	};
+export const ExampleComponent: React.SFC<NavigationInjectedProps> = (props) => {
+	const [ready, setReady] = useState(false);
 
-	componentDidMount() {
-		const subscription = this.props.navigation.addListener(
+	useEffect(() => {
+		const subscription = props.navigation.addListener(
 			'didFocus',
 			() => {
 				subscription.remove();
-				this.setState({ ready: true });
+				setReady(true);
 			}
 		);
-	}
+	});
 
-	render() {
-		if (!this.state.ready) {
-			return null;
-		}
+	if (!ready) return null;
 
-		return (
-			<Space style={styles.content} size='large'>
-				{this.props.children}
-			</Space>
-		);
-	}
-}
+	return (
+		<Space style={styles.content} size='large'>
+			{props.children}
+		</Space>
+	);
+};
 
 export const Example = withNavigation(ExampleComponent);
-
-export interface ExampleProps {
-	children: React.ReactNode;
-}
-
-export interface ExampleState {
-	ready: boolean;
-}
 
 const styles = StyleSheet.create({
 	content: {
