@@ -8,6 +8,7 @@
 		"android": "expo start --android",
 		"ios": "expo start --ios",
 		"web": "expo start --web",
+		"test": "tsc --noEmit && npm run lint",
 		"lint": "eslint App.tsx src --ext js,ts,tsx"
 	},
 	"dependencies": {
