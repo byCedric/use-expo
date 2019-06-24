@@ -1,6 +1,6 @@
 workflow "Install and Publish" {
 	on = "push"
-	resolves = ["Publish stable"]
+	resolves = ["Publish"]
 }
 
 action "Install" {
@@ -14,14 +14,14 @@ action "Test" {
 	args = "run example-action -- npm test"
 }
 
-action "Filter stable branch" {
+action "Filter branch" {
 	needs = "Test"
 	uses = "actions/bin/filter@master"
 	args = "branch master"
 }
 
-action "Publish stable" {
-	needs = "Test"
+action "Publish" {
+	needs = "Filter branch"
 	uses = "expo/expo-github-action@2.3.2"
 	runs = "npm run example-action -- /entrypoint.sh publish"
 	secrets = [
