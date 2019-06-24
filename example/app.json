@@ -1,0 +1,30 @@
+{
+	"expo": {
+		"name": "expo hooks",
+		"description": "complementary hooks for expo",
+		"slug": "use-expo",
+		"privacy": "public",
+		"sdkVersion": "33.0.0",
+		"platforms": [
+			"ios",
+			"android",
+			"web"
+		],
+		"version": "0.0.0",
+		"icon": "./src/assets/images/app-icon.png",
+		"splash": {
+			"image": "./src/assets/images/app-splash.png",
+			"resizeMode": "contain",
+			"backgroundColor": "#ffffff"
+		},
+		"updates": {
+			"fallbackToCacheTimeout": 0
+		},
+		"assetBundlePatterns": [
+			"src/assets/**/*"
+		],
+		"ios": {
+			"supportsTablet": true
+		}
+	}
+}
