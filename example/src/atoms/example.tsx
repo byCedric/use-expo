@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { withNavigation, NavigationInjectedProps } from 'react-navigation';
-import { Space } from './space';
+import { Space, SpaceDimension } from './space';
 
-export const ExampleComponent: React.SFC<NavigationInjectedProps> = (props) => {
+export const ExampleComponent: React.SFC<ExampleProps & NavigationInjectedProps> = (props) => {
 	const [ready, setReady] = useState(false);
 
 	useEffect(() => {
@@ -19,13 +19,21 @@ export const ExampleComponent: React.SFC<NavigationInjectedProps> = (props) => {
 	if (!ready) return null;
 
 	return (
-		<Space style={styles.content} size='large'>
+		<Space style={styles.content} horizontal={props.space} vertical={props.space}>
 			{props.children}
 		</Space>
 	);
 };
 
 export const Example = withNavigation(ExampleComponent);
+
+export interface ExampleProps {
+	space?: SpaceDimension;
+}
+
+Example.defaultProps = {
+	space: 'large',
+};
 
 const styles = StyleSheet.create({
 	content: {

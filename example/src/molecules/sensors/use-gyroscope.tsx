@@ -13,12 +13,12 @@ export const UseGyroscope: React.SFC = () => {
 			subtitle='tracks changes in rotation'
 		>
 			<Information>
-				This example fetches the data from the <Link url={docs.gyroscope}>Gyroscope</Link>.
-				It renders the three dimensional data in a list, prefixed with the axis.
+				This example fetches the data from the <Link url={docs.gyroscope}>Gyroscope</Link> module.
+				It renders the three-dimensional data in a list, prefixed with the axis.
 			</Information>
 			<Example>
 				{!available && (
-					<Caption>gyroscope is unavailable on this device</Caption>
+					<Caption>Gyroscope is unavailable on this device.</Caption>
 				)}
 				{(available && data) && (
 					<>

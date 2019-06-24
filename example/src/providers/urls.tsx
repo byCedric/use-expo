@@ -13,6 +13,15 @@ export const docs = {
 	screenOrientation: 'https://docs.expo.io/versions/latest/sdk/screen-orientation/',
 };
 
+export const permissions = {
+	camera: 'https://docs.expo.io/versions/latest/sdk/permissions/#permissionscamera',
+	systemBrightness: 'https://docs.expo.io/versions/latest/sdk/permissions/#permissionssystem_brightness',
+};
+
+export const expo = {
+	permissions: 'https://github.com/expo/expo/tree/master/packages/expo-permissions#readme',
+};
+
 export const repo = 'https://github.com/bycedric/use-expo';
 
 // please don't judge me for this...

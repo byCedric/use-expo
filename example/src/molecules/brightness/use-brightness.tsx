@@ -15,8 +15,8 @@ export const UseBrightness: React.SFC = () => {
 			subtitle='change the screen brightness'
 		>
 			<Information>
-				This example only uses the <Link url={docs.brightness}>Brightness</Link>.
-				It renders the current screen's brightness and a slider to change that.
+				This example only uses the <Link url={docs.brightness}>Brightness</Link> module.
+				It renders the current screen brightness and a slider to change that.
 			</Information>
 			<Example>
 				<Caption>{round(Number(brightness) * 100, 1).toFixed(1)}%</Caption>

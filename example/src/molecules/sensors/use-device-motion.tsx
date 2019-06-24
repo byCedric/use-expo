@@ -23,12 +23,12 @@ export const UseDeviceMotion: React.SFC = () => {
 			subtitle='tracks device motion and orientation'
 		>
 			<Information>
-				This example fetches the data from the <Link url={docs.deviceMotion}>DeviceMotion</Link>.
+				This example fetches the data from the <Link url={docs.deviceMotion}>DeviceMotion</Link> module.
 				It renders all categories in a list with additional captions.
 			</Information>
 			<Example>
 				{!available && (
-					<Caption>device motion is unavailable on this device</Caption>
+					<Caption>Device motion is unavailable on this device.</Caption>
 				)}
 				{(available && data) && (
 					<>

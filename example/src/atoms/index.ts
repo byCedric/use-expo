@@ -4,5 +4,6 @@ export * from './information';
 export * from './link';
 export * from './list';
 export * from './measurement';
+export * from './missing-permissions';
 export * from './page';
 export * from './space';

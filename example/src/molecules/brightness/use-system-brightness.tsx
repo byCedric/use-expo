@@ -1,10 +1,10 @@
 import React from 'react';
 import { Slider } from 'react-native';
-import { Button, Caption } from 'react-native-paper';
+import { Caption } from 'react-native-paper';
 import { SYSTEM_BRIGHTNESS } from 'expo-permissions';
 import { usePermissions, useSystemBrightness } from 'use-expo';
 import { round } from 'lodash';
-import { Example, Information, Link, Page } from '../../atoms';
+import { Example, Information, Link, Page, MissingPermissions } from '../../atoms';
 import { docs } from '../../providers/urls';
 
 export const UseSystemBrightness: React.SFC = () => {
@@ -17,18 +17,14 @@ export const UseSystemBrightness: React.SFC = () => {
 			subtitle='change the system brightness'
 		>
 			<Information>
-				This is example uses both the <Link url={docs.brightness}>Brightness</Link> and <Link url={docs.permissions}>Permissions</Link>.
-				When the <Link url={docs.permissions}>SYSTEM_BRIGHTNESS</Link> permission is granted, it renders a slider to change the system brightness.
-				Else it shows a button with explaination for the required permission.
+				This is example uses both the <Link url={docs.brightness}>Brightness</Link> and <Link url={docs.permissions}>Permissions</Link> modules.
+				When you grant the <Link url={docs.permissions}>SYSTEM_BRIGHTNESS</Link> permission, it renders a slider to change the system brightness.
 			</Information>
 			<Example>
 				{(permission && permission.status !== 'granted') && (
-					<>
-						<Caption>we need additional permissions to modify the system brightness</Caption>
-						<Button onPress={askPermission} color='#333'>
-							give permission
-						</Button>
-					</>
+					<MissingPermissions onConfirm={askPermission}>
+						We need permission to modify the system brightness.
+					</MissingPermissions>
 				)}
 				{(permission && permission.status === 'granted') && (
 					<>

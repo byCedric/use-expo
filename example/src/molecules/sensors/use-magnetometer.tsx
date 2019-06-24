@@ -14,13 +14,13 @@ export const UseMagnetometer: React.SFC = () => {
 			subtitle='tracks changes in the magnetic field'
 		>
 			<Information>
-				This example fetches the data from the <Link url={docs.magnetometer}>Magnetometer</Link>.
-				It renders the three dimensional data in a list, prefixed with the axis.
+				This example fetches the data from the <Link url={docs.magnetometer}>Magnetometer</Link> module.
+				It renders the three-dimensional data in a list, prefixed with the axis.
 			</Information>
 			<Example>
 				<Caption>Calibrated</Caption>
 				{!calibratedAvailable && (
-					<Caption>unavailable on this device</Caption>
+					<Caption>Magnetometer is unavailable on this device.</Caption>
 				)}
 				{(calibratedAvailable && calibrated) && (
 					<>
@@ -32,7 +32,7 @@ export const UseMagnetometer: React.SFC = () => {
 
 				<Caption>Uncalibrated</Caption>
 				{!uncalibrartedAvailable && (
-					<Caption>unavailable on this device</Caption>
+					<Caption>Uncalibrated magnetometer is unavailable on this device.</Caption>
 				)}
 				{(uncalibrartedAvailable && uncalibrated) && (
 					<>

@@ -13,7 +13,7 @@ export const UseScreenOrientation: React.SFC = () => {
 			subtitle='tracks changes in screen orientation'
 		>
 			<Information>
-				This example only uses the <Link url={docs.screenOrientation}>ScreenOrientation</Link>.
+				This example only uses the <Link url={docs.screenOrientation}>ScreenOrientation</Link> module.
 				It renders the current orientation and listens to changes.
 			</Information>
 			<Example>

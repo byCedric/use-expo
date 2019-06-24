@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Button, Caption } from 'react-native-paper';
+import { Caption } from 'react-native-paper';
 import { Camera, Constants as CameraConstants } from 'expo-camera';
 import { CAMERA } from 'expo-permissions';
 import { usePermissions } from 'use-expo';
-import { Example, Information, Link, Page, Space } from '../../atoms';
-import { docs } from '../../providers/urls';
+import { Example, Information, Link, Page, Space, MissingPermissions } from '../../atoms';
+import * as url from '../../providers/urls';
 
 export const UsePermissions: React.SFC = () => {
 	const [permission, askPermission] = usePermissions(CAMERA);
@@ -16,19 +16,14 @@ export const UsePermissions: React.SFC = () => {
 			subtitle='get or ask permissions'
 		>
 			<Information>
-				Here you can see an example using both the <Link url={docs.permissions}>Permissions</Link> and <Link url={docs.camera}>Camera</Link>.
-				When the permission is granted, it renders a simple camera with a text overlay.
+				Here you can see an example using both the <Link url={url.docs.permissions}>Permissions</Link> and <Link url={url.docs.camera}>Camera</Link> modules.
+				When you grant the <Link url={url.permissions.camera}>CAMERA</Link> permission, it renders a simple camera with a text overlay.
 			</Information>
-			<Example>
+			<Example space={false}>
 				{(permission && permission.status !== 'granted') && (
-					<>
-						<Space bottom>
-							<Caption>We need permission to use the camera.</Caption>
-						</Space>
-						<Button onPress={askPermission} mode='outlined' color='#333'>
-							Give permission
-						</Button>
-					</>
+					<MissingPermissions onConfirm={askPermission}>
+						We need permission to use the camera.
+					</MissingPermissions>
 				)}
 				{(permission && permission.status === 'granted') && (
 					<Camera

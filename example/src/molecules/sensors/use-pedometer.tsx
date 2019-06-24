@@ -17,13 +17,13 @@ export const UsePedometer: React.SFC = () => {
 			subtitle='tracks user step count'
 		>
 			<Information>
-				This example fetches the data from the <Link url={docs.pedometer}>Pedometer</Link>.
+				This example fetches the data from the <Link url={docs.pedometer}>Pedometer</Link> module.
 				It renders the current "live" steps as well as the fetched steps for the past week.
 			</Information>
 			<Example>
 				<Caption>Live</Caption>
 				{!liveAvailable && (
-					<Caption>unavailable on this device</Caption>
+					<Caption>Pedometer is unavailable on this device</Caption>
 				)}
 				{(liveAvailable && live) && (
 					<Measurement name='steps' value={live.steps} precision={0} />
@@ -31,7 +31,7 @@ export const UsePedometer: React.SFC = () => {
 
 				<Caption>Last two weeks</Caption>
 				{!historyAvailable && (
-					<Caption>unavailable on this device</Caption>
+					<Caption>Pedometer history is unavailable on this device</Caption>
 				)}
 				{(historyAvailable && history) && (
 					<Measurement name='steps' value={history.steps} precision={0} />

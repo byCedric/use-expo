@@ -13,12 +13,12 @@ export const UseAccelerometer: React.SFC = () => {
 			subtitle='tracks changes in acceleration'
 		>
 			<Information>
-				This example fetches the data from the <Link url={docs.accelerometer}>Accelerometer</Link>.
-				It renders the three dimensional data in a list, prefixed with the axis.
+				This example fetches the data from the <Link url={docs.accelerometer}>Accelerometer</Link> module.
+				It renders the three-dimensional data in a list, prefixed with the axis.
 			</Information>
 			<Example>
 				{!available && (
-					<Caption>accelerometer is unavailable on this device</Caption>
+					<Caption>Accelerometer is unavailable on this device.</Caption>
 				)}
 				{(available && data) && (
 					<>
