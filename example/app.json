@@ -1,6 +1,7 @@
 {
 	"expo": {
-		"name": "use-expo",
+		"name": "expo hooks",
+		"description": "complementary hooks for expo",
 		"slug": "use-expo",
 		"privacy": "public",
 		"sdkVersion": "33.0.0",
