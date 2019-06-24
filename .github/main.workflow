@@ -3,21 +3,21 @@ workflow "Install and Publish" {
 	resolves = ["Publish stable", "Publish unstable"]
 }
 
-action "Change directory" {
-	uses = "actions/bin/sh@master"
-	runs = "cd ./example"
-}
-
 action "Install" {
-	needs = "Change directory"
 	uses = "actions/npm@master"
-	args = "ci"
+	runs = [
+		"cd $HOME/example",
+		"npm ci",
+	]
 }
 
 action "Test" {
 	needs = "Install"
 	uses = "actions/npm@master"
-	args = "test"
+	runs = [
+		"cd $HOME/example",
+		"npm test",
+	]
 }
 
 action "Filter stable branch" {
@@ -29,8 +29,14 @@ action "Filter stable branch" {
 action "Publish stable" {
 	needs = "Filter stable branch"
 	uses = "expo/expo-github-action@2.3.2"
-	args = "publish"
-	secrets = ["EXPO_CLI_USERNAME", "EXPO_CLI_PASSWORD"]
+	runs = [
+		"cd $HOME/example",
+		"expo publish",
+	]
+	secrets = [
+		"EXPO_CLI_USERNAME",
+		"EXPO_CLI_PASSWORD",
+	]
 }
 
 action "Filter unstable branch" {
@@ -42,6 +48,12 @@ action "Filter unstable branch" {
 action "Publish unstable" {
 	needs = "Filter unstable branch"
 	uses = "expo/expo-github-action@2.3.2"
-	args = "publish --release-channel test"
-	secrets = ["EXPO_CLI_USERNAME", "EXPO_CLI_PASSWORD"]
+	runs = [
+		"cd $HOME/example",
+		"expo publish --release-channel test"
+	]
+	secrets = [
+		"EXPO_CLI_USERNAME",
+		"EXPO_CLI_PASSWORD",
+	]
 }
