@@ -4,7 +4,7 @@ workflow "Install and Publish" {
 }
 
 action "Change directory" {
-  uses = "actions/npm@master"
+  uses = "actions/bin/sh@master"
   args = "cd ./example"
 }
 
