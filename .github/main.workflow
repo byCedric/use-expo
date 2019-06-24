@@ -3,7 +3,13 @@ workflow "Install and Publish" {
   resolves = ["Publish stable", "Publish unstable"]
 }
 
+action "Change directory" {
+  uses = "actions/npm@master"
+  args = "cd ./example"
+}
+
 action "Install" {
+	needs = "Change directory"
   uses = "actions/npm@master"
   args = "ci"
 }
