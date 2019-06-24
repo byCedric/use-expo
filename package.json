@@ -22,7 +22,8 @@
 		"postinstall": "lerna bootstrap",
 		"lint": "lerna run lint",
 		"test": "lerna run test",
-		"build": "lerna run build"
+		"build": "lerna run build",
+		"example-action": "cd ./example;"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^8.0.0",
