@@ -21,9 +21,9 @@ action "Filter stable branch" {
 }
 
 action "Publish stable" {
-	needs = "Filter stable branch"
+	needs = "Test"
 	uses = "expo/expo-github-action@2.3.2"
-	runs = "npm run example-action -- entrypoint publish"
+	runs = "npm run example-action -- /entrypoint.sh publish"
 	secrets = [
 		"EXPO_CLI_USERNAME",
 		"EXPO_CLI_PASSWORD",
