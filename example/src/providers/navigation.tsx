@@ -14,7 +14,10 @@ import {
 	UseMagnetometer,
 	UsePedometer,
 } from '../molecules/sensors';
-import { UseScreenOrientation } from '../molecules/screen-orientation';
+import {
+	UseScreenOrientation,
+	UseScreenOrientationLock,
+} from '../molecules/screen-orientation';
 
 const AppNavigator = createStackNavigator(
 	{
@@ -40,6 +43,10 @@ const AppNavigator = createStackNavigator(
 		},
 		useScreenOrientation: {
 			screen: UseScreenOrientation,
+			navigationOptions: { title: 'Screen Orientation' },
+		},
+		useScreenOrientationLock: {
+			screen: UseScreenOrientationLock,
 			navigationOptions: { title: 'Screen Orientation' },
 		},
 		useAccelerometer: {
