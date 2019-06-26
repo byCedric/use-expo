@@ -34,6 +34,7 @@
 
 - [**Screen Orientation**](./packages/screen-orientation)
     - [`useScreenOrientation`](./packages/screen-orientation/docs/use-screen-orientation.md) &mdash; tracks changes in screen orientation with [`ScreenOrientation`](https://docs.expo.io/versions/latest/sdk/screen-orientation/)
+    - [`useScreenOrientationLock`](./packages/screen-orientation/docs/use-screen-orientation-lock.md) &mdash; locks the screen to an orientation with [`ScreenOrientation`](https://docs.expo.io/versions/latest/sdk/screen-orientation/)
 
 - [**Sensors**](./packages/sensors)
     - [`useAccelerometer`](./packages/sensors/docs/use-accelerometer.md) &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
