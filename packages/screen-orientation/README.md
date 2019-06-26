@@ -22,6 +22,7 @@
 </div>
 
 - [`useScreenOrientation`](./docs/use-screen-orientation.md) &mdash; tracks changes in screen orientation with [`ScreenOrientation`](https://docs.expo.io/versions/latest/sdk/screen-orientation/)
+- [`useScreenOrientationLock`](./docs/use-screen-orientation-lock.md) &mdash; locks the screen to an orientation with [`ScreenOrientation`](https://docs.expo.io/versions/latest/sdk/screen-orientation/)
 
 <div align="center">
     <br />
