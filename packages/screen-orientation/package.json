@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/screen-orientation",
-	"version": "0.7.0",
+	"version": "0.7.1",
 	"description": "Complementary hooks for expo's screen orientation",
 	"keywords": [
 		"expo",
