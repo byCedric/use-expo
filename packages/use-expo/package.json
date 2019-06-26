@@ -1,6 +1,6 @@
 {
 	"name": "use-expo",
-	"version": "0.6.1",
+	"version": "0.7.0",
 	"description": "Complementary hooks for expo",
 	"keywords": [
 		"expo",
@@ -30,10 +30,10 @@
 		"build": "tsc"
 	},
 	"dependencies": {
-		"@use-expo/brightness": "^0.6.0",
-		"@use-expo/permissions": "^0.6.0",
-		"@use-expo/screen-orientation": "^0.6.0",
-		"@use-expo/sensors": "^0.6.1"
+		"@use-expo/brightness": "^0.7.0",
+		"@use-expo/permissions": "^0.7.0",
+		"@use-expo/screen-orientation": "^0.7.0",
+		"@use-expo/sensors": "^0.7.0"
 	},
 	"devDependencies": {
 		"@types/node": "^12.0.7",
