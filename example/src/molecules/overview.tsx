@@ -35,6 +35,10 @@ export const Overview: React.SFC = () => (
 			name='useScreenOrientation'
 			description='tracks changes in screen orientation'
 		/>
+		<ListItem
+			name='useScreenOrientationLock'
+			description='locks the screen to an orientation'
+		/>
 
 		<ListHeader>Sensors</ListHeader>
 		<ListItem
