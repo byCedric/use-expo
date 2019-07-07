@@ -3,6 +3,7 @@ import { Button } from 'react-native-paper';
 import { ScreenOrientation } from 'expo';
 import { useScreenOrientationLock } from 'use-expo';
 import { Example, Information, Link, Page, Space } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
 const orientations = [
@@ -14,14 +15,14 @@ const orientations = [
 	ScreenOrientation.OrientationLock.PORTRAIT_UP,
 ];
 
-export const UseScreenOrientationLock: React.SFC = () => {
+export const UseScreenOrientationLock: React.SFC<MoleculeProps> = (props) => {
 	const [orientation, setOrientation] = useState(ScreenOrientation.OrientationLock.ALL);
 	useScreenOrientationLock(orientation);
 
 	return (
 		<Page
-			title='useScreenOrientationLock'
-			subtitle='locks the screen to an orientation with'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example only uses the <Link url={docs.screenOrientation}>ScreenOrientation</Link> module.
@@ -42,4 +43,9 @@ export const UseScreenOrientationLock: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UseScreenOrientationLock.defaultProps = {
+	name: 'useScreenOrientationLock',
+	description: 'locks the screen to an orientation with',
 };

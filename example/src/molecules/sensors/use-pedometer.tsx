@@ -2,9 +2,10 @@ import React from 'react';
 import { Caption } from 'react-native-paper';
 import { usePedometer, usePedometerHistory } from 'use-expo';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-export const UsePedometer: React.SFC = () => {
+export const UsePedometer: React.SFC<MoleculeProps> = (props) => {
 	const [live, liveAvailable] = usePedometer();
 	const [history, historyAvailable] = usePedometerHistory(
 		new Date(Date.now() - 1000 * 60 * 60 * 24 * 7),
@@ -13,8 +14,8 @@ export const UsePedometer: React.SFC = () => {
 
 	return (
 		<Page
-			title='usePedometer'
-			subtitle='tracks user step count'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example fetches the data from the <Link url={docs.pedometer}>Pedometer</Link> module.
@@ -39,4 +40,9 @@ export const UsePedometer: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UsePedometer.defaultProps = {
+	name: 'usePedometer',
+	description: 'tracks user step count',
 };

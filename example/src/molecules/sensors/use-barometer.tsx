@@ -2,15 +2,16 @@ import React from 'react';
 import { Caption } from 'react-native-paper';
 import { useBarometer } from 'use-expo';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-export const UseBarometer: React.SFC = () => {
+export const UseBarometer: React.SFC<MoleculeProps> = (props) => {
 	const [data, available] = useBarometer({ interval: 100 });
 
 	return (
 		<Page
-			title='useBarometer'
-			subtitle='tracks changes in air pressure'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example fetches the data from the <Link url={docs.barometer}>Barometer</Link> module.
@@ -39,4 +40,9 @@ export const UseBarometer: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UseBarometer.defaultProps = {
+	name: 'useBarometer',
+	description: 'tracks changes in air pressure',
 };

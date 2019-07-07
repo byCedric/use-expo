@@ -2,15 +2,16 @@ import React from 'react';
 import { Caption } from 'react-native-paper';
 import { useAccelerometer } from 'use-expo';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-export const UseAccelerometer: React.SFC = () => {
+export const UseAccelerometer: React.SFC<MoleculeProps> = (props) => {
 	const [data, available] = useAccelerometer({ interval: 100 });
 
 	return (
 		<Page
-			title='useAccelerometer'
-			subtitle='tracks changes in acceleration'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example fetches the data from the <Link url={docs.accelerometer}>Accelerometer</Link> module.
@@ -30,4 +31,9 @@ export const UseAccelerometer: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UseAccelerometer.defaultProps = {
+	name: 'useAccelerometer',
+	description: 'tracks changes in acceleration',
 };
