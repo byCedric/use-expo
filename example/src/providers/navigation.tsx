@@ -5,6 +5,7 @@ import {
 	UseSystemBrightness,
 	UseSystemBrightnessMode,
 } from '../molecules/brightness';
+import { UseFonts } from '../molecules/font';
 import { UsePermissions } from '../molecules/permissions';
 import {
 	UseAccelerometer,
@@ -36,6 +37,10 @@ const AppNavigator = createStackNavigator(
 		useSystemBrightnessMode: {
 			screen: UseSystemBrightnessMode,
 			navigationOptions: { title: 'Brightness' },
+		},
+		useFonts: {
+			screen: UseFonts,
+			navigationOptions: { title: 'Font' },
 		},
 		usePermissions: {
 			screen: UsePermissions,
