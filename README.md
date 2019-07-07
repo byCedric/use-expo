@@ -29,6 +29,9 @@
     - [`useSystemBrightness`](./packages/brightness/docs/use-system-brightness.md) &mdash; change the system brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
     - [`useSystemBrightnessMode`](./packages/brightness/docs/use-system-brightness-mode.md) &mdash; change the brightness mode with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
 
+- [**Font**](./packages/font)
+    - [`useFonts`](./packages/font/docs/use-fonts.md) &mdash; load a map of fonts with [`Font`](https://docs.expo.io/versions/latest/sdk/font/)
+
 - [**Permissions**](./packages/permissions)
     - [`usePermissions`](./packages/permissions/docs/use-permissions.md) &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
 
