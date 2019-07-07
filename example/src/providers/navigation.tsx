@@ -1,24 +1,23 @@
-import { createAppContainer, createStackNavigator } from 'react-navigation';
-import { Overview } from '../molecules/overview';
-import {
-	UseBrightness,
-	UseSystemBrightness,
-	UseSystemBrightnessMode,
-} from '../molecules/brightness';
-import { UseFonts } from '../molecules/font';
-import { UsePermissions } from '../molecules/permissions';
-import {
-	UseAccelerometer,
-	UseBarometer,
-	UseDeviceMotion,
-	UseGyroscope,
-	UseMagnetometer,
-	UsePedometer,
-} from '../molecules/sensors';
-import {
-	UseScreenOrientation,
-	UseScreenOrientationLock,
-} from '../molecules/screen-orientation';
+import { createAppContainer, createStackNavigator, NavigationRouteConfigMap } from 'react-navigation';
+import { startCase } from 'lodash';
+import { Overview, molecules } from '../molecules/overview';
+
+const createScreens = () => {
+	const stack: NavigationRouteConfigMap = {};
+
+	Object.entries(molecules).forEach(([moleculeName, molecule]) => {
+		const title = startCase(moleculeName);
+
+		Object.values(molecule).forEach(screen => {
+			stack[screen.defaultProps!.name!] = {
+				screen,
+				navigationOptions: { title },
+			};
+		});
+	});
+
+	return stack;
+};
 
 const AppNavigator = createStackNavigator(
 	{
@@ -26,64 +25,10 @@ const AppNavigator = createStackNavigator(
 			screen: Overview,
 			navigationOptions: { header: null }
 		},
-		useBrightness: {
-			screen: UseBrightness,
-			navigationOptions: { title: 'Brightness' },
-		},
-		useSystemBrightness: {
-			screen: UseSystemBrightness,
-			navigationOptions: { title: 'Brightness' },
-		},
-		useSystemBrightnessMode: {
-			screen: UseSystemBrightnessMode,
-			navigationOptions: { title: 'Brightness' },
-		},
-		useFonts: {
-			screen: UseFonts,
-			navigationOptions: { title: 'Font' },
-		},
-		usePermissions: {
-			screen: UsePermissions,
-			navigationOptions: { title: 'Permissions' },
-		},
-		useScreenOrientation: {
-			screen: UseScreenOrientation,
-			navigationOptions: { title: 'Screen Orientation' },
-		},
-		useScreenOrientationLock: {
-			screen: UseScreenOrientationLock,
-			navigationOptions: { title: 'Screen Orientation' },
-		},
-		useAccelerometer: {
-			screen: UseAccelerometer,
-			navigationOptions: { title: 'Sensors' },
-		},
-		useBarometer: {
-			screen: UseBarometer,
-			navigationOptions: { title: 'Sensors' },
-		},
-		useDeviceMotion: {
-			screen: UseDeviceMotion,
-			navigationOptions: { title: 'Sensors' },
-		},
-		useGyroscope: {
-			screen: UseGyroscope,
-			navigationOptions: { title: 'Sensors' },
-		},
-		useMagnetometer: {
-			screen: UseMagnetometer,
-			navigationOptions: { title: 'Sensors' },
-		},
-		usePedometer: {
-			screen: UsePedometer,
-			navigationOptions: { title: 'Sensors' },
-		},
+		...createScreens(),
 	},
 	{
 		initialRouteName: 'overview',
-		// cardStyle: {
-		// 	height: '100%',
-		// },
 		defaultNavigationOptions: {
 			headerStyle: {
 				backgroundColor: '#333',

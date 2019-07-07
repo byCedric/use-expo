@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Header } from 'react-navigation';
 import Constants from 'expo-constants';
+import { startCase } from 'lodash';
 import { Link, ListHeader, ListItem, Page, Space } from '../atoms';
 import { repo } from '../providers/urls';
+
+import * as Brightness from './brightness';
+import * as Font from './font';
+import * as Permissions from './permissions';
+import * as ScreenOrientation from './screen-orientation';
+import * as Sensors from './sensors';
+
+export const molecules = {
+	Brightness,
+	Font,
+	Permissions,
+	ScreenOrientation,
+	Sensors,
+};
 
 export const Overview: React.SFC = () => (
 	<Page
@@ -10,76 +25,17 @@ export const Overview: React.SFC = () => (
 		subtitle={<>Complementary hooks for <Link url={repo}>Expo</Link></>}
 		header={<Space top={Constants.statusBarHeight + Header.HEIGHT} />}
 	>
-		<ListHeader>Brightness</ListHeader>
-		<ListItem
-			name='useBrightness'
-			description='change the screen brightness'
-		/>
-		<ListItem
-			name='useSystemBrightness'
-			description='change the system brightness'
-		/>
-		<ListItem
-			name='useSystemBrightnessMode'
-			description='change the system brightness mode'
-		/>
-
-		<ListHeader>Font</ListHeader>
-		<ListItem
-			name='useFonts'
-			description='load a map of fonts'
-		/>
-
-		<ListHeader>Permissions</ListHeader>
-		<ListItem
-			name='usePermissions'
-			description='get or ask permissions'
-		/>
-
-		<ListHeader>Screen Orientation</ListHeader>
-		<ListItem
-			name='useScreenOrientation'
-			description='tracks changes in screen orientation'
-		/>
-		<ListItem
-			name='useScreenOrientationLock'
-			description='locks the screen to an orientation'
-		/>
-
-		<ListHeader>Sensors</ListHeader>
-		<ListItem
-			name='useAccelerometer'
-			description='tracks changes in acceleration'
-		/>
-		<ListItem
-			name='useBarometer'
-			description='tracks changes in air pressure'
-		/>
-		<ListItem
-			name='useDeviceMotion'
-			description='tracks device motion and orientation'
-		/>
-		<ListItem
-			name='useGyroscope'
-			description='tracks changes in rotation'
-		/>
-		<ListItem
-			name='useMagnetometer'
-			description='tracks changes in rotation'
-		/>
-		<ListItem
-			name='useMagnetometerUncalibrated'
-			description='tracks changes in the magnetic field'
-			route='useMagnetometer'
-		/>
-		<ListItem
-			name='usePedometer'
-			description='tracks user step count'
-		/>
-		<ListItem
-			name='usePedometerHistory'
-			description='get historical step count'
-			route='usePedometer'
-		/>
+		{Object.entries(molecules).map(([moleculeName, molecule]) => (
+			<Fragment key={`molecule-${moleculeName}`}>
+				<ListHeader>{startCase(moleculeName)}</ListHeader>
+				{Object.values(molecule).map((screen) => (
+					<ListItem
+						key={`screen-${screen.defaultProps!.name!}`}
+						name={screen.defaultProps!.name!}
+						description={screen.defaultProps!.description!}
+					/>
+				))}
+			</Fragment>
+		))}
 	</Page>
 );

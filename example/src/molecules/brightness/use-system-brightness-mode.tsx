@@ -4,16 +4,17 @@ import { SYSTEM_BRIGHTNESS } from 'expo-permissions';
 import { BrightnessMode } from 'expo-brightness';
 import { usePermissions, useSystemBrightnessMode } from 'use-expo';
 import { Example, Information, Link, Page, Space, MissingPermissions } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import * as url from '../../providers/urls';
 
-export const UseSystemBrightnessMode: React.SFC = () => {
+export const UseSystemBrightnessMode: React.SFC<MoleculeProps> = (props) => {
 	const [permission, askPermission] = usePermissions(SYSTEM_BRIGHTNESS);
 	const [mode, setMode] = useSystemBrightnessMode();
 
 	return (
 		<Page
-			title='useSystemBrightnessMode'
-			subtitle='change the system brightness mode'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example uses both the <Link url={url.docs.permissions}>Permissions</Link> and <Link url={url.docs.brightness}>Brightness</Link> modules.
@@ -51,3 +52,8 @@ export const UseSystemBrightnessMode: React.SFC = () => {
 		</Page>
 	);
 };
+
+UseSystemBrightnessMode.defaultProps = {
+	name: 'useSystemBrightnessMode',
+	description: 'change the system brightness mode',
+}

@@ -5,15 +5,16 @@ import { Camera, Constants as CameraConstants } from 'expo-camera';
 import { CAMERA } from 'expo-permissions';
 import { usePermissions } from 'use-expo';
 import { Example, Information, Link, Page, Space, MissingPermissions } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import * as url from '../../providers/urls';
 
-export const UsePermissions: React.SFC = () => {
+export const UsePermissions: React.SFC<MoleculeProps> = (props) => {
 	const [permission, askPermission] = usePermissions(CAMERA);
 
 	return (
 		<Page
-			title='usePermissions'
-			subtitle='get or ask permissions'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				Here you can see an example using both the <Link url={url.docs.permissions}>Permissions</Link> and <Link url={url.docs.camera}>Camera</Link> modules.
@@ -40,6 +41,11 @@ export const UsePermissions: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UsePermissions.defaultProps = {
+	name: 'usePermissions',
+	description: 'get or ask permissions',
 };
 
 const styles = StyleSheet.create({

@@ -2,12 +2,13 @@ import React from 'react';
 import { Caption } from 'react-native-paper';
 import { useDeviceMotion } from 'use-expo';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
 const DEFAULT_3D = { x: 0, y: 0, z: 0 };
 const DEFAULT_RATE = { alpha: 0, beta: 0, gamma: 0 };
 
-export const UseDeviceMotion: React.SFC = () => {
+export const UseDeviceMotion: React.SFC<MoleculeProps> = (props) => {
 	const [data, available] = useDeviceMotion({ interval: 100 });
 	const {
 		orientation = 0,
@@ -19,8 +20,8 @@ export const UseDeviceMotion: React.SFC = () => {
 
 	return (
 		<Page
-			title='useDeviceMotion'
-			subtitle='tracks device motion and orientation'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example fetches the data from the <Link url={docs.deviceMotion}>DeviceMotion</Link> module.
@@ -59,4 +60,9 @@ export const UseDeviceMotion: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UseDeviceMotion.defaultProps = {
+	name: 'useDeviceMotion',
+	description: 'tracks device motion and orientation',
 };

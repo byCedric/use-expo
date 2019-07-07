@@ -4,15 +4,16 @@ import { Caption } from 'react-native-paper';
 import { round } from 'lodash';
 import { useBrightness } from 'use-expo';
 import { Example, Information, Link, Page } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-export const UseBrightness: React.SFC = () => {
+export const UseBrightness: React.SFC<MoleculeProps> = (props) => {
 	const [brightness, setBrightness] = useBrightness();
 
 	return (
 		<Page
-			title='useBrightness'
-			subtitle='change the screen brightness'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example only uses the <Link url={docs.brightness}>Brightness</Link> module.
@@ -33,4 +34,9 @@ export const UseBrightness: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UseBrightness.defaultProps = {
+	name: 'useBrightness',
+	description: 'change the screen brightness',
 };

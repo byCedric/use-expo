@@ -2,15 +2,16 @@ import React from 'react';
 import { Caption, Text } from 'react-native-paper';
 import { useScreenOrientation } from 'use-expo';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
+import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-export const UseScreenOrientation: React.SFC = () => {
+export const UseScreenOrientation: React.SFC<MoleculeProps> = (props) => {
 	const [orientation, sizeClass] = useScreenOrientation();
 
 	return (
 		<Page
-			title='useScreenOrientation'
-			subtitle='tracks changes in screen orientation'
+			title={props.name}
+			subtitle={props.description}
 		>
 			<Information>
 				This example only uses the <Link url={docs.screenOrientation}>ScreenOrientation</Link> module.
@@ -31,4 +32,9 @@ export const UseScreenOrientation: React.SFC = () => {
 			</Example>
 		</Page>
 	);
+};
+
+UseScreenOrientation.defaultProps = {
+	name: 'useScreenOrientation',
+	description: 'tracks changes in screen orientation',
 };
