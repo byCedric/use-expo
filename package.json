@@ -23,6 +23,7 @@
 		"lint": "lerna run lint",
 		"test": "lerna run test",
 		"build": "lerna run build",
+		"clean": "lerna exec 'rm -rf ./build'",
 		"example-action": "cd ./example;"
 	},
 	"devDependencies": {

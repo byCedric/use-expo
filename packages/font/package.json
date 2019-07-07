@@ -1,0 +1,57 @@
+{
+	"name": "@use-expo/font",
+	"version": "0.0.0",
+	"description": "Complementary hooks for expo-font",
+	"keywords": [
+		"expo",
+		"font",
+		"hooks"
+	],
+	"author": "Cedric van Putten <me@bycedric.com>",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/font#readme",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/bycedric/use-expo.git"
+	},
+	"directories": {
+		"lib": "src",
+		"test": "tests"
+	},
+	"main": "build/index.js",
+	"files": [
+		"build"
+	],
+	"scripts": {
+		"lint": "tsc --noEmit && eslint ./src --ext ts",
+		"test": "jest",
+		"build": "tsc --build tsconfig.build.json"
+	},
+	"devDependencies": {
+		"@types/jest": "^24.0.13",
+		"@types/node": "^12.0.7",
+		"@types/react": "^16.8.19",
+		"@typescript-eslint/eslint-plugin": "^1.10.2",
+		"@typescript-eslint/parser": "^1.10.2",
+		"babel-preset-expo": "^5.1.1",
+		"eslint": "^5.16.0",
+		"expo": "^33.0.3",
+		"expo-asset": "^5.0.1",
+		"expo-font": "^5.0.1",
+		"jest": "^24.8.0",
+		"jest-expo": "^33.0.2",
+		"react": "^16.8.6",
+		"react-hooks-testing-library": "^0.5.1",
+		"react-native": "github:expo/react-native#sdk-33.0.0",
+		"react-test-renderer": "^16.8.6",
+		"ts-jest": "^24.0.2",
+		"typescript": "^3.5.1"
+	},
+	"peerDependencies": {
+		"expo-asset": "^5.0.1",
+		"expo-font": "^5.0.1"
+	}
+}

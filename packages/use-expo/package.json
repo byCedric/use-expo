@@ -31,6 +31,7 @@
 	},
 	"dependencies": {
 		"@use-expo/brightness": "^0.7.1",
+		"@use-expo/font": "^0.0.0",
 		"@use-expo/permissions": "^0.7.1",
 		"@use-expo/screen-orientation": "^0.7.1",
 		"@use-expo/sensors": "^0.7.1"
