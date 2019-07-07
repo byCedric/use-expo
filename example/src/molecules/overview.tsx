@@ -24,6 +24,12 @@ export const Overview: React.SFC = () => (
 			description='change the system brightness mode'
 		/>
 
+		<ListHeader>Font</ListHeader>
+		<ListItem
+			name='useFonts'
+			description='load a map of fonts'
+		/>
+
 		<ListHeader>Permissions</ListHeader>
 		<ListItem
 			name='usePermissions'

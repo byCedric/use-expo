@@ -6,6 +6,7 @@ export const docs = {
 	brightness: 'https://docs.expo.io/versions/latest/sdk/brightness/',
 	camera: 'https://docs.expo.io/versions/latest/sdk/camera/',
 	deviceMotion: 'https://docs.expo.io/versions/latest/sdk/devicemotion/',
+	font: 'https://docs.expo.io/versions/latest/sdk/font/',
 	gyroscope: 'https://docs.expo.io/versions/latest/sdk/gyroscope/',
 	magnetometer: 'https://docs.expo.io/versions/latest/sdk/magnetometer/',
 	pedometer: 'https://docs.expo.io/versions/latest/sdk/pedometer/',
