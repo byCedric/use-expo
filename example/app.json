@@ -5,6 +5,7 @@
 		"slug": "use-expo",
 		"privacy": "public",
 		"sdkVersion": "33.0.0",
+		"githubUrl": "https://github.com/bycedric/use-expo",
 		"platforms": [
 			"ios",
 			"android",
