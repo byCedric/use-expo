@@ -35,6 +35,7 @@
 		"babel-preset-expo": "^5.1.1",
 		"eslint": "^5.16.0",
 		"eslint-plugin-react": "^7.14.2",
+		"eslint-plugin-react-hooks": "^1.6.1",
 		"typescript": "^3.4.5"
 	}
 }

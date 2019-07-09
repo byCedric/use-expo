@@ -1,7 +1,8 @@
 {
 	"parser": "@typescript-eslint/parser",
 	"plugins": [
-		"@typescript-eslint"
+		"@typescript-eslint",
+		"react-hooks"
 	],
 	"env": {
 		"node": true
@@ -22,7 +23,9 @@
 		"@typescript-eslint/no-non-null-assertion": "off",
 		"@typescript-eslint/no-use-before-define": "off",
 		"react/no-unescaped-entities": "off",
-		"react/prop-types": "off"
+		"react/prop-types": "off",
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn"
 	},
 	"settings": {
 		"react": {
