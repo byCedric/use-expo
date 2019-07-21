@@ -16,7 +16,7 @@
 const [isLoaded] = useFonts({ ... });
 ```
 
-With the `useFonts` hook we can simplify the [Font example from the Expo docs](https://docs.expo.io/versions/v33.0.0/latest/font/#example).
+With the `useFonts` hook we can simplify the [Font example from the Expo docs](https://docs.expo.io/versions/latest/font/#example).
 
 ```jsx
 const customFonts = {
