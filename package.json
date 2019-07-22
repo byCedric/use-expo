@@ -2,7 +2,7 @@
 	"private": true,
 	"name": "use-expo",
 	"version": "0.0.0",
-	"description": "Complementary hooks for expo-sensors",
+	"description": "Complementary hooks for expo",
 	"keywords": [
 		"expo",
 		"hooks"
@@ -27,9 +27,9 @@
 		"example-action": "cd ./example;"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^8.0.0",
-		"@commitlint/config-conventional": "^8.0.0",
-		"@commitlint/travis-cli": "^8.0.0",
-		"lerna": "^3.14.1"
+		"@commitlint/cli": "^8.1.0",
+		"@commitlint/config-conventional": "^8.1.0",
+		"@commitlint/travis-cli": "^8.1.0",
+		"lerna": "^3.16.1"
 	}
 }
