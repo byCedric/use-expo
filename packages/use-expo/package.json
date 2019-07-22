@@ -37,10 +37,10 @@
 		"@use-expo/sensors": "^0.8.0"
 	},
 	"devDependencies": {
-		"@types/node": "^12.0.7",
-		"@typescript-eslint/eslint-plugin": "^1.10.2",
-		"@typescript-eslint/parser": "^1.10.2",
+		"@types/node": "^12.6.8",
+		"@typescript-eslint/eslint-plugin": "^1.13.0",
+		"@typescript-eslint/parser": "^1.13.0",
 		"eslint": "^5.16.0",
-		"typescript": "^3.5.1"
+		"typescript": "^3.5.3"
 	}
 }
