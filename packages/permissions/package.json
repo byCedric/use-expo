@@ -50,6 +50,6 @@
 		"typescript": "^3.5.3"
 	},
 	"peerDependencies": {
-		"expo-permissions": "^5.0.1"
+		"expo-permissions": ">=5.0.1"
 	}
 }

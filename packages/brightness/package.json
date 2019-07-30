@@ -50,6 +50,6 @@
 		"typescript": "^3.5.3"
 	},
 	"peerDependencies": {
-		"expo-brightness": "^5.0.1"
+		"expo-brightness": ">=5.0.1"
 	}
 }

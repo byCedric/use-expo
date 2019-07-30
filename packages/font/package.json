@@ -51,7 +51,7 @@
 		"typescript": "^3.5.1"
 	},
 	"peerDependencies": {
-		"expo-asset": "^5.0.1",
-		"expo-font": "^5.0.1"
+		"expo-asset": ">=5.0.1",
+		"expo-font": ">=5.0.1"
 	}
 }
