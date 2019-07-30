@@ -5,13 +5,19 @@ workflow "Install and Publish" {
 
 action "Install" {
 	uses = "actions/npm@master"
-	args = "run example-action -- npm ci"
+	args = "ci"
+}
+
+action "Build" {
+	needs = "Install"
+	uses = "actions/npm@master"
+	args = "run build"
 }
 
 action "Test" {
-	needs = "Install"
+	needs = "Build"
 	uses = "actions/npm@master"
-	args = "run example-action -- npm test"
+	args = "test"
 }
 
 action "Filter branch" {
