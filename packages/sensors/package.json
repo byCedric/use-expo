@@ -50,6 +50,6 @@
 		"typescript": "^3.5.3"
 	},
 	"peerDependencies": {
-		"expo-sensors": "^5.0.1"
+		"expo-sensors": ">=5.0.1"
 	}
 }
