@@ -8,10 +8,16 @@ action "Install" {
 	args = "ci"
 }
 
-action "Test" {
+action "Build" {
 	needs = "Install"
 	uses = "actions/npm@master"
-	args = "run example-action -- npm test"
+	args = "run build"
+}
+
+action "Test" {
+	needs = "Build"
+	uses = "actions/npm@master"
+	args = "test"
 }
 
 action "Filter branch" {
