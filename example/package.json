@@ -25,6 +25,7 @@
 		"react-native": "github:expo/react-native#sdk-34.0.0",
 		"react-native-gesture-handler": "^1.3.0",
 		"react-native-paper": "^2.16.0",
+		"react-native-reanimated": "^1.1.0",
 		"react-native-web": "^0.11.4",
 		"react-navigation": "^3.11.1",
 		"use-expo": "^0.8.0"
