@@ -35,9 +35,5 @@
 		"@use-expo/permissions": "^0.8.0",
 		"@use-expo/screen-orientation": "^0.8.0",
 		"@use-expo/sensors": "^0.8.0"
-	},
-	"devDependencies": {
-		"@types/node": "^12.6.8",
-		"typescript": "^3.5.3"
 	}
 }

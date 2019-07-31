@@ -4,7 +4,7 @@ const Subscription = { remove: jest.fn() };
 Gyroscope.addListener.mockReturnValue(Subscription);
 jest.mock('expo-sensors', () => ({ Gyroscope }));
 
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { useGyroscope } from '../src/use-gyroscope';
 
 const DATA = 0;

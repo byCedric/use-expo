@@ -1,11 +1,9 @@
-const { ScreenOrientation } = jest.genMockFromModule('expo');
+import { ScreenOrientation, OrientationLock } from './mock';
 
 jest.mock('expo', () => ({ ScreenOrientation }));
 
-import { renderHook } from 'react-hooks-testing-library';
+import { renderHook } from '@testing-library/react-hooks';
 import { useScreenOrientationLock } from '../src/use-screen-orientation-lock';
-
-const { OrientationLock } = ScreenOrientation;
 
 test('locks the screen to orientation when mounted', () => {
 	renderHook(() => useScreenOrientationLock(OrientationLock.PORTRAIT_UP));
@@ -26,5 +24,5 @@ test('refreshes the lock when orientation is changed', () => {
 	hook.rerender();
 
 	expect(ScreenOrientation.unlockAsync).toBeCalled();
-	expect(ScreenOrientation.lockAsync).toBeCalledWith(OrientationLock.LANDSCAPE_RIGHT)
+	expect(ScreenOrientation.lockAsync).toBeCalledWith(OrientationLock.LANDSCAPE_RIGHT);
 });

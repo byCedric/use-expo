@@ -27,24 +27,14 @@
 	],
 	"scripts": {
 		"lint": "tsc --noEmit && eslint ./src --ext ts",
-		"test": "jest",
 		"build": "tsc --build tsconfig.build.json"
 	},
 	"devDependencies": {
-		"@types/jest": "^24.0.15",
-		"@types/node": "^12.6.8",
+		"@testing-library/react-hooks": "^1.1.0",
 		"@types/react": "^16.8.23",
-		"babel-preset-expo": "^5.2.0",
-		"expo": "^33.0.7",
 		"expo-permissions": "^5.0.1",
-		"jest": "^24.8.0",
-		"jest-expo": "^33.0.2",
-		"react": "^16.8.6",
-		"react-hooks-testing-library": "^0.5.1",
-		"react-native": "github:expo/react-native#sdk-33.0.0",
-		"react-test-renderer": "^16.8.6",
-		"ts-jest": "^24.0.2",
-		"typescript": "^3.5.3"
+		"expo": "^34.0.3",
+		"react": "16.8.3"
 	},
 	"peerDependencies": {
 		"expo-permissions": ">=5.0.1"
