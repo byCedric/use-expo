@@ -8,12 +8,6 @@ action "Install" {
 	args = "ci"
 }
 
-action "Test" {
-	needs = "Install"
-	uses = "actions/npm@master"
-	args = "run test"
-}
-
 action "Lint" {
 	needs = "Install"
 	uses = "actions/npm@master"
@@ -21,10 +15,7 @@ action "Lint" {
 }
 
 action "Filter branch" {
-	needs = [
-		"Test",
-		"Lint",
-	]
+	needs = "Lint"
 	uses = "actions/bin/filter@master"
 	args = "branch master"
 }
