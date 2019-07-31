@@ -8,20 +8,14 @@ action "Install" {
 	args = "ci"
 }
 
-action "Build" {
+action "Lint" {
 	needs = "Install"
 	uses = "actions/npm@master"
-	args = "run build"
-}
-
-action "Test" {
-	needs = "Build"
-	uses = "actions/npm@master"
-	args = "test"
+	args = "run lint"
 }
 
 action "Filter branch" {
-	needs = "Test"
+	needs = "Lint"
 	uses = "actions/bin/filter@master"
 	args = "branch master"
 }
@@ -29,7 +23,7 @@ action "Filter branch" {
 action "Publish" {
 	needs = "Filter branch"
 	uses = "expo/expo-github-action@3.0.0"
-	runs = "npm run example-action -- /entrypoint.sh publish"
+	args = "publish example"
 	secrets = [
 		"EXPO_CLI_USERNAME",
 		"EXPO_CLI_PASSWORD",

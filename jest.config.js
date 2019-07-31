@@ -10,6 +10,9 @@ module.exports = {
 		...jestExpoPreset.transform,
 	},
 	testMatch: [
-		'**/*.test.ts',
+		'<rootDir>/packages/**/*.test.ts',
+	],
+	modulePathIgnorePatterns: [
+		'<rootDir>/example',
 	],
 };
