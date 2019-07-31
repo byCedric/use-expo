@@ -8,20 +8,14 @@ action "Install" {
 	args = "ci"
 }
 
-action "Build" {
-	needs = "Install"
-	uses = "actions/npm@master"
-	args = "run build"
-}
-
 action "Test" {
-	needs = "Build"
+	needs = "Install"
 	uses = "actions/npm@master"
 	args = "run test"
 }
 
 action "Lint" {
-	needs = "Build"
+	needs = "Install"
 	uses = "actions/npm@master"
 	args = "run lint"
 }
