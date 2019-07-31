@@ -17,11 +17,20 @@ action "Build" {
 action "Test" {
 	needs = "Build"
 	uses = "actions/npm@master"
-	args = "test"
+	args = "run test"
+}
+
+action "Lint" {
+	needs = "Build"
+	uses = "actions/npm@master"
+	args = "run lint"
 }
 
 action "Filter branch" {
-	needs = "Test"
+	needs = [
+		"Test",
+		"Lint",
+	]
 	uses = "actions/bin/filter@master"
 	args = "branch master"
 }
