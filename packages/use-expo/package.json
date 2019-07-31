@@ -24,11 +24,6 @@
 	"files": [
 		"build"
 	],
-	"scripts": {
-		"lint": "tsc --noEmit && eslint ./src --ext ts",
-		"test": "tsc --noEmit",
-		"build": "tsc"
-	},
 	"dependencies": {
 		"@use-expo/brightness": "^0.8.0",
 		"@use-expo/font": "^0.8.0",

@@ -6,8 +6,8 @@
 		"postinstall": "lerna bootstrap",
 		"lint": "eslint packages/** --ext js,ts",
 		"test": "jest packages",
-		"build": "lerna run build",
-		"clean": "lerna exec 'rm -rf ./build'",
+		"build": "tsc --build",
+		"clean": "rm -f tsconfig.tsbuildinfo && lerna exec 'rm -rf ./build tsconfig.tsbuildinfo'",
 		"example-action": "cd ./example;"
 	},
 	"devDependencies": {
