@@ -26,15 +26,14 @@ test('handles new barometer availability', async () => {
 	expect(hook.result.current[AVAILABLE]).toBe(true);
 });
 
-// todo: check why this is failing in combination with all these other tests, alone it works fine
-// test('handles new barometer data', () => {
-// 	const hook = renderHook(() => useBarometer({ availability: false }));
-// 	const handler = Barometer.addListener.mock.calls[0][0];
-// 	const newData = { pressure: 5, relativeAltitude: 0 };
+test('handles new barometer data', () => {
+	const hook = renderHook(() => useBarometer({ availability: false }));
+	const handler = Barometer.addListener.mock.calls[0][0];
+	const newData = { pressure: 5, relativeAltitude: 0 };
 
-// 	act(() => handler(newData));
-// 	expect(hook.result.current[DATA]).toMatchObject(newData);
-// });
+	act(() => handler(newData));
+	expect(hook.result.current[DATA]).toMatchObject(newData);
+});
 
 describe('event listener', () => {
 	test('is added when mounted', () => {

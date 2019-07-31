@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const jestExpoPreset = require('jest-expo/jest-preset');
 const { jsWithBabel: tsJestPreset } = require('ts-jest/presets');
 
