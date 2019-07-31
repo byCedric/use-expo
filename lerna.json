@@ -2,7 +2,6 @@
 	"version": "0.8.0",
 	"hoist": true,
 	"packages": [
-		"example",
 		"packages/*"
 	]
 }
