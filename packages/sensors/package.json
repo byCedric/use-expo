@@ -28,7 +28,7 @@
 	"devDependencies": {
 		"@testing-library/react-hooks": "^1.1.0",
 		"@types/react": "^16.8.23",
-		"expo-sensors": "^5.0.1",
+		"expo-sensors": "^6.0.0",
 		"expo": "^34.0.3",
 		"react": "16.8.3"
 	},
