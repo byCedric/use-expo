@@ -16,10 +16,10 @@ export function useBarometer(options: BarometerOptions = {}): UseBarometerSignat
 		}
 
 		return Barometer.addListener(setData).remove;
-	});
+	}, []);
 
 	return [data, available];
-};
+}
 
 type UseBarometerSignature = [
 	BarometerMeasurement | undefined,
