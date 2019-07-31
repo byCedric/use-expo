@@ -29,7 +29,7 @@ action "Filter branch" {
 action "Publish" {
 	needs = "Filter branch"
 	uses = "expo/expo-github-action@3.0.0"
-	runs = "npm run example-action -- /entrypoint.sh publish"
+	args = "publish example"
 	secrets = [
 		"EXPO_CLI_USERNAME",
 		"EXPO_CLI_PASSWORD",

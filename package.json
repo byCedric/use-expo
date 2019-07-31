@@ -3,12 +3,11 @@
 	"name": "use-expo-monorepo",
 	"version": "0.0.0",
 	"scripts": {
-		"postinstall": "lerna bootstrap",
-		"lint": "eslint packages/** --ext js,ts",
+		"postinstall": "lerna bootstrap && cd ./example && npm ci || npm i",
+		"lint": "eslint example packages --ext js,ts,tsx",
 		"test": "jest packages",
 		"build": "tsc --build",
-		"clean": "rm -f tsconfig.tsbuildinfo && lerna exec 'rm -rf ./build tsconfig.tsbuildinfo'",
-		"example-action": "cd ./example;"
+		"clean": "rm -f tsconfig.tsbuildinfo && lerna exec 'rm -rf ./build tsconfig.tsbuildinfo'"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^8.1.0",
@@ -20,17 +19,17 @@
 		"@typescript-eslint/eslint-plugin": "^1.13.0",
 		"@typescript-eslint/parser": "^1.13.0",
 		"babel-preset-expo": "^5.2.0",
-		"eslint": "^6.1.0",
 		"eslint-plugin-jest": "^22.14.0",
-		"eslint-plugin-react": "^7.14.3",
 		"eslint-plugin-react-hooks": "^1.6.1",
+		"eslint-plugin-react": "^7.14.3",
+		"eslint": "^6.1.0",
 		"expo": "^34.0.3",
-		"jest": "^24.8.0",
 		"jest-expo": "^34.0.0",
+		"jest": "^24.8.0",
 		"lerna": "^3.16.1",
-		"react": "16.8.3",
 		"react-native": "github:expo/react-native#sdk-34.0.0",
 		"react-test-renderer": "16.8.3",
+		"react": "16.8.3",
 		"ts-jest": "^24.0.2",
 		"typescript": "^3.5.3"
 	}
