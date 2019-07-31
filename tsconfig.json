@@ -1,18 +1,19 @@
 {
+	"extends": "./tsconfig.shared.json",
+	"files": [],
+	"include": [],
 	"compilerOptions": {
-		"declaration": true,
-		"esModuleInterop": true,
-		"lib": [
-			"es6"
-		],
-		"module": "commonjs",
-		"noImplicitAny": true,
-		"removeComments": true,
-		"skipLibCheck": true,
-		"sourceMap": true,
-		"target": "es5"
+		"composite": true,
 	},
+	"references": [
+		{ "path": "packages/brightness" },
+		{ "path": "packages/font" },
+		{ "path": "packages/permissions" },
+		{ "path": "packages/screen-orientation" },
+		{ "path": "packages/sensors" },
+		{ "path": "packages/use-expo" },
+	],
 	"exclude": [
-		"node_modules"
+		"example"
 	]
 }
