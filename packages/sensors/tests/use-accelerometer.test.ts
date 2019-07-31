@@ -4,7 +4,7 @@ const Subscription = { remove: jest.fn() };
 Accelerometer.addListener.mockReturnValue(Subscription);
 jest.mock('expo-sensors', () => ({ Accelerometer }));
 
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { useAccelerometer } from '../src/use-accelerometer';
 
 const DATA = 0;

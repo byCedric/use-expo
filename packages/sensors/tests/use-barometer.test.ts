@@ -4,7 +4,7 @@ const Subscription = { remove: jest.fn() };
 Barometer.addListener.mockReturnValue(Subscription);
 jest.mock('expo-sensors', () => ({ Barometer }));
 
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { useBarometer } from '../src/use-barometer';
 
 const DATA = 0;

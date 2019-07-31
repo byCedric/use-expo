@@ -1,4 +1,4 @@
-import { renderHook, act,  } from 'react-hooks-testing-library';
+import { renderHook, act,  } from '@testing-library/react-hooks';
 import * as Permissions from 'expo-permissions';
 import { usePermissions } from '../src/use-permissions';
 

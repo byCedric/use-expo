@@ -4,7 +4,7 @@ const Subscription = { remove: jest.fn() };
 Pedometer.watchStepCount.mockReturnValue(Subscription);
 jest.mock('expo-sensors', () => ({ Pedometer }));
 
-import { renderHook } from 'react-hooks-testing-library';
+import { renderHook } from '@testing-library/react-hooks';
 import { usePedometerHistory } from '../src/use-pedometer-history';
 
 const DATA = 0;

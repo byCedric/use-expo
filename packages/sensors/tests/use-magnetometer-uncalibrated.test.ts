@@ -4,7 +4,7 @@ const Subscription = { remove: jest.fn() };
 MagnetometerUncalibrated.addListener.mockReturnValue(Subscription);
 jest.mock('expo-sensors', () => ({ MagnetometerUncalibrated }));
 
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { useMagnetometerUncalibrated } from '../src/use-magnetometer-uncalibrated';
 
 const DATA = 0;

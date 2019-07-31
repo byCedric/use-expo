@@ -4,7 +4,7 @@ const Subscription = { remove: jest.fn() };
 DeviceMotion.addListener.mockReturnValue(Subscription);
 jest.mock('expo-sensors', () => ({ DeviceMotion }));
 
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import { useDeviceMotion } from '../src/use-device-motion';
 
 const DATA = 0;

@@ -1,4 +1,4 @@
-import { renderHook, act } from 'react-hooks-testing-library';
+import { renderHook, act } from '@testing-library/react-hooks';
 import * as Brightness from 'expo-brightness';
 import { useSystemBrightnessMode } from '../src/use-system-brightness-mode';
 
