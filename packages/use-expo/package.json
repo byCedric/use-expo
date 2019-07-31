@@ -1,6 +1,6 @@
 {
 	"name": "use-expo",
-	"version": "0.8.0",
+	"version": "0.9.0",
 	"description": "Complementary hooks for expo",
 	"keywords": [
 		"expo",
@@ -25,10 +25,10 @@
 		"build"
 	],
 	"dependencies": {
-		"@use-expo/brightness": "^0.8.0",
-		"@use-expo/font": "^0.8.0",
-		"@use-expo/permissions": "^0.8.0",
-		"@use-expo/screen-orientation": "^0.8.0",
-		"@use-expo/sensors": "^0.8.0"
+		"@use-expo/brightness": "^0.9.0",
+		"@use-expo/font": "^0.9.0",
+		"@use-expo/permissions": "^0.9.0",
+		"@use-expo/screen-orientation": "^0.9.0",
+		"@use-expo/sensors": "^0.9.0"
 	}
 }
