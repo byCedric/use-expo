@@ -10,7 +10,8 @@ cache:
 before_install:
   - npm install --global npm@latest
 install:
-  - npm ci
+  - npm ci --ignore-scripts
+  - npx lerna bootstrap
 script:
   - npm run build
   - npm run lint
