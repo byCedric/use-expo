@@ -10,30 +10,31 @@
 		"web": "expo start --web"
 	},
 	"dependencies": {
-		"expo": "^34.0.3",
-		"expo-brightness": "^6.0.0",
-		"expo-camera": "^6.0.0",
-		"expo-constants": "^6.0.0",
-		"expo-keep-awake": "^6.0.0",
-		"expo-font": "^6.0.1",
-		"expo-permissions": "^6.0.0",
-		"expo-sensors": "^6.0.0",
+		"expo": "^35.0.0",
+		"expo-brightness": "^7.0.0",
+		"expo-camera": "^7.0.0",
+		"expo-constants": "^7.0.0",
+		"expo-font": "^7.0.0",
+		"expo-keep-awake": "^7.0.0",
+		"expo-permissions": "^7.0.0",
+		"expo-sensors": "^7.0.0",
 		"lodash": "^4.17.15",
 		"react": "16.8.3",
-		"react-dom": "^16.8.6",
-		"react-native": "github:expo/react-native#sdk-34.0.0",
-		"react-native-gesture-handler": "^1.3.0",
+		"react-dom": "16.8.6",
+		"react-native": "github:expo/react-native#sdk-35.0.0",
+		"react-native-gesture-handler": "~1.3.0",
 		"react-native-paper": "^2.16.0",
-		"react-native-reanimated": "^1.1.0",
+		"react-native-reanimated": "~1.2.0",
 		"react-native-web": "^0.11.4",
-		"react-navigation": "^3.11.1",
+		"react-navigation": "^4.0.6",
+		"react-navigation-stack": "^1.8.0",
 		"use-expo": "^0.9.0"
 	},
 	"devDependencies": {
 		"@types/lodash": "^4.14.136",
 		"@types/react": "^16.8.23",
-		"@types/react-native": "^0.57.64",
-		"babel-preset-expo": "^5.2.0",
-		"typescript": "^3.5.3"
+		"@types/react-native": "^0.60.15",
+		"babel-preset-expo": "^7.0.0",
+		"typescript": "^3.6.3"
 	}
 }

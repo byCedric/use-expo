@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Header } from 'react-navigation';
+import { Header } from 'react-navigation-stack';
 import Constants from 'expo-constants';
 import { startCase } from 'lodash';
 import { Link, ListHeader, ListItem, Page, Space } from '../atoms';

@@ -1,9 +1,10 @@
-import { createAppContainer, createStackNavigator, NavigationRouteConfigMap } from 'react-navigation';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 import { startCase } from 'lodash';
 import { Overview, molecules } from '../molecules/overview';
 
 const createScreens = () => {
-	const stack: NavigationRouteConfigMap = {};
+	const stack: any = {};
 
 	Object.entries(molecules).forEach(([moleculeName, molecule]) => {
 		const title = startCase(moleculeName);
