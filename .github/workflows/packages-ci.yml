@@ -1,10 +1,6 @@
 ---
 name: Packages CI
-on:
-  pull_request:
-    paths:
-      - '!example/**'
-      - '**'
+on: [push]
 jobs:
   ci:
     name: Install, test and lint
