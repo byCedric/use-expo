@@ -1,0 +1,26 @@
+---
+name: Example CI
+on:
+  pull_request:
+    paths:
+      - 'example/**'
+jobs:
+  ci:
+    name: Install, test and lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [10, 12]
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          path: example
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: npm ci
+        working-directory: example
+      - run: npm run lint
+        working-directory: example
+      - run: npm run test
+        working-directory: example
