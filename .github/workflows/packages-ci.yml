@@ -1,9 +1,6 @@
 ---
 name: Packages CI
-on:
-  pull_request:
-    paths:
-      - '!example/**'
+on: [push]
 jobs:
   ci:
     name: Install, test and lint
@@ -19,3 +16,4 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test
+      - uses: bycedric/commitlint-action@master
