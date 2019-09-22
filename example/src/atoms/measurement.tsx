@@ -25,7 +25,7 @@ interface MeasurementProps {
 	unit?: string;
 }
 
-const format = (value: number, precision: number = 3) => {
+const format = (value: number, precision = 3) => {
 	const rounded = round(value, precision).toFixed(precision);
 
 	return value >= 0 ? ` ${rounded}` : rounded;

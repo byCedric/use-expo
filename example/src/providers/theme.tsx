@@ -12,7 +12,6 @@ export const ThemeProvider: React.SFC = (props) => (
 	</PaperProvider>
 );
 
-// eslint-disable-next-line @typescript-eslint/no-object-literal-type-assertion
 export const theme = merge(DefaultTheme, {
 	fonts: {
 		medium: 'source-sans-pro-medium',

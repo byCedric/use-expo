@@ -4,6 +4,8 @@
 	"version": "0.0.0",
 	"main": "node_modules/expo/AppEntry.js",
 	"scripts": {
+		"test": "echo 'Not defined yet'",
+		"lint": "eslint App.tsx babel.config.js src --ext js,ts,tsx",
 		"start": "expo start",
 		"android": "expo start --android",
 		"ios": "expo start --ios",
@@ -34,7 +36,13 @@
 		"@types/lodash": "^4.14.136",
 		"@types/react": "^16.8.23",
 		"@types/react-native": "^0.60.15",
+		"@typescript-eslint/eslint-plugin": "^2.3.0",
+		"@typescript-eslint/parser": "^2.3.0",
 		"babel-preset-expo": "^7.0.0",
+		"eslint": "^6.4.0",
+		"eslint-plugin-jest": "^22.17.0",
+		"eslint-plugin-react": "^7.14.3",
+		"eslint-plugin-react-hooks": "^2.0.1",
 		"typescript": "^3.6.3"
 	}
 }
