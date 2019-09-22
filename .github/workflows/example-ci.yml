@@ -24,3 +24,4 @@ jobs:
         working-directory: example
       - run: npm run test
         working-directory: example
+      - uses: bycedric/commitlint-action@master

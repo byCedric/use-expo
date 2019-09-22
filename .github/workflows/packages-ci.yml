@@ -19,3 +19,4 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run test
+      - uses: bycedric/commitlint-action@master
