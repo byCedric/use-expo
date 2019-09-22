@@ -18,7 +18,7 @@ export function useBrightness(options: BrightnessOptions = {}): UseBrightnessSig
 
 	useEffect(() => {
 		if (get) getBrightness();
-	}, []);
+	}, [get]);
 
 	return [data, setBrightness, getBrightness];
 }
