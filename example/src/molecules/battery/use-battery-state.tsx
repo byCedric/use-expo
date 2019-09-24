@@ -1,6 +1,6 @@
 import React from 'react';
 import { Caption, Text } from 'react-native-paper';
-import { useBatteryState } from '@use-expo/battery';
+import { useBatteryState } from 'use-expo';
 import { Example, Information, Link, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
