@@ -25,6 +25,7 @@
 		"build"
 	],
 	"dependencies": {
+		"@use-expo/battery": "^0.0.0-rc.1",
 		"@use-expo/brightness": "^0.9.0",
 		"@use-expo/font": "^0.9.0",
 		"@use-expo/permissions": "^0.9.0",

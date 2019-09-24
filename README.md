@@ -24,6 +24,12 @@
     <br />
 </div>
 
+- [**Battery**](./packages/battery)
+    - [`useBattery`](./packages/battery/docs/use-battery.md) &mdash; get the battery level, state and power mode with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
+    - [`useBatteryLevel`](./packages/battery/docs/use-battery-level.md) &mdash; get and/or listen to the battery level with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
+    - [`useBatteryLowPowerMode`](./packages/battery/docs/use-battery-low-power-mode.md) &mdash; get and/or listen to the battery low power mode with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
+    - [`useBatteryState`](./packages/battery/docs/use-battery-state.md) &mdash; get and/or listen to the battery state with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
+
 - [**Brightness**](./packages/brightness)
     - [`useBrightness`](./packages/brightness/docs/use-brightness.md) &mdash; change the screen brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
     - [`useSystemBrightness`](./packages/brightness/docs/use-system-brightness.md) &mdash; change the system brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)

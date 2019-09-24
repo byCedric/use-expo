@@ -3,6 +3,7 @@ import { Caption, Text } from 'react-native-paper';
 import { round } from 'lodash';
 
 export const Measurement: React.SFC<MeasurementProps> = (props) => {
+	const name = props.name ? `${props.name}  —  ` : '';
 	const value = typeof props.value === 'number'
 		? format(props.value, props.precision)
 		: props.value;
@@ -12,14 +13,12 @@ export const Measurement: React.SFC<MeasurementProps> = (props) => {
 		: null;
 
 	return (
-		<Text>
-			{props.name}  &mdash;  {value}{unit}
-		</Text>
+		<Text>{name}{value}{unit}</Text>
 	);
 };
 
 interface MeasurementProps {
-	name: string;
+	name?: string;
 	value: number | string;
 	precision?: number;
 	unit?: string;
