@@ -5,6 +5,7 @@
 	"scripts": {
 		"postinstall": "lerna bootstrap",
 		"clean": "tsc -b --clean && lerna clean --yes && lerna exec 'git clean -xdf build package-lock.json'",
+		"publish": "tsc -b --clean && lerna exec 'git clean -xdf build package-lock.json' && tsc -b && lerna publish",
 		"lint": "eslint packages --ext js,ts,tsx",
 		"test": "jest packages",
 		"build": "tsc --build"
