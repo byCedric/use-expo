@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/battery",
-	"version": "0.0.0-rc.1",
+	"version": "0.10.0",
 	"description": "Complementary hooks for expo-battery",
 	"keywords": [
 		"expo",
