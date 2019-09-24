@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/sensors",
-	"version": "0.10.0",
+	"version": "0.10.1",
 	"description": "Complementary hooks for expo-sensors",
 	"keywords": [
 		"expo",
