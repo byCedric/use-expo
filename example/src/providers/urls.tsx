@@ -3,6 +3,7 @@ import { sample } from 'lodash';
 export const docs = {
 	accelerometer: 'https://docs.expo.io/versions/latest/sdk/accelerometer/',
 	barometer: 'https://docs.expo.io/versions/latest/sdk/barometer/',
+	battery: 'https://docs.expo.io/versions/latest/sdk/battery/',
 	brightness: 'https://docs.expo.io/versions/latest/sdk/brightness/',
 	camera: 'https://docs.expo.io/versions/latest/sdk/camera/',
 	deviceMotion: 'https://docs.expo.io/versions/latest/sdk/devicemotion/',

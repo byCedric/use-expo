@@ -5,14 +5,16 @@
 	"main": "node_modules/expo/AppEntry.js",
 	"scripts": {
 		"test": "echo 'Not defined yet'",
-		"lint": "eslint App.tsx babel.config.js src --ext js,ts,tsx",
+		"lint": "tsc && eslint App.tsx babel.config.js src --ext js,ts,tsx",
 		"start": "expo start",
 		"android": "expo start --android",
 		"ios": "expo start --ios",
 		"web": "expo start --web"
 	},
 	"dependencies": {
+		"@use-expo/battery": "0.0.0-rc.1",
 		"expo": "^35.0.0",
+		"expo-battery": "^1.0.0",
 		"expo-brightness": "^7.0.0",
 		"expo-camera": "^7.0.0",
 		"expo-constants": "^7.0.0",
