@@ -14,7 +14,9 @@ export const ExampleComponent: React.SFC<ExampleProps & NavigationInjectedProps>
 				setReady(true);
 			}
 		);
-	});
+
+		return subscription.remove;
+	}, []);
 
 	if (!ready) return null;
 
