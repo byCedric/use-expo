@@ -27,10 +27,12 @@ export const expo = {
 export const repo = 'https://github.com/bycedric/use-expo';
 
 // please don't judge me for this...
-export const author = () => sample([
-	'https://finest.dev?ref=use-expo',
-	'https://cedric.dev?ref=use-expo',
-	'https://bycedric.dev?ref=use-expo',
-	'https://dekoningdernederlanden.nl?ref=use-expo',
-	'https://bycedric.com?ref=use-expo',
-]);
+export function author(): string {
+	return sample([
+		'https://finest.dev?ref=use-expo',
+		'https://cedric.dev?ref=use-expo',
+		'https://bycedric.dev?ref=use-expo',
+		'https://dekoningdernederlanden.nl?ref=use-expo',
+		'https://bycedric.com?ref=use-expo',
+	])!;
+}

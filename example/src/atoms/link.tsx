@@ -5,7 +5,7 @@ import { Linking } from 'expo';
 
 export const Link: React.SFC<LinkProps> = (props) => {
 	const onPress = props.url
-		? () => Linking.openURL(props.url)
+		? () => Linking.openURL(props.url!)
 		: undefined;
 
 	return (

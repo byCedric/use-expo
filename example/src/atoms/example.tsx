@@ -16,7 +16,7 @@ export const ExampleComponent: React.SFC<ExampleProps & NavigationInjectedProps>
 		);
 
 		return subscription.remove;
-	}, []);
+	}, [props.navigation]);
 
 	if (!ready) return null;
 
