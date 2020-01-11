@@ -12,11 +12,11 @@
 		"web": "expo start --web"
 	},
 	"dependencies": {
-		"expo": "^35.0.0",
+		"expo": "^35.0.1",
 		"expo-battery": "^1.0.1",
 		"expo-brightness": "^7.0.0",
 		"expo-camera": "^7.0.0",
-		"expo-constants": "^7.0.0",
+		"expo-constants": "^7.0.1",
 		"expo-font": "^7.0.0",
 		"expo-keep-awake": "^7.0.0",
 		"expo-permissions": "^7.0.0",
@@ -31,20 +31,20 @@
 		"react-native-responsive-ui": "^2.1.1",
 		"react-native-web": "^0.11.4",
 		"react-navigation": "^4.0.10",
-		"react-navigation-stack": "^1.9.1",
+		"react-navigation-stack": "^1.10.3",
 		"use-expo": "^0.10.1"
 	},
 	"devDependencies": {
-		"@types/lodash": "^4.14.141",
-		"@types/react": "^16.8.23",
-		"@types/react-native": "^0.60.17",
-		"@typescript-eslint/eslint-plugin": "^2.3.0",
-		"@typescript-eslint/parser": "^2.3.0",
-		"babel-preset-expo": "^7.0.0",
-		"eslint": "^6.5.0",
-		"eslint-plugin-jest": "^22.17.0",
-		"eslint-plugin-react": "^7.14.3",
-		"eslint-plugin-react-hooks": "^2.1.1",
-		"typescript": "^3.6.3"
+		"@types/lodash": "^4.14.149",
+		"@types/react": "^16.9.17",
+		"@types/react-native": "^0.60.30",
+		"@typescript-eslint/eslint-plugin": "^2.15.0",
+		"@typescript-eslint/parser": "^2.15.0",
+		"babel-preset-expo": "^7.1.0",
+		"eslint": "^6.8.0",
+		"eslint-plugin-jest": "^22.21.0",
+		"eslint-plugin-react": "^7.17.0",
+		"eslint-plugin-react-hooks": "^2.3.0",
+		"typescript": "^3.7.4"
 	}
 }
