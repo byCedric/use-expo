@@ -1,36 +1,29 @@
-const Battery = jest.genMockFromModule<any>('expo-battery');
-const Subscription = { remove: jest.fn() };
-
-Battery.addLowPowerModeListener.mockReturnValue(Subscription);
-jest.mock('expo-battery', () => Battery);
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Battery from 'expo-battery';
 import { useBatteryLowPowerMode } from '../src';
 
 const DATA = 0;
 const GET = 1;
 
-test('returns state and get callbacks when mounted', () => {
+it('returns data and get callback when mounted', () => {
 	const hook = renderHook(() => useBatteryLowPowerMode({ get: false, listen: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[GET]).toBeInstanceOf(Function);
 });
 
-test('handles state with get callback', async () => {
+it('updates data with get callback', async () => {
+	jest.spyOn(Battery, 'isLowPowerModeEnabledAsync').mockResolvedValue(true);
+
 	const hook = renderHook(() => useBatteryLowPowerMode({ get: false, listen: false }));
+	await act(() => hook.result.current[GET]());
 
-	Battery.isLowPowerModeEnabledAsync.mockResolvedValue(1);
-
-	act(() => { hook.result.current[GET]() });
-	await hook.waitForNextUpdate();
-
-	expect(hook.result.current[DATA]).toBe(1);
+	expect(hook.result.current[DATA]).toBe(true);
 });
 
 describe('default behavior', () => {
-	test('get battery low power mode when mounted', async () => {
-		Battery.isLowPowerModeEnabledAsync.mockResolvedValue(true);
+	it('gets battery low power mode when mounted', async () => {
+		jest.spyOn(Battery, 'isLowPowerModeEnabledAsync').mockResolvedValueOnce(true);
 
 		const hook = renderHook(() => useBatteryLowPowerMode({ listen: false }));
 		await hook.waitForNextUpdate();
@@ -39,10 +32,12 @@ describe('default behavior', () => {
 		expect(Battery.isLowPowerModeEnabledAsync).toBeCalled();
 	});
 
-	test('listen to battery low power mode when mounted', async () => {
-		const hook = renderHook(() => useBatteryLowPowerMode({ get: false }));
-		const handler = Battery.addLowPowerModeListener.mock.calls[0][0];
+	it('listens to battery low power mode when mounted', async () => {
+		const subscription = { remove: jest.fn() };
+		const listener = jest.spyOn(Battery, 'addLowPowerModeListener').mockReturnValue(subscription);
 
+		const hook = renderHook(() => useBatteryLowPowerMode({ get: false }));
+		const handler = listener.mock.calls[0][0];
 		act(() => handler({ lowPowerMode: false }));
 
 		expect(hook.result.current[DATA]).toBe(false);
@@ -51,15 +46,20 @@ describe('default behavior', () => {
 });
 
 describe('event listener', () => {
-	test('is added when mounted', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Battery, 'addLowPowerModeListener');
+
 		renderHook(() => useBatteryLowPowerMode({ get: false, listen: true }));
-		expect(Battery.addLowPowerModeListener).toBeCalled();
+		expect(listener).toBeCalled();
 	});
 
-	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useBatteryLowPowerMode({ get: false, listen: true }));
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Battery, 'addLowPowerModeListener').mockReturnValue(subscription);
 
+		const hook = renderHook(() => useBatteryLowPowerMode({ get: false, listen: true }));
 		hook.unmount();
-		expect(Subscription.remove).toBeCalled();
+
+		expect(subscription.remove).toBeCalled();
 	});
 });

@@ -2,8 +2,6 @@ import { renderHook, act } from '@testing-library/react-hooks';
 import * as Battery from 'expo-battery';
 import { useBattery } from '../src';
 
-jest.mock('expo-battery');
-
 const DATA = 0;
 const GET = 1;
 
@@ -13,34 +11,30 @@ const powerState: Battery.PowerState = {
 	lowPowerMode: true,
 };
 
-test('returns state and get callbacks when mounted', () => {
+it('returns data and get callback when mounted', () => {
 	const hook = renderHook(() => useBattery({ get: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[GET]).toBeInstanceOf(Function);
 });
 
-test('handles state with get callback', async () => {
+it('updates data with get callback', async () => {
+	jest.spyOn(Battery, 'getPowerStateAsync').mockResolvedValue(powerState);
+
 	const hook = renderHook(() => useBattery({ get: false }));
-
-	(Battery.getPowerStateAsync as jest.Mock).mockResolvedValue(powerState);
-
-	// this produces a warning about a side effect outside act
-	// see: https://github.com/mpeyper/react-hooks-testing-library/issues/14#issuecomment-493021093
-	act(() => { hook.result.current[GET]() });
-	await hook.waitForNextUpdate();
+	await act(() => hook.result.current[GET]());
 
 	expect(hook.result.current[DATA]).toMatchObject(powerState);
 });
 
 describe('default behavior', () => {
-	test('get battery power state when mounted', async () => {
-		(Battery.getPowerStateAsync as jest.Mock).mockResolvedValue(powerState);
+	it('gets battery power state when mounted', async () => {
+		const getter = jest.spyOn(Battery, 'getPowerStateAsync').mockResolvedValue(powerState);
 
-		const hook = renderHook(useBattery);
+		const hook = renderHook(() => useBattery());
 		await hook.waitForNextUpdate();
 
+		expect(getter).toBeCalled();
 		expect(hook.result.current[DATA]).toBe(powerState);
-		expect(Battery.getPowerStateAsync).toBeCalled();
 	});
 });
