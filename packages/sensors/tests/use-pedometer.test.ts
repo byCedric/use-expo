@@ -1,69 +1,70 @@
-const { Pedometer } = jest.genMockFromModule('expo-sensors');
-const Subscription = { remove: jest.fn() };
-
-Pedometer.watchStepCount.mockReturnValue(Subscription);
-jest.mock('expo-sensors', () => ({ Pedometer }));
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Sensors from 'expo-sensors';
 import { usePedometer } from '../src/use-pedometer';
 
 const DATA = 0;
 const AVAILABLE = 1;
 
-test('returns state and availability when mounted', () => {
+it('returns data and availability when mounted', () => {
 	const hook = renderHook(() => usePedometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-test('handles new pedometer availability', async () => {
-	(Pedometer.isAvailableAsync as jest.Mock).mockResolvedValue(true);
-	const hook = renderHook(usePedometer);
+it('updates pedometer availability', async () => {
+	jest.spyOn(Sensors.Pedometer, 'isAvailableAsync').mockResolvedValue(true);
 
+	const hook = renderHook(() => usePedometer());
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[AVAILABLE]).toBe(true);
 });
 
-test('handles new pedometer data', async () => {
-	const hook = renderHook(() => usePedometer({ availability: false }));
-	const handler = Pedometer.watchStepCount.mock.calls[0][0];
-	const newData = { steps: 5 };
+it('updates pedometer data', async () => {
+	const listener = jest.spyOn(Sensors.Pedometer, 'watchStepCount');
+	const data = { steps: 5 };
 
-	act(() => handler(newData));
-	expect(hook.result.current[DATA]).toMatchObject(newData);
+	const hook = renderHook(() => usePedometer({ availability: false }));
+	const handler = listener.mock.calls[0][0];
+	act(() => handler(data));
+
+	expect(hook.result.current[DATA]).toMatchObject(data);
 });
 
 describe('event listener', () => {
-	test('is added when mounted', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Sensors.Pedometer, 'watchStepCount');
+
 		renderHook(() => usePedometer({ availability: false }));
-		expect(Pedometer.watchStepCount).toBeCalled();
+
+		expect(listener).toBeCalled();
 	});
 
-	test('is removed when unmounted', () => {
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Sensors.Pedometer, 'watchStepCount').mockReturnValue(subscription);
+
 		const hook = renderHook(() => usePedometer({ availability: false }));
-
 		hook.unmount();
-		expect(Subscription.remove).toBeCalled();
-	});
 
-	test('checks availability when mounted', () => {
-		renderHook(usePedometer);
-		expect(Pedometer.isAvailableAsync).toBeCalled();
+		expect(subscription.remove).toBeCalled();
 	});
 });
 
 describe('options', () => {
-	test('initial data is returned', () => {
+	it('uses initial data', () => {
 		const initial = { steps: 10 };
 		const hook = renderHook(() => usePedometer({ initial, availability: false }));
 
 		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
-	test('availability check is skipped', () => {
+	it('skips availability check', () => {
+		const checker = jest.spyOn(Sensors.Pedometer, 'isAvailableAsync');
+
 		renderHook(() => usePedometer({ availability: false }));
-		expect(Pedometer.isAvailableAsync).not.toBeCalled();
+
+		expect(checker).not.toBeCalled();
 	});
 });
