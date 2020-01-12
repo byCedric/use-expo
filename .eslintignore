@@ -1,2 +1,10 @@
-build
-node_modules
+# build files
+build/
+coverage/
+
+# dependencies
+node_modules/
+
+# expo
+web-build/
+web-report/

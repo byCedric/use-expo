@@ -1,17 +1,12 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-const jestExpoPreset = require('jest-expo/jest-preset');
-const { jsWithBabel: tsJestPreset } = require('ts-jest/presets');
-
 module.exports = {
-	...jestExpoPreset,
+	preset: 'jest-expo',
 	clearMocks: true,
-	transform: {
-		...tsJestPreset.transform,
-		...jestExpoPreset.transform,
-	},
 	testMatch: [
 		'<rootDir>/packages/**/*.test.ts',
 	],
+	moduleNameMapper: {
+		'@use-expo/([^/]+)': '<rootDir>/packages/$1/src'
+	},
 	modulePathIgnorePatterns: [
 		'<rootDir>/example',
 	],
