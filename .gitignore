@@ -1,18 +1,24 @@
+# build files
 build
 coverage
+tsconfig.*tsbuildinfo
+
+# dependencies
 node_modules
-tsconfig.tsbuildinfo
-
 npm-debug.log*
-
-yarn.lock
+lerna-debug.log*
 yarn-debug.log*
 yarn-error.log*
+yarn.lock
+package-lock.json
+!/yarn.lock
 
-lerna-debug.log
+# editors
+.vscode
+.idea
 
+# expo
 .expo
-.expo-shared
 *.jks
 *.p12
 *.key
@@ -20,3 +26,6 @@ lerna-debug.log
 *.orig.*
 web-build
 web-report
+
+# misc
+.DS_Store
