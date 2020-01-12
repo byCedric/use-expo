@@ -8,31 +8,53 @@
 		"orientation",
 		"hooks"
 	],
-	"author": "Cedric van Putten <me@bycedric.com>",
-	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/screen-orientation#readme",
 	"license": "MIT",
+	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/screen-orientation#readme",
 	"bugs": {
 		"url": "https://github.com/bycedric/use-expo/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bycedric/use-expo.git"
+		"url": "https://github.com/bycedric/use-expo.git",
+		"directory": "packages/screen-orientation"
 	},
 	"directories": {
 		"lib": "src",
 		"test": "tests"
 	},
-	"main": "build/index.js",
+	"main": "build/commonjs/index.js",
+	"react-native": "src/index.ts",
+	"module": "build/module/index.js",
+	"types": "build/typescript/src/index.d.ts",
 	"files": [
-		"build"
+		"build",
+		"src"
 	],
+	"scripts": {
+		"prepare": "bob build",
+		"build": "bob build"
+	},
 	"devDependencies": {
-		"@testing-library/react-hooks": "^1.1.0",
-		"@types/react": "^16.9.3",
-		"expo": "^35.0.0",
-		"react": "16.8.3"
+		"@react-native-community/bob": "^0.7.1",
+		"@testing-library/react-hooks": "^3.2.1",
+		"@types/react": "^16.9.17",
+		"expo": "^36.0.2",
+		"react": "~16.9.0"
 	},
 	"peerDependencies": {
 		"expo": ">=33.0.0"
+	},
+	"@react-native-community/bob": {
+		"source": "src",
+		"output": "build",
+		"targets": [
+			"commonjs",
+			"module",
+			"typescript"
+		]
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

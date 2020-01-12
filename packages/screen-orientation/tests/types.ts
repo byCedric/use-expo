@@ -1,3 +1,5 @@
+// note: these types are not exported from the expo module, so we need to duplicate them
+
 // see: https://github.com/expo/expo/blob/master/packages/expo/src/ScreenOrientation/ScreenOrientation.types.ts#L1-L9
 export enum Orientation {
 	UNKNOWN = 'UNKNOWN',
@@ -21,6 +23,7 @@ export enum OrientationLock {
 	LANDSCAPE_RIGHT = 'LANDSCAPE_RIGHT',
 	OTHER = 'OTHER',
 	UNKNOWN = 'UNKNOWN',
+	ALL_BUT_UPSIDE_DOWN = 'ALL_BUT_UPSIDE_DOWN', // deprecated
 }
 
 // see: https://github.com/expo/expo/blob/master/packages/expo/src/ScreenOrientation/ScreenOrientation.types.ts#L25-L29
@@ -29,17 +32,3 @@ export enum SizeClassIOS {
 	COMPACT = 'COMPACT',
 	UNKNOWN = 'UNKNOWN',
 }
-
-export const ScreenOrientation = {
-	addOrientationChangeListener: jest.fn(),
-	getOrientationAsync: jest.fn(),
-	lockAsync: jest.fn(),
-	unlockAsync: jest.fn(),
-}
-
-export const Subscription = {
-	remove: jest.fn(),
-}
-
-// note: make sure orientation change listener returns the subscription mock
-ScreenOrientation.addOrientationChangeListener.mockReturnValue(Subscription);

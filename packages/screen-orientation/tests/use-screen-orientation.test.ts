@@ -1,21 +1,20 @@
-import { ScreenOrientation, Orientation, SizeClassIOS } from './mock';
-
-jest.mock('expo', () => ({ ScreenOrientation }));
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Expo from 'expo';
 import { useScreenOrientation } from '../src/use-screen-orientation';
+import { Orientation, OrientationLock, SizeClassIOS } from './types';
 
 const ORIENTATION = 0;
 const SIZE_CLASS = 1;
 
-test('returns orientation and size class state when mounted', async () => {
-	(ScreenOrientation.getOrientationAsync as jest.Mock).mockResolvedValue({
+// todo: figure out why this throws so many warnings
+it('returns orientation and size class data when mounted', async () => {
+	jest.spyOn(Expo.ScreenOrientation, 'getOrientationAsync').mockResolvedValue({
 		orientation: Orientation.LANDSCAPE_RIGHT,
 		horizontalSizeClass: SizeClassIOS.COMPACT,
 		verticalSizeClass: SizeClassIOS.REGULAR,
 	});
 
-	const hook = renderHook(useScreenOrientation);
+	const hook = renderHook(() => useScreenOrientation({ get: true }));
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[ORIENTATION]).toBe(Orientation.LANDSCAPE_RIGHT);
@@ -25,34 +24,41 @@ test('returns orientation and size class state when mounted', async () => {
 	});
 });
 
-test('returns orientation state without size class when mounted', async () => {
-	(ScreenOrientation.getOrientationAsync as jest.Mock).mockResolvedValue({
+// todo: figure out why this throws so many warnings
+it('returns orientation data without size class when mounted', async () => {
+	jest.spyOn(Expo.ScreenOrientation, 'getOrientationAsync').mockResolvedValue({
 		orientation: Orientation.LANDSCAPE_RIGHT,
 	});
 
-	const hook = renderHook(useScreenOrientation);
+	const hook = renderHook(() => useScreenOrientation({ get: true }));
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[ORIENTATION]).toBe(Orientation.LANDSCAPE_RIGHT);
 	expect(hook.result.current[SIZE_CLASS]).toBeUndefined();
 });
 
-test('handles new orientation data', () => {
-	(ScreenOrientation.getOrientationAsync as jest.Mock).mockResolvedValue({
-		orientation: Orientation.LANDSCAPE_RIGHT,
-		horizontalSizeClass: SizeClassIOS.COMPACT,
-		verticalSizeClass: SizeClassIOS.REGULAR,
+it('updates orientation data with size class from orientation listener', async () => {
+	const subscription = { remove: jest.fn() };
+	const listener = jest.spyOn(Expo.ScreenOrientation, 'addOrientationChangeListener').mockReturnValue(subscription);
+
+	const hook = renderHook(() => useScreenOrientation({ get: false }));
+	const handler = listener.mock.calls[0][0];
+
+	expect(hook.result.current[ORIENTATION]).toBeUndefined();
+	expect(hook.result.current[SIZE_CLASS]).toBeUndefined();
+
+	await act(() => {
+		handler({
+			orientationLock: OrientationLock.ALL,
+			orientationInfo: {
+				orientation: Orientation.PORTRAIT_UP,
+				horizontalSizeClass: SizeClassIOS.REGULAR,
+				verticalSizeClass: SizeClassIOS.REGULAR,
+			},
+		});
+
+		return hook.waitForNextUpdate();
 	});
-
-	const hook = renderHook(useScreenOrientation);
-	const handler = ScreenOrientation.addOrientationChangeListener.mock.calls[0][0];
-	const newData = {
-		orientation: Orientation.PORTRAIT_UP,
-		horizontalSizeClass: SizeClassIOS.REGULAR,
-		verticalSizeClass: SizeClassIOS.REGULAR,
-	};
-
-	act(() => handler({ orientationInfo: newData }));
 
 	expect(hook.result.current[ORIENTATION]).toBe(Orientation.PORTRAIT_UP);
 	expect(hook.result.current[SIZE_CLASS]).toMatchObject({
@@ -61,22 +67,47 @@ test('handles new orientation data', () => {
 	});
 });
 
-test('handles new orientation data without screen class', () => {
-	(ScreenOrientation.getOrientationAsync as jest.Mock).mockResolvedValue({
-		orientation: Orientation.LANDSCAPE_LEFT,
+it('updates orientation data from orientation listener without size class', async () => {
+	const subscription = { remove: jest.fn() };
+	const listener = jest.spyOn(Expo.ScreenOrientation, 'addOrientationChangeListener').mockReturnValue(subscription);
+
+	const hook = renderHook(() => useScreenOrientation({ get: false }));
+	const handler = listener.mock.calls[0][0];
+
+	expect(hook.result.current[ORIENTATION]).toBeUndefined();
+	expect(hook.result.current[SIZE_CLASS]).toBeUndefined();
+
+	await act(() => {
+		handler({
+			orientationLock: OrientationLock.ALL,
+			orientationInfo: {
+				orientation: Orientation.LANDSCAPE_RIGHT,
+			},
+		});
+
+		return hook.waitForNextUpdate();
 	});
-
-	const hook = renderHook(useScreenOrientation);
-	const handler = ScreenOrientation.addOrientationChangeListener.mock.calls[0][0];
-	const newData = { orientation: Orientation.LANDSCAPE_RIGHT };
-
-	act(() => handler({ orientationInfo: newData }));
 
 	expect(hook.result.current[ORIENTATION]).toBe(Orientation.LANDSCAPE_RIGHT);
 	expect(hook.result.current[SIZE_CLASS]).toBeUndefined();
 });
 
-test('gets is skipped', () => {
-	renderHook(() => useScreenOrientation({ get: false }));
-	expect(ScreenOrientation.getOrientationAsync).not.toBeCalled();
+describe('event listener', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Expo.ScreenOrientation, 'addOrientationChangeListener');
+
+		renderHook(() => useScreenOrientation());
+
+		expect(listener).toBeCalled();
+	});
+
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Expo.ScreenOrientation, 'addOrientationChangeListener').mockReturnValue(subscription);
+
+		const hook = renderHook(() => useScreenOrientation());
+		hook.unmount();
+
+		expect(subscription.remove).toBeCalled();
+	});
 });
