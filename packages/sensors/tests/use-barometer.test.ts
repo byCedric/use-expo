@@ -1,9 +1,3 @@
-// const { Barometer } = jest.genMockFromModule('expo-sensors');
-// const Subscription = { remove: jest.fn() };
-
-// Barometer.addListener.mockReturnValue(Subscription);
-// jest.mock('expo-sensors', () => ({ Barometer }));
-
 import { renderHook, act } from '@testing-library/react-hooks';
 import * as Sensors from 'expo-sensors';
 import { useBarometer } from '../src/use-barometer';
