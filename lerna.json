@@ -15,7 +15,9 @@
 				"**/__fixtures__/**",
 				"**/__tests__/**",
 				"**/*.md",
-				"**/example/**"
+				"**/example/**",
+				"*.spec.ts*",
+				"*.test.ts*"
 			],
 			"message": "chore: publish new version",
 			"preDistTag": "next",
