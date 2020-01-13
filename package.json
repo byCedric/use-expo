@@ -14,10 +14,11 @@
 	},
 	"scripts": {
 		"reset": "git clean -xdf",
-		"lint": "tsc --noEmit && eslint packages --ext js,ts,tsx",
+		"lint": "tsc --noEmit && eslint . --ext ts,tsx,js,jsx",
 		"test": "jest",
 		"build": "lerna run build",
-		"publish": "lerna publish"
+		"publish": "lerna publish",
+		"example": "yarn --cwd example"
 	},
 	"devDependencies": {
 		"@commitlint/cli": "^8.3.4",

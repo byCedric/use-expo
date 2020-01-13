@@ -1,5 +1,5 @@
 ---
-name: Example Publish
+name: Example Release
 on:
   push:
     paths:
@@ -19,9 +19,7 @@ jobs:
         with:
           expo-cache: true
           expo-version: 3.x
-          expo-username: ${{ secrets.EXPO_CLI_USERNAME }}
+          expo-username: bycedric
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
-      - run: npm ci
-        working-directory: example
-      - run: expo publish
-        working-directory: example
+      - run: yarn
+      - run: expo publish example
