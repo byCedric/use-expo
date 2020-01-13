@@ -1,36 +1,55 @@
 {
 	"private": true,
-	"name": "use-expo-monorepo",
+	"name": "@use-expo/monorepo",
 	"version": "0.0.0",
+	"license": "MIT",
+	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master#readme",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bycedric/use-expo.git"
+	},
 	"scripts": {
-		"postinstall": "lerna bootstrap",
-		"clean": "tsc -b --clean && lerna clean --yes && lerna exec 'git clean -xdf build package-lock.json'",
-		"publish": "tsc -b --clean && lerna exec 'git clean -xdf build package-lock.json' && tsc -b && lerna publish",
-		"lint": "eslint packages --ext js,ts,tsx",
-		"test": "jest packages",
-		"build": "tsc --build"
+		"lint": "tsc --noEmit && eslint . --ext ts,tsx,js,jsx",
+		"test": "jest",
+		"build": "lerna run build",
+		"publish": "lerna publish",
+		"example": "yarn --cwd example"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "^8.2.0",
-		"@commitlint/config-conventional": "^8.2.0",
-		"@testing-library/react-hooks": "^1.1.0",
-		"@types/jest": "^24.0.18",
-		"@types/react": "^16.9.3",
-		"@typescript-eslint/eslint-plugin": "^2.3.1",
-		"@typescript-eslint/parser": "^2.3.1",
-		"babel-preset-expo": "^7.0.0",
-		"eslint": "^6.4.0",
-		"eslint-plugin-jest": "^22.17.0",
-		"eslint-plugin-react": "^7.14.3",
-		"eslint-plugin-react-hooks": "^2.0.1",
-		"expo": "^35.0.0",
+		"@commitlint/cli": "^8.3.4",
+		"@commitlint/config-conventional": "^8.3.4",
+		"@testing-library/react-hooks": "^3.2.1",
+		"@types/jest": "^24.0.25",
+		"@types/react": "^16.9.17",
+		"@typescript-eslint/eslint-plugin": "^2.15.0",
+		"@typescript-eslint/parser": "^2.15.0",
+		"eslint": "^6.8.0",
+		"eslint-plugin-jest": "^23.6.0",
+		"eslint-plugin-react": "^7.17.0",
+		"eslint-plugin-react-hooks": "^2.3.0",
 		"jest": "^24.9.0",
-		"jest-expo": "^35.0.0",
-		"lerna": "^3.16.4",
-		"react": "16.8.3",
-		"react-native": "github:expo/react-native#sdk-34.0.0",
-		"react-test-renderer": "16.8.3",
-		"ts-jest": "^24.1.0",
-		"typescript": "^3.6.3"
+		"jest-expo": "^36.0.1",
+		"lerna": "^3.20.2",
+		"react": "^16.9.0",
+		"typescript": "^3.7.4"
+	},
+	"publishConfig": {
+		"registry": "https://registry.npmjs.org/"
+	},
+	"resolutions": {
+		"expo": "^36.0.2",
+		"react": "~16.9.0",
+		"react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
+		"react-test-renderer": "~16.9.0"
+	},
+	"workspaces": {
+		"packages": [
+			"example",
+			"packages/*"
+		]
 	}
 }

@@ -1,28 +1,35 @@
-import { ScreenOrientation, OrientationLock } from './mock';
-
-jest.mock('expo', () => ({ ScreenOrientation }));
-
 import { renderHook } from '@testing-library/react-hooks';
+import * as Expo from 'expo';
 import { useScreenOrientationLock } from '../src/use-screen-orientation-lock';
+import { OrientationLock } from './types';
 
-test('locks the screen to orientation when mounted', () => {
+it('locks the screen to orientation when mounted', () => {
+	const locker = jest.spyOn(Expo.ScreenOrientation, 'lockAsync').mockResolvedValue();
+
 	renderHook(() => useScreenOrientationLock(OrientationLock.PORTRAIT_UP));
-	expect(ScreenOrientation.lockAsync).toBeCalledWith(OrientationLock.PORTRAIT_UP);
+	expect(locker).toBeCalledWith(OrientationLock.PORTRAIT_UP);
 });
 
-test('unlocks the screen to orientation when unmounted', () => {
+it('unlocks the screen to orientation when unmounted', () => {
+	jest.spyOn(Expo.ScreenOrientation, 'lockAsync').mockResolvedValue();
+	const unlocker = jest.spyOn(Expo.ScreenOrientation, 'unlockAsync').mockResolvedValue();
+
 	const hook = renderHook(() => useScreenOrientationLock(OrientationLock.PORTRAIT_UP));
 	hook.unmount();
-	expect(ScreenOrientation.unlockAsync).toBeCalled();
+
+	expect(unlocker).toBeCalled();
 });
 
-test('refreshes the lock when orientation is changed', () => {
-	let orientation = OrientationLock.PORTRAIT_UP;
-	const hook = renderHook(() => useScreenOrientationLock(orientation));
+it('updates the lock when orientation is changed', () => {
+	const locker = jest.spyOn(Expo.ScreenOrientation, 'lockAsync').mockResolvedValue();
+	const unlocker = jest.spyOn(Expo.ScreenOrientation, 'unlockAsync').mockResolvedValue();
 
-	orientation = OrientationLock.LANDSCAPE_RIGHT;
-	hook.rerender();
+	const hook = renderHook(
+		(props) => useScreenOrientationLock(props),
+		{ initialProps: OrientationLock.PORTRAIT_UP },
+	);
+	hook.rerender(OrientationLock.LANDSCAPE_RIGHT);
 
-	expect(ScreenOrientation.unlockAsync).toBeCalled();
-	expect(ScreenOrientation.lockAsync).toBeCalledWith(OrientationLock.LANDSCAPE_RIGHT);
+	expect(unlocker).toBeCalled();
+	expect(locker).toBeCalledWith(OrientationLock.LANDSCAPE_RIGHT);
 });

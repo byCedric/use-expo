@@ -1,11 +1,29 @@
 {
-	"extends": "../../tsconfig.shared.json",
+	"extends": "../../tsconfig.json",
 	"compilerOptions": {
-		"rootDir": "./src",
-		"outDir": "./build"
+		"outDir": "./build/typescript"
 	},
 	"include": [
-		"./src",
-		"./test"
+		"src"
+	],
+	"references": [
+		{
+			"path": "../battery"
+		},
+		{
+			"path": "../brightness"
+		},
+		{
+			"path": "../font"
+		},
+		{
+			"path": "../permissions"
+		},
+		{
+			"path": "../screen-orientation"
+		},
+		{
+			"path": "../sensors"
+		}
 	]
 }

@@ -1,74 +1,78 @@
-const { MagnetometerUncalibrated } = jest.genMockFromModule('expo-sensors');
-const Subscription = { remove: jest.fn() };
-
-MagnetometerUncalibrated.addListener.mockReturnValue(Subscription);
-jest.mock('expo-sensors', () => ({ MagnetometerUncalibrated }));
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Sensors from 'expo-sensors';
 import { useMagnetometerUncalibrated } from '../src/use-magnetometer-uncalibrated';
 
 const DATA = 0;
 const AVAILABLE = 1;
 
-test('returns state and availability when mounted', () => {
+it('returns data and availability when mounted', async () => {
 	const hook = renderHook(() => useMagnetometerUncalibrated({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-test('handles new uncalibrated magnetometer availability', async () => {
-	(MagnetometerUncalibrated.isAvailableAsync as jest.Mock).mockResolvedValue(true);
-	const hook = renderHook(useMagnetometerUncalibrated);
+it('updates uncalibrated magnetometer availability', async () => {
+	jest.spyOn(Sensors.MagnetometerUncalibrated, 'isAvailableAsync').mockResolvedValue(true);
 
+	const hook = renderHook(() => useMagnetometerUncalibrated());
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[AVAILABLE]).toBe(true);
 });
 
-test('handles new uncalibrated magnetometer data', async () => {
-	const hook = renderHook(useMagnetometerUncalibrated);
-	const handler = MagnetometerUncalibrated.addListener.mock.calls[0][0];
-	const newData = { x: 0, y: 1, z: 0.5 };
+it('updates uncalibrated magnetometer data', async () => {
+	const listener = jest.spyOn(Sensors.MagnetometerUncalibrated, 'addListener');
+	const data = { x: 0, y: 1, z: 0.5 };
 
-	act(() => handler(newData));
-	expect(hook.result.current[DATA]).toMatchObject(newData);
+	const hook = renderHook(() => useMagnetometerUncalibrated({ availability: false }));
+	const handler = listener.mock.calls[0][0];
+	act(() => handler(data));
+
+	expect(hook.result.current[DATA]).toMatchObject(data);
 });
 
 describe('event listener', () => {
-	test('is added when mounted', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Sensors.MagnetometerUncalibrated, 'addListener');
+
 		renderHook(() => useMagnetometerUncalibrated({ availability: false }));
-		expect(MagnetometerUncalibrated.addListener).toBeCalled();
+
+		expect(listener).toBeCalled();
 	});
 
-	test('is removed when unmounted', () => {
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Sensors.MagnetometerUncalibrated, 'addListener').mockReturnValue(subscription);
+
 		const hook = renderHook(() => useMagnetometerUncalibrated({ availability: false }));
-
 		hook.unmount();
-		expect(Subscription.remove).toBeCalled();
-	});
 
-	test('checks availability when mounted', () => {
-		renderHook(useMagnetometerUncalibrated);
-		expect(MagnetometerUncalibrated.isAvailableAsync).toBeCalled();
+		expect(subscription.remove).toBeCalled();
 	});
 });
 
 describe('options', () => {
-	test('initial data is returned', () => {
+	it('uses initial data', () => {
 		const initial = { x: 0.5, y: 0.2, z: 0.3 };
 		const hook = renderHook(() => useMagnetometerUncalibrated({ initial, availability: false }));
 
 		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
-	test('update interval is set', () => {
+	it('uses interval duration', () => {
+		const setter = jest.spyOn(Sensors.MagnetometerUncalibrated, 'setUpdateInterval');
+
 		renderHook(() => useMagnetometerUncalibrated({ interval: 1500, availability: false }));
-		expect(MagnetometerUncalibrated.setUpdateInterval).toBeCalledWith(1500);
+
+		expect(setter).toBeCalledWith(1500);
 	});
 
-	test('availability check is skipped', () => {
+	it('skips availability check', () => {
+		const checker = jest.spyOn(Sensors.MagnetometerUncalibrated, 'isAvailableAsync');
+
 		renderHook(() => useMagnetometerUncalibrated({ availability: false }));
-		expect(MagnetometerUncalibrated.isAvailableAsync).not.toBeCalled();
+
+		expect(checker).not.toBeCalled();
 	});
 });

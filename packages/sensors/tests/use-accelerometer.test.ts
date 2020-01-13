@@ -1,74 +1,78 @@
-const { Accelerometer } = jest.genMockFromModule('expo-sensors');
-const Subscription = { remove: jest.fn() };
-
-Accelerometer.addListener.mockReturnValue(Subscription);
-jest.mock('expo-sensors', () => ({ Accelerometer }));
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Sensors from 'expo-sensors';
 import { useAccelerometer } from '../src/use-accelerometer';
 
 const DATA = 0;
 const AVAILABLE = 1;
 
-test('returns state and availability when mounted', () => {
+it('returns data and availability when mounted', async () => {
 	const hook = renderHook(() => useAccelerometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-test('handles new accelerometer availability', async () => {
-	(Accelerometer.isAvailableAsync as jest.Mock).mockResolvedValue(true);
-	const hook = renderHook(useAccelerometer);
+it('updates accelerometer availability', async () => {
+	jest.spyOn(Sensors.Accelerometer, 'isAvailableAsync').mockResolvedValue(true);
 
+	const hook = renderHook(() => useAccelerometer());
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[AVAILABLE]).toBe(true);
 });
 
-test('handles new accelerometer data', () => {
-	const hook = renderHook(() => useAccelerometer({ availability: false }));
-	const handler = Accelerometer.addListener.mock.calls[0][0];
-	const newData = { x: 0, y: 1, z: 0.5 };
+it('updates accelerometer data', async () => {
+	const listener = jest.spyOn(Sensors.Accelerometer, 'addListener');
+	const data = { x: 0, y: 1, z: 0.5 };
 
-	act(() => handler(newData));
-	expect(hook.result.current[DATA]).toMatchObject(newData);
+	const hook = renderHook(() => useAccelerometer({ availability: false }));
+	const handler = listener.mock.calls[0][0];
+	act(() => handler(data));
+
+	expect(hook.result.current[DATA]).toMatchObject(data);
 });
 
 describe('event listener', () => {
-	test('is added when mounted', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Sensors.Accelerometer, 'addListener');
+
 		renderHook(() => useAccelerometer({ availability: false }));
-		expect(Accelerometer.addListener).toBeCalled();
+
+		expect(listener).toBeCalled();
 	});
 
-	test('is removed when unmounted', () => {
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Sensors.Accelerometer, 'addListener').mockReturnValue(subscription);
+
 		const hook = renderHook(() => useAccelerometer({ availability: false }));
-
 		hook.unmount();
-		expect(Subscription.remove).toBeCalled();
-	});
 
-	test('checks availability when mounted', () => {
-		renderHook(useAccelerometer);
-		expect(Accelerometer.isAvailableAsync).toBeCalled();
+		expect(subscription.remove).toBeCalled();
 	});
 });
 
 describe('options', () => {
-	test('initial data is returned', () => {
+	it('uses initial data', () => {
 		const initial = { x: 0.5, y: 0.2, z: 0.3 };
 		const hook = renderHook(() => useAccelerometer({ initial, availability: false }));
 
 		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
-	test('update interval is set', () => {
+	it('uses interval duration', () => {
+		const setter = jest.spyOn(Sensors.Accelerometer, 'setUpdateInterval');
+
 		renderHook(() => useAccelerometer({ interval: 1500, availability: false }));
-		expect(Accelerometer.setUpdateInterval).toBeCalledWith(1500);
+
+		expect(setter).toBeCalledWith(1500);
 	});
 
-	test('availability check is skipped', () => {
+	it('skips availability check', () => {
+		const checker = jest.spyOn(Sensors.Accelerometer, 'isAvailableAsync');
+
 		renderHook(() => useAccelerometer({ availability: false }));
-		expect(Accelerometer.isAvailableAsync).not.toBeCalled();
+
+		expect(checker).not.toBeCalled();
 	});
 });

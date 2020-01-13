@@ -1,7 +1,28 @@
 {
 	"version": "0.10.1",
-	"hoist": true,
 	"packages": [
+		"example",
 		"packages/*"
-	]
+	],
+	"npmClient": "yarn",
+	"useWorkspaces": true,
+	"command": {
+		"publish": {
+			"allowBranch": "master",
+			"conventionalCommits": true,
+			"createRelease": "github",
+			"ignoreChanges": [
+				"**/__fixtures__/**",
+				"**/__tests__/**",
+				"**/*.md",
+				"**/example/**",
+				"*.spec.ts*",
+				"*.test.ts*"
+			],
+			"message": "chore: publish new version",
+			"preDistTag": "next",
+			"preId": "alpha",
+			"tagVersionPrefix": ""
+		}
+	}
 }

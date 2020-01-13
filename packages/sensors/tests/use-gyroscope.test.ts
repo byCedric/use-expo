@@ -1,74 +1,78 @@
-const { Gyroscope } = jest.genMockFromModule('expo-sensors');
-const Subscription = { remove: jest.fn() };
-
-Gyroscope.addListener.mockReturnValue(Subscription);
-jest.mock('expo-sensors', () => ({ Gyroscope }));
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Sensors from 'expo-sensors';
 import { useGyroscope } from '../src/use-gyroscope';
 
 const DATA = 0;
 const AVAILABLE = 1;
 
-test('returns state and availability when mounted', () => {
+it('returns data and availability when mounted', () => {
 	const hook = renderHook(() => useGyroscope({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-test('handles new gyroscope availability', async () => {
-	(Gyroscope.isAvailableAsync as jest.Mock).mockResolvedValue(true);
-	const hook = renderHook(useGyroscope);
+it('handles gyroscope availability', async () => {
+	jest.spyOn(Sensors.Gyroscope, 'isAvailableAsync').mockResolvedValue(true);
 
+	const hook = renderHook(useGyroscope);
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[AVAILABLE]).toBe(true);
 });
 
-test('handles new gyroscope data', async () => {
-	const hook = renderHook(() => useGyroscope({ availability: false }));
-	const handler = Gyroscope.addListener.mock.calls[0][0];
-	const newData = { x: 0, y: 1, z: 0.5 };
+it('updates gyroscope data', async () => {
+	const listener = jest.spyOn(Sensors.Gyroscope, 'addListener');
+	const data = { x: 0, y: 1, z: 0.5 };
 
-	act(() => handler(newData));
-	expect(hook.result.current[DATA]).toMatchObject(newData);
+	const hook = renderHook(() => useGyroscope({ availability: false }));
+	const handler = listener.mock.calls[0][0];
+	act(() => handler(data));
+
+	expect(hook.result.current[DATA]).toMatchObject(data);
 });
 
 describe('event listener', () => {
-	test('is added when mounted', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Sensors.Gyroscope, 'addListener');
+
 		renderHook(() => useGyroscope({ availability: false }));
-		expect(Gyroscope.addListener).toBeCalled();
+
+		expect(listener).toBeCalled();
 	});
 
-	test('is removed when unmounted', () => {
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Sensors.Gyroscope, 'addListener').mockReturnValue(subscription);
+
 		const hook = renderHook(() => useGyroscope({ availability: false }));
-
 		hook.unmount();
-		expect(Subscription.remove).toBeCalled();
-	});
 
-	test('checks availability when mounted', () => {
-		renderHook(useGyroscope);
-		expect(Gyroscope.isAvailableAsync).toBeCalled();
+		expect(subscription.remove).toBeCalled();
 	});
 });
 
 describe('options', () => {
-	test('initial data is returned', () => {
+	it('uses initial data', () => {
 		const initial = { x: 1, y: 1, z: 1 };
 		const hook = renderHook(() => useGyroscope({ initial, availability: false }));
 
 		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
-	test('update interval is set', () => {
+	it('uses interval duration', () => {
+		const setter = jest.spyOn(Sensors.Gyroscope, 'setUpdateInterval');
+
 		renderHook(() => useGyroscope({ interval: 1500, availability: false }));
-		expect(Gyroscope.setUpdateInterval).toBeCalledWith(1500);
+
+		expect(setter).toBeCalledWith(1500);
 	});
 
-	test('availability check is skipped', () => {
+	it('skips availability check', () => {
+		const checker = jest.spyOn(Sensors.Gyroscope, 'isAvailableAsync');
+
 		renderHook(() => useGyroscope({ availability: false }));
-		expect(Gyroscope.isAvailableAsync).not.toBeCalled();
+
+		expect(checker).not.toBeCalled();
 	});
 });

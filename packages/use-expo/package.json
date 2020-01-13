@@ -6,24 +6,33 @@
 		"expo",
 		"hooks"
 	],
-	"author": "Cedric van Putten <me@bycedric.com>",
-	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/use-expo#readme",
 	"license": "MIT",
+	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/use-expo#readme",
 	"bugs": {
 		"url": "https://github.com/bycedric/use-expo/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/bycedric/use-expo.git"
+		"url": "https://github.com/bycedric/use-expo.git",
+		"directory": "packages/use-expo"
 	},
 	"directories": {
 		"lib": "src",
 		"test": "tests"
 	},
-	"main": "build/index.js",
+	"main": "build/commonjs/index.js",
+	"react-native": "src/index.ts",
+	"module": "build/module/index.js",
+	"types": "build/typescript/src/index.d.ts",
 	"files": [
-		"build"
+		"build",
+		"src"
 	],
+	"scripts": {
+		"prepare": "bob build",
+		"build": "bob build"
+	},
 	"dependencies": {
 		"@use-expo/battery": "^0.10.1",
 		"@use-expo/brightness": "^0.10.1",
@@ -31,5 +40,20 @@
 		"@use-expo/permissions": "^0.10.1",
 		"@use-expo/screen-orientation": "^0.10.1",
 		"@use-expo/sensors": "^0.10.1"
+	},
+	"devDependencies": {
+		"@react-native-community/bob": "^0.7.1"
+	},
+	"@react-native-community/bob": {
+		"source": "src",
+		"output": "build",
+		"targets": [
+			"commonjs",
+			"module",
+			"typescript"
+		]
+	},
+	"publishConfig": {
+		"access": "public"
 	}
 }

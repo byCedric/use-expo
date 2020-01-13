@@ -1,20 +1,37 @@
 {
-	"extends": "./tsconfig.shared.json",
-	"files": [],
-	"include": [],
 	"compilerOptions": {
+		"allowSyntheticDefaultImports": true,
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"baseUrl": ".",
 		"composite": true,
+		"esModuleInterop": false,
+		"forceConsistentCasingInFileNames": true,
+		"jsx": "react",
+		"lib": [
+			"esnext",
+			"dom"
+		],
+		"module": "esnext",
+		"moduleResolution": "node",
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitAny": true,
+		"noStrictGenericChecks": false,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"paths": {
+			"@use-expo/*": [
+				"./packages/*/src"
+			],
+		},
+		"removeComments": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strict": true,
+		"target": "esnext"
 	},
-	"references": [
-		{ "path": "packages/battery" },
-		{ "path": "packages/brightness" },
-		{ "path": "packages/font" },
-		{ "path": "packages/permissions" },
-		{ "path": "packages/screen-orientation" },
-		{ "path": "packages/sensors" },
-		{ "path": "packages/use-expo" },
-	],
 	"exclude": [
-		"example"
+		"node_modules"
 	]
 }

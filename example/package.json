@@ -1,18 +1,25 @@
 {
 	"private": true,
-	"name": "use-expo-example",
+	"name": "@use-expo/example",
 	"version": "0.0.0",
-	"main": "node_modules/expo/AppEntry.js",
+	"license": "MIT",
+	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/example#readme",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bycedric/use-expo.git",
+		"directory": "example"
+	},
 	"scripts": {
-		"test": "echo 'Not defined yet'",
-		"lint": "tsc && eslint App.tsx babel.config.js src --ext js,ts,tsx",
 		"start": "expo start",
 		"android": "expo start --android",
-		"ios": "expo start --ios",
-		"web": "expo start --web"
+		"ios": "expo start --ios"
 	},
 	"dependencies": {
-		"expo": "^36.0.0",
+		"expo": "^36.0.2",
 		"expo-battery": "~2.0.0",
 		"expo-brightness": "~8.0.0",
 		"expo-camera": "~8.0.0",
@@ -22,29 +29,22 @@
 		"expo-permissions": "~8.0.0",
 		"expo-sensors": "~8.0.0",
 		"lodash": "^4.17.15",
-		"react": "16.9.0",
-		"react-dom": "16.9.0",
+		"react": "~16.9.0",
+		"react-dom": "~16.9.0",
 		"react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
 		"react-native-gesture-handler": "~1.5.0",
 		"react-native-paper": "^2.16.0",
 		"react-native-reanimated": "~1.4.0",
-		"react-native-responsive-ui": "^2.1.1",
 		"react-native-web": "^0.11.7",
 		"react-navigation": "^4.0.10",
-		"react-navigation-stack": "^1.10.3",
-		"use-expo": "^0.10.1"
+		"react-navigation-stack": "^1.10.3"
 	},
 	"devDependencies": {
+		"@expo/webpack-config": "^0.10.9",
 		"@types/lodash": "^4.14.149",
-		"@types/react": "^16.9.0",
 		"@types/react-native": "^0.60.15",
-		"@typescript-eslint/eslint-plugin": "^2.15.0",
-		"@typescript-eslint/parser": "^2.15.0",
+		"@types/react": "^16.9.0",
 		"babel-preset-expo": "^8.0.0",
-		"eslint": "^6.8.0",
-		"eslint-plugin-jest": "^23.4.0",
-		"eslint-plugin-react": "^7.17.0",
-		"eslint-plugin-react-hooks": "^2.3.0",
 		"typescript": "^3.7.2"
 	}
 }

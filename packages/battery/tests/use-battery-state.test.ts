@@ -1,36 +1,29 @@
-const Battery = jest.genMockFromModule<any>('expo-battery');
-const Subscription = { remove: jest.fn() };
-
-Battery.addBatteryStateListener.mockReturnValue(Subscription);
-jest.mock('expo-battery', () => Battery);
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Battery from 'expo-battery';
 import { useBatteryState } from '../src';
 
 const DATA = 0;
 const GET = 1;
 
-test('returns state and get callbacks when mounted', () => {
+it('returns data and get callback when mounted', () => {
 	const hook = renderHook(() => useBatteryState({ get: false, listen: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[GET]).toBeInstanceOf(Function);
 });
 
-test('handles state with get callback', async () => {
+it('updates data with get callback', async () => {
+	jest.spyOn(Battery, 'getBatteryStateAsync').mockResolvedValue(Battery.BatteryState.FULL);
+
 	const hook = renderHook(() => useBatteryState({ get: false, listen: false }));
-
-	Battery.getBatteryStateAsync.mockResolvedValue(Battery.BatteryState.FULL);
-
-	act(() => { hook.result.current[GET]() });
-	await hook.waitForNextUpdate();
+	await act(() => hook.result.current[GET]());
 
 	expect(hook.result.current[DATA]).toBe(Battery.BatteryState.FULL);
 });
 
 describe('default behavior', () => {
-	test('get battery state when mounted', async () => {
-		Battery.getBatteryStateAsync.mockResolvedValue(Battery.BatteryState.UNPLUGGED);
+	it('gets battery state when mounted', async () => {
+		jest.spyOn(Battery, 'getBatteryStateAsync').mockResolvedValue(Battery.BatteryState.UNPLUGGED);
 
 		const hook = renderHook(() => useBatteryState({ listen: false }));
 		await hook.waitForNextUpdate();
@@ -39,10 +32,12 @@ describe('default behavior', () => {
 		expect(Battery.getBatteryStateAsync).toBeCalled();
 	});
 
-	test('listen to battery state when mounted', async () => {
-		const hook = renderHook(() => useBatteryState({ get: false }));
-		const handler = Battery.addBatteryStateListener.mock.calls[0][0];
+	it('listens to battery state when mounted', async () => {
+		const subscription = { remove: jest.fn() };
+		const listener = jest.spyOn(Battery, 'addBatteryStateListener').mockReturnValue(subscription);
 
+		const hook = renderHook(() => useBatteryState({ get: false }));
+		const handler = listener.mock.calls[0][0];
 		act(() => handler({ batteryState: Battery.BatteryState.UNKNOWN }));
 
 		expect(hook.result.current[DATA]).toBe(Battery.BatteryState.UNKNOWN);
@@ -51,15 +46,20 @@ describe('default behavior', () => {
 });
 
 describe('event listener', () => {
-	test('is added when mounted', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Battery, 'addBatteryStateListener');
+
 		renderHook(() => useBatteryState({ get: false, listen: true }));
-		expect(Battery.addBatteryStateListener).toBeCalled();
+		expect(listener).toBeCalled();
 	});
 
-	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useBatteryState({ get: false, listen: true }));
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Battery, 'addBatteryStateListener').mockReturnValue(subscription);
 
+		const hook = renderHook(() => useBatteryState({ get: false, listen: true }));
 		hook.unmount();
-		expect(Subscription.remove).toBeCalled();
+
+		expect(subscription.remove).toBeCalled();
 	});
 });

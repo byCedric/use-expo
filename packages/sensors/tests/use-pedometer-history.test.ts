@@ -1,10 +1,5 @@
-const { Pedometer } = jest.genMockFromModule('expo-sensors');
-const Subscription = { remove: jest.fn() };
-
-Pedometer.watchStepCount.mockReturnValue(Subscription);
-jest.mock('expo-sensors', () => ({ Pedometer }));
-
 import { renderHook } from '@testing-library/react-hooks';
+import * as Sensors from 'expo-sensors';
 import { usePedometerHistory } from '../src/use-pedometer-history';
 
 const DATA = 0;
@@ -13,20 +8,19 @@ const AVAILABLE = 1;
 const start = new Date();
 const end = new Date(Number(start) + 5000);
 
-test('returns state and availability when mounted', async () => {
-	(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
-	const hook = renderHook(() => usePedometerHistory(start, end, { availability: false }));
+it('returns data and availability when mounted', async () => {
+	const getter = jest.spyOn(Sensors.Pedometer, 'getStepCountAsync').mockResolvedValue({ steps: 1 });
 
+	const hook = renderHook(() => usePedometerHistory(start, end, { availability: false }));
 	await hook.waitForNextUpdate();
 
-	expect(Pedometer.getStepCountAsync).toBeCalledWith(start, end);
+	expect(getter).toBeCalledWith(start, end);
 	expect(hook.result.current[DATA]).toMatchObject({ steps: 1 });
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-test('handles new pedometer availability', async () => {
-	(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
-	(Pedometer.isAvailableAsync as jest.Mock).mockResolvedValue(true);
+it('updates pedometer availability', async () => {
+	jest.spyOn(Sensors.Pedometer, 'isAvailableAsync').mockResolvedValue(true);
 
 	const hook = renderHook(() => usePedometerHistory(start, end));
 	await hook.waitForNextUpdate();
@@ -34,30 +28,21 @@ test('handles new pedometer availability', async () => {
 	expect(hook.result.current[AVAILABLE]).toBe(true);
 });
 
-describe('event listener', () => {
-	test('checks availability when mounted', () => {
-		(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
-
-		renderHook(() => usePedometerHistory(start, end));
-		expect(Pedometer.isAvailableAsync).toBeCalled();
-	});
-});
-
 describe('options', () => {
-	test('initial data is returned', () => {
-		(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
-
+	// todo: refactor fetching data async loop to avoid warnings
+	it('uses initial data', () => {
 		const initial = { steps: 10 };
 		const hook = renderHook(() => usePedometerHistory(start, end, { initial, availability: false }));
 
 		expect(hook.result.current[DATA]).toMatchObject(initial);
 	});
 
-	test('availability check is skipped', () => {
-		(Pedometer.getStepCountAsync as jest.Mock).mockResolvedValue({ steps: 1 });
-		(Pedometer.isAvailableAsync as jest.Mock).mockResolvedValue(true);
+	// todo: refactor fetching data async loop to avoid warnings
+	it('skips availability check', () => {
+		const checker = jest.spyOn(Sensors.Pedometer, 'isAvailableAsync');
 
 		renderHook(() => usePedometerHistory(start, end, { availability: false }));
-		expect(Pedometer.isAvailableAsync).not.toBeCalled();
+
+		expect(checker).not.toBeCalled();
 	});
 });

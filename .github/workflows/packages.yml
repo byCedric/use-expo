@@ -1,0 +1,19 @@
+---
+name: Packages
+on: [push, pull_request]
+jobs:
+  ci:
+    name: Install, test and lint
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [10, 12]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node }}
+      - run: yarn
+      - run: yarn build
+      - run: yarn lint
+      - run: yarn test

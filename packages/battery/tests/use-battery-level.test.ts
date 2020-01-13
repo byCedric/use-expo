@@ -1,36 +1,29 @@
-const Battery = jest.genMockFromModule<any>('expo-battery');
-const Subscription = { remove: jest.fn() };
-
-Battery.addBatteryLevelListener.mockReturnValue(Subscription);
-jest.mock('expo-battery', () => Battery);
-
 import { renderHook, act } from '@testing-library/react-hooks';
+import * as Battery from 'expo-battery';
 import { useBatteryLevel } from '../src';
 
 const DATA = 0;
 const GET = 1;
 
-test('returns state and get callbacks when mounted', () => {
+it('returns data and get callback when mounted', () => {
 	const hook = renderHook(() => useBatteryLevel({ get: false, listen: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[GET]).toBeInstanceOf(Function);
 });
 
-test('handles state with get callback', async () => {
+it('updates data with get callback', async () => {
+	jest.spyOn(Battery, 'getBatteryLevelAsync').mockResolvedValue(1);
+
 	const hook = renderHook(() => useBatteryLevel({ get: false, listen: false }));
-
-	Battery.getBatteryLevelAsync.mockResolvedValue(1);
-
-	act(() => { hook.result.current[GET]() });
-	await hook.waitForNextUpdate();
+	await act(() => hook.result.current[GET]());
 
 	expect(hook.result.current[DATA]).toBe(1);
 });
 
 describe('default behavior', () => {
-	test('get battery level when mounted', async () => {
-		Battery.getBatteryLevelAsync.mockResolvedValue(0.1337);
+	it('gets battery level when mounted', async () => {
+		jest.spyOn(Battery, 'getBatteryLevelAsync').mockResolvedValue(0.1337);
 
 		const hook = renderHook(() => useBatteryLevel({ listen: false }));
 		await hook.waitForNextUpdate();
@@ -39,10 +32,12 @@ describe('default behavior', () => {
 		expect(Battery.getBatteryLevelAsync).toBeCalled();
 	});
 
-	test('listen to battery level when mounted', async () => {
-		const hook = renderHook(() => useBatteryLevel({ get: false }));
-		const handler = Battery.addBatteryLevelListener.mock.calls[0][0];
+	it('listens to battery level when mounted', async () => {
+		const subscription = { remove: jest.fn() };
+		const listener = jest.spyOn(Battery, 'addBatteryLevelListener').mockReturnValue(subscription);
 
+		const hook = renderHook(() => useBatteryLevel({ get: false }));
+		const handler = listener.mock.calls[0][0];
 		act(() => handler({ batteryLevel: 0.75 }));
 
 		expect(hook.result.current[DATA]).toBe(0.75);
@@ -51,15 +46,21 @@ describe('default behavior', () => {
 });
 
 describe('event listener', () => {
-	test('is added when mounted', () => {
+	it('subscribes when mounted', () => {
+		const listener = jest.spyOn(Battery, 'addBatteryLevelListener');
+
 		renderHook(() => useBatteryLevel({ get: false, listen: true }));
-		expect(Battery.addBatteryLevelListener).toBeCalled();
+
+		expect(listener).toBeCalled();
 	});
 
-	test('is removed when unmounted', () => {
-		const hook = renderHook(() => useBatteryLevel({ get: false, listen: true }));
+	it('unsubscribes when unmounted', () => {
+		const subscription = { remove: jest.fn() };
+		jest.spyOn(Battery, 'addBatteryLevelListener').mockReturnValue(subscription);
 
+		const hook = renderHook(() => useBatteryLevel({ get: false, listen: true }));
 		hook.unmount();
-		expect(Subscription.remove).toBeCalled();
+
+		expect(subscription.remove).toBeCalled();
 	});
 });

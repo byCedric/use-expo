@@ -2,13 +2,11 @@ import { renderHook, act,  } from '@testing-library/react-hooks';
 import * as Permissions from 'expo-permissions';
 import { usePermissions } from '../src/use-permissions';
 
-jest.mock('expo-permissions');
-
 const DATA = 0;
 const ASK = 1;
 const GET = 2;
 
-test('returns state, ask and get callbacks when mounted', () => {
+it('returns data, ask and get callbacks when mounted', async () => {
 	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
@@ -16,52 +14,59 @@ test('returns state, ask and get callbacks when mounted', () => {
 	expect(hook.result.current[GET]).toBeInstanceOf(Function);
 });
 
-test('handles state with get callback', async () => {
-	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
+it('updates data with get callback', async () => {
 	const response = { status: 'granted' };
+	jest.spyOn(Permissions, 'getAsync').mockResolvedValue(response as any);
 
-	(Permissions.getAsync as jest.Mock).mockResolvedValue(response);
-
-	// this produces a warning about a side effect outside act
-	// see: https://github.com/mpeyper/react-hooks-testing-library/issues/14#issuecomment-493021093
-	act(() => { hook.result.current[GET]() });
-	await hook.waitForNextUpdate();
+	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
+	await act(() => hook.result.current[GET]());
 
 	expect(hook.result.current[DATA]).toMatchObject(response);
 });
 
-test('handles state with ask callback', async () => {
-	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
+it('updates data with ask callback', async () => {
 	const response = { status: 'granted' };
+	jest.spyOn(Permissions, 'askAsync').mockResolvedValue(response as any);
 
-	(Permissions.askAsync as jest.Mock).mockResolvedValue(response);
-
-	// this produces a warning about a side effect outside act
-	// see: https://github.com/mpeyper/react-hooks-testing-library/issues/14#issuecomment-493021093
-	act(() => { hook.result.current[ASK]() });
-	await hook.waitForNextUpdate();
+	const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: false }));
+	await act(() => hook.result.current[ASK]());
 
 	expect(hook.result.current[DATA]).toMatchObject(response);
 });
 
-test('accepts multiple permission types', () => {
-	const hook = renderHook(() => usePermissions(
-		[Permissions.CAMERA, Permissions.CAMERA_ROLL],
-		{ get: false },
-	));
+it('accepts multiple permission types', async () => {
+	const response = { status: 'granted' };
+	const asker = jest.spyOn(Permissions, 'askAsync').mockResolvedValue(response as any);
 
-	expect(hook.result.current[DATA]).toBeUndefined();
+	const permissions = [Permissions.CAMERA, Permissions.CAMERA_ROLL] as Permissions.PermissionType[];
+	const hook = renderHook(() => usePermissions(permissions, { get: false }));
+
+	await act(() => hook.result.current[ASK]());
+
+	expect(asker).toBeCalledWith(...permissions)
+	expect(hook.result.current[DATA]).toMatchObject(response);
 });
 
-test('gets the permissions when mounted, by default', async () => {
-	(Permissions.getAsync as jest.Mock).mockResolvedValue({ status: 'granted' });
-	renderHook(() => usePermissions(Permissions.CAMERA));
-	expect(Permissions.getAsync).toBeCalledWith(Permissions.CAMERA);
-});
+describe('options', () => {
+	it('gets the permissions when mounted', async () => {
+		const response = { status: 'granted' };
+		const getter = jest.spyOn(Permissions, 'getAsync').mockResolvedValue(response as any);
 
+		const hook = renderHook(() => usePermissions(Permissions.CAMERA, { get: true }));
+		await hook.waitForNextUpdate();
 
-test('asks the permissions when mounted', async () => {
-	(Permissions.askAsync as jest.Mock).mockResolvedValue({ status: 'granted' });
-	renderHook(() => usePermissions(Permissions.CAMERA, { ask: true }));
-	expect(Permissions.askAsync).toBeCalledWith(Permissions.CAMERA);
+		expect(getter).toBeCalledWith(Permissions.CAMERA);
+		expect(hook.result.current[DATA]).toMatchObject(response);
+	});
+
+	it('asks the permissions when mounted', async () => {
+		const response = { status: 'granted' };
+		const asker = jest.spyOn(Permissions, 'askAsync').mockResolvedValue(response as any);
+
+		const hook = renderHook(() => usePermissions(Permissions.CAMERA, { ask: true }));
+		await hook.waitForNextUpdate();
+
+		expect(asker).toBeCalledWith(Permissions.CAMERA);
+		expect(hook.result.current[DATA]).toMatchObject(response);
+	});
 });
