@@ -39,3 +39,21 @@ it('updates data with get callback', async () => {
 	expect(getter).toBeCalledTimes(2);
 	expect(hook.result.current[DATA]).toBe(0.5);
 });
+
+describe('options', () => {
+	it('updates data with get callback, after initial render', async () => {
+		jest.spyOn(Brightness, 'getSystemBrightnessAsync').mockResolvedValue(0.75);
+
+		const hook = renderHook(
+			props => useSystemBrightness(props),
+			{ initialProps: { get: false } },
+		);
+
+		expect(hook.result.current[DATA]).toBeUndefined();
+
+		hook.rerender({ get: true });
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[DATA]).toBe(0.75);
+	});
+});

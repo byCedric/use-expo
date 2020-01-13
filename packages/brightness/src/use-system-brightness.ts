@@ -17,8 +17,10 @@ export function useSystemBrightness(options: SystemBrightnessOptions = {}): UseS
 	}
 
 	useEffect(() => {
-		if (get) getSystemBrightness();
-	}, []);
+		if (get) {
+			getSystemBrightness();
+		}
+	}, [get]);
 
 	return [data, setSystemBrightness, getSystemBrightness];
 }
