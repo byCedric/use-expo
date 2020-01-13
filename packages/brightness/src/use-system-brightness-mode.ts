@@ -20,8 +20,10 @@ export function useSystemBrightnessMode(
 	}
 
 	useEffect(() => {
-		if (get) getSystemBrightnessMode();
-	}, []);
+		if (get) {
+			getSystemBrightnessMode();
+		}
+	}, [get]);
 
 	return [data, setSystemBrightnessMode, getSystemBrightnessMode];
 }
