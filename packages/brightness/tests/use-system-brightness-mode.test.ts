@@ -29,7 +29,7 @@ it('updates data with get callback', async () => {
 		.mockResolvedValueOnce(Brightness.BrightnessMode.AUTOMATIC)
 		.mockResolvedValueOnce(Brightness.BrightnessMode.MANUAL);
 
-	const hook = renderHook(useSystemBrightnessMode);
+	const hook = renderHook(() => useSystemBrightnessMode());
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[DATA]).toBe(Brightness.BrightnessMode.AUTOMATIC);
@@ -38,4 +38,22 @@ it('updates data with get callback', async () => {
 
 	expect(getter).toBeCalledTimes(2);
 	expect(hook.result.current[DATA]).toBe(Brightness.BrightnessMode.MANUAL);
+});
+
+describe('options', () => {
+	it('updates data with get callback, after initial render', async () => {
+		jest.spyOn(Brightness, 'getSystemBrightnessModeAsync').mockResolvedValue(Brightness.BrightnessMode.MANUAL);
+
+		const hook = renderHook(
+			props => useSystemBrightnessMode(props),
+			{ initialProps: { get: false } },
+		);
+
+		expect(hook.result.current[DATA]).toBeUndefined();
+
+		hook.rerender({ get: true });
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[DATA]).toBe(Brightness.BrightnessMode.MANUAL);
+	});
 });
