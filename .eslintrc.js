@@ -3,16 +3,16 @@ module.exports = {
 	plugins: [
 		'@typescript-eslint',
 		'jest',
-		'react-hooks'
+		'react-hooks',
 	],
 	env: {
 		'jest/globals': true,
-		node: true
+		node: true,
 	},
 	extends: [
 		'eslint:recommended',
 		'plugin:react/recommended',
-		'plugin:@typescript-eslint/recommended'
+		'plugin:@typescript-eslint/recommended',
 	],
 	rules: {
 		'@typescript-eslint/explicit-function-return-type': 'off',
@@ -28,7 +28,7 @@ module.exports = {
 	},
 	settings: {
 		react: {
-			version: 'detect'
-		}
-	}
+			version: 'detect',
+		},
+	},
 };
