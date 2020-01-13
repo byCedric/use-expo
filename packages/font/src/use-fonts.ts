@@ -7,7 +7,8 @@ export function useFonts(map: FontMap): UseFontsSignature {
 
 	useEffect(() => {
 		loadAsync(map).then(() => setLoaded(true));
-	}, []);
+		return () => setLoaded(false);
+	}, [map]);
 
 	return [loaded];
 }
