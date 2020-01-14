@@ -43,8 +43,7 @@ it('accepts multiple permission types', async () => {
 
 	await act(() => hook.result.current[ASK]());
 
-	expect(asker).toBeCalledWith(...permissions)
-	expect(hook.result.current[DATA]).toMatchObject(response);
+	expect(asker).toBeCalledWith(...permissions);
 });
 
 describe('options', () => {
@@ -59,6 +58,21 @@ describe('options', () => {
 		expect(hook.result.current[DATA]).toMatchObject(response);
 	});
 
+	it('gets the permissions when rerendered', async () => {
+		const response = { status: 'granted' };
+		const getter = jest.spyOn(Permissions, 'getAsync').mockResolvedValue(response as any);
+
+		const hook = renderHook(
+			permissions => usePermissions(permissions, { get: false }),
+			{ initialProps: [Permissions.CAMERA] as Permissions.PermissionType[] },
+		);
+		hook.rerender([Permissions.CAMERA, Permissions.CAMERA_ROLL]);
+		await act(() => hook.result.current[GET]());
+
+		expect(getter).toBeCalledWith(Permissions.CAMERA, Permissions.CAMERA_ROLL);
+		expect(hook.result.current[DATA]).toMatchObject(response);
+	});
+
 	it('asks the permissions when mounted', async () => {
 		const response = { status: 'granted' };
 		const asker = jest.spyOn(Permissions, 'askAsync').mockResolvedValue(response as any);
@@ -67,6 +81,21 @@ describe('options', () => {
 		await hook.waitForNextUpdate();
 
 		expect(asker).toBeCalledWith(Permissions.CAMERA);
+		expect(hook.result.current[DATA]).toMatchObject(response);
+	});
+
+	it('asks the permissions when rerendered', async () => {
+		const response = { status: 'granted' };
+		const asker = jest.spyOn(Permissions, 'askAsync').mockResolvedValue(response as any);
+
+		const hook = renderHook(
+			permissions => usePermissions(permissions, { get: false, ask: false }),
+			{ initialProps: [Permissions.CAMERA] as Permissions.PermissionType[] },
+		);
+		hook.rerender([Permissions.CAMERA, Permissions.CAMERA_ROLL]);
+		await act(() => hook.result.current[ASK]());
+
+		expect(asker).toBeCalledWith(Permissions.CAMERA, Permissions.CAMERA_ROLL);
 		expect(hook.result.current[DATA]).toMatchObject(response);
 	});
 });

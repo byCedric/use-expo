@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import {
 	PermissionType,
 	PermissionResponse,
@@ -17,18 +17,25 @@ export function usePermissions(
 		get = true,
 	} = options;
 
-	function askPermissions() {
-		return askAsync(...types).then(setData);
-	}
+	const askPermissions = useCallback(
+		() => askAsync(...types).then(setData),
+		[types],
+	);
 
-	function getPermissions() {
-		return getAsync(...types).then(setData);
-	}
+	const getPermissions = useCallback(
+		() => getAsync(...types).then(setData),
+		[types],
+	);
 
 	useEffect(() => {
-		if (ask) askPermissions();
-		if (!ask && get) getPermissions();
-	}, []);
+		if (ask) {
+			askPermissions();
+		}
+
+		if (!ask && get) {
+			getPermissions();
+		}
+	}, [ask, askPermissions, get, getPermissions]);
 
 	return [data, askPermissions, getPermissions];
 }
