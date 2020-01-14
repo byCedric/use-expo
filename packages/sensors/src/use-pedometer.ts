@@ -12,24 +12,25 @@ export function usePedometer(options: PedometerOptions = {}): UsePedometerSignat
 		}
 
 		return Pedometer.watchStepCount(setData).remove;
-	}, []);
+	}, [availability]);
 
 	return [data, available];
 }
 
 type UsePedometerSignature = [
-	PedometerMeasurement | undefined,
+	PedometerResult | undefined,
 	boolean | undefined,
 ];
 
-export interface PedometerMeasurement {
+// note: this isn't exported from expo, so we need to duplicate it
+export interface PedometerResult {
 	/** The amount of steps made */
 	steps: number;
 }
 
 export interface PedometerOptions {
 	/** The initial data to use before the first update. */
-	initial?: PedometerMeasurement;
+	initial?: PedometerResult;
 	/** If it should check the availability of the sensor, defaults to `true`. */
 	availability?: boolean;
 }

@@ -4,19 +4,22 @@ import { DeviceMotion, DeviceMotionMeasurement } from 'expo-sensors';
 export function useDeviceMotion(options: DeviceMotionOptions = {}): UseDeviceMotionSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { availability = true } = options;
+	const {
+		availability = true,
+		interval,
+	} = options;
 
 	useEffect(() => {
 		if (availability) {
 			DeviceMotion.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.interval !== undefined) {
-			DeviceMotion.setUpdateInterval(options.interval);
+		if (interval !== undefined) {
+			DeviceMotion.setUpdateInterval(interval);
 		}
 
 		return DeviceMotion.addListener(setData).remove;
-	}, []);
+	}, [availability, interval]);
 
 	return [data, available];
 }

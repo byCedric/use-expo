@@ -4,19 +4,22 @@ import { Magnetometer, ThreeAxisMeasurement } from 'expo-sensors';
 export function useMagnetometer(options: MagnetometerOptions = {}): UseMagnetometerSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { availability = true } = options;
+	const {
+		availability = true,
+		interval,
+	} = options;
 
 	useEffect(() => {
 		if (availability) {
 			Magnetometer.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.interval !== undefined) {
-			Magnetometer.setUpdateInterval(options.interval);
+		if (interval !== undefined) {
+			Magnetometer.setUpdateInterval(interval);
 		}
 
 		return Magnetometer.addListener(setData).remove;
-	}, []);
+	}, [availability, interval]);
 
 	return [data, available];
 }

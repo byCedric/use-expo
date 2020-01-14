@@ -5,35 +5,21 @@ import { useMagnetometer } from '../src/use-magnetometer';
 const DATA = 0;
 const AVAILABLE = 1;
 
-it('returns data and availability when mounted', async () => {
+const fakeData = (): Sensors.ThreeAxisMeasurement => ({
+	x: Math.random(),
+	y: Math.random(),
+	z: Math.random(),
+});
+
+it('returns default values when mounted', async () => {
 	const hook = renderHook(() => useMagnetometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-it('updates magnetometer availability', async () => {
-	jest.spyOn(Sensors.Magnetometer, 'isAvailableAsync').mockResolvedValue(true);
-
-	const hook = renderHook(() => useMagnetometer());
-	await hook.waitForNextUpdate();
-
-	expect(hook.result.current[AVAILABLE]).toBe(true);
-});
-
-it('updates magnetometer data', async () => {
-	const listener = jest.spyOn(Sensors.Magnetometer, 'addListener');
-	const data = { x: 0, y: 1, z: 0.5 };
-
-	const hook = renderHook(() => useMagnetometer({ availability: false }));
-	const handler = listener.mock.calls[0][0];
-	act(() => handler(data));
-
-	expect(hook.result.current[DATA]).toMatchObject(data);
-});
-
-describe('event listener', () => {
-	it('subscribes when mounted', () => {
+describe('listener', () => {
+	it('subscribes when mounted', async () => {
 		const listener = jest.spyOn(Sensors.Magnetometer, 'addListener');
 
 		renderHook(() => useMagnetometer({ availability: false }));
@@ -41,7 +27,7 @@ describe('event listener', () => {
 		expect(listener).toBeCalled();
 	});
 
-	it('unsubscribes when unmounted', () => {
+	it('unsubscribes when unmounted', async () => {
 		const subscription = { remove: jest.fn() };
 		jest.spyOn(Sensors.Magnetometer, 'addListener').mockReturnValue(subscription);
 
@@ -50,29 +36,75 @@ describe('event listener', () => {
 
 		expect(subscription.remove).toBeCalled();
 	});
+
+	it('updates data from subscription', async () => {
+		const data = fakeData();
+		const listener = jest.spyOn(Sensors.Magnetometer, 'addListener');
+
+		const hook = renderHook(() => useMagnetometer({ availability: false }));
+		const handler = listener.mock.calls[0][0];
+		await act(() => {
+			handler(data);
+			return hook.waitForNextUpdate();
+		});
+
+		expect(hook.result.current[DATA]).toBe(data);
+	});
 });
 
-describe('options', () => {
-	it('uses initial data', () => {
-		const initial = { x: 0.5, y: 0.2, z: 0.3 };
-		const hook = renderHook(() => useMagnetometer({ initial, availability: false }));
+describe('availability option', () => {
+	it('gets availability info when mounted', async () => {
+		jest.spyOn(Sensors.Magnetometer, 'isAvailableAsync').mockResolvedValue(true);
 
-		expect(hook.result.current[DATA]).toMatchObject(initial);
+		const hook = renderHook(() => useMagnetometer({ availability: true }));
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[AVAILABLE]).toBe(true);
 	});
 
-	it('uses interval duration', () => {
+	it('gets availability when rerendered', async () => {
+		jest.spyOn(Sensors.Magnetometer, 'isAvailableAsync').mockResolvedValue(true);
+
+		const hook = renderHook(useMagnetometer, { initialProps: { availability: false } });
+		hook.rerender({ availability: true })
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[AVAILABLE]).toBe(true);
+	});
+});
+
+describe('initial option', () => {
+	it('uses initial data when mounted', async () => {
+		const data = fakeData();
+		const hook = renderHook(() => useMagnetometer({ availability: false, initial: data }));
+
+		expect(hook.result.current[DATA]).toMatchObject(data);
+	});
+
+	it('does not change initial data when rerendered', async () => {
+		const data = { old: fakeData(), new: fakeData() };
+		const hook = renderHook(() => useMagnetometer({ availability: false, initial: data.old }));
+		hook.rerender({ availability: false, initial: data.new })
+
+		expect(hook.result.current[DATA]).toMatchObject(data.old);
+	});
+});
+
+describe('interval option', () => {
+	it('sets interval duration when mounted', async () => {
 		const setter = jest.spyOn(Sensors.Magnetometer, 'setUpdateInterval');
 
-		renderHook(() => useMagnetometer({ interval: 1500, availability: false }));
+		renderHook(() => useMagnetometer({ availability: false, interval: 1500 }));
 
 		expect(setter).toBeCalledWith(1500);
 	});
 
-	it('skips availability check', () => {
-		const checker = jest.spyOn(Sensors.Magnetometer, 'isAvailableAsync');
+	it('changes interval duration when rerendered', async () => {
+		const setter = jest.spyOn(Sensors.Magnetometer, 'setUpdateInterval');
 
-		renderHook(() => useMagnetometer({ availability: false }));
+		const hook = renderHook(useMagnetometer, { initialProps: { availability: false } });
+		hook.rerender({ availability: false, interval: 750 });
 
-		expect(checker).not.toBeCalled();
+		expect(setter).toBeCalledWith(750);
 	});
 });

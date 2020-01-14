@@ -4,19 +4,22 @@ import { Gyroscope, ThreeAxisMeasurement } from 'expo-sensors';
 export function useGyroscope(options: GyroscopeOptions = {}): UseGyroscopeSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { availability = true } = options;
+	const {
+		availability = true,
+		interval,
+	} = options;
 
 	useEffect(() => {
 		if (availability) {
 			Gyroscope.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.interval !== undefined) {
-			Gyroscope.setUpdateInterval(options.interval);
+		if (interval !== undefined) {
+			Gyroscope.setUpdateInterval(interval);
 		}
 
 		return Gyroscope.addListener(setData).remove;
-	}, []);
+	}, [availability, interval]);
 
 	return [data, available];
 }
