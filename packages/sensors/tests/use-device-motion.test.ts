@@ -5,41 +5,39 @@ import { useDeviceMotion } from '../src/use-device-motion';
 const DATA = 0;
 const AVAILABLE = 1;
 
-it('returns data and availability when mounted', () => {
+const fakeData = (): Sensors.DeviceMotionMeasurement => ({
+	orientation: 360 * Math.random(),
+	acceleration: {
+		x: Math.random(),
+		y: Math.random(),
+		z: Math.random(),
+	},
+	accelerationIncludingGravity: {
+		x: Math.random(),
+		y: Math.random(),
+		z: Math.random(),
+	},
+	rotation: {
+		alpha: Math.random(),
+		beta: Math.random(),
+		gamma: Math.random(),
+	},
+	rotationRate: {
+		alpha: Math.random(),
+		beta: Math.random(),
+		gamma: Math.random(),
+	},
+});
+
+it('returns default values when mounted', async () => {
 	const hook = renderHook(() => useDeviceMotion({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-it('updates device motion availability', async () => {
-	jest.spyOn(Sensors.DeviceMotion, 'isAvailableAsync').mockResolvedValue(true);
-
-	const hook = renderHook(useDeviceMotion);
-	await hook.waitForNextUpdate();
-
-	expect(hook.result.current[AVAILABLE]).toBe(true);
-});
-
-it('updates device motion data', async () => {
-	const listener = jest.spyOn(Sensors.DeviceMotion, 'addListener');
-	const data = {
-		acceleration: { x: 0.5, y: 0, z: 0.25 },
-		accelerationIncludingGravity: { x: 0.4, y: -0.3, z: 0.25 },
-		rotation: { alpha: 0, beta: 1, gamma: 0 },
-		rotationRate: { alpha: 1, beta: 0, gamma: 0 },
-		orientation: 5,
-	};
-
-	const hook = renderHook(() => useDeviceMotion({ availability: false }));
-	const handler = listener.mock.calls[0][0];
-	act(() => handler(data));
-
-	expect(hook.result.current[DATA]).toMatchObject(data);
-});
-
-describe('event listener', () => {
-	it('subscribes when mounted', () => {
+describe('listener', () => {
+	it('subscribes when mounted', async () => {
 		const listener = jest.spyOn(Sensors.DeviceMotion, 'addListener');
 
 		renderHook(() => useDeviceMotion({ availability: false }));
@@ -47,7 +45,7 @@ describe('event listener', () => {
 		expect(listener).toBeCalled();
 	});
 
-	it('unsubscribes when unmounted', () => {
+	it('unsubscribes when unmounted', async () => {
 		const subscription = { remove: jest.fn() };
 		jest.spyOn(Sensors.DeviceMotion, 'addListener').mockReturnValue(subscription);
 
@@ -56,35 +54,75 @@ describe('event listener', () => {
 
 		expect(subscription.remove).toBeCalled();
 	});
+
+	it('updates data from subscription', async () => {
+		const data = fakeData();
+		const listener = jest.spyOn(Sensors.DeviceMotion, 'addListener');
+
+		const hook = renderHook(() => useDeviceMotion({ availability: false }));
+		const handler = listener.mock.calls[0][0];
+		await act(() => {
+			handler(data);
+			return hook.waitForNextUpdate();
+		});
+
+		expect(hook.result.current[DATA]).toBe(data);
+	});
 });
 
-describe('options', () => {
-	it('uses initial data', () => {
-		const initial = {
-			acceleration: { x: 0.5, y: 0, z: 0.25 },
-			accelerationIncludingGravity: { x: 0.4, y: -0.3, z: 0.25 },
-			rotation: { alpha: 0, beta: 1, gamma: 0 },
-			rotationRate: { alpha: 1, beta: 0, gamma: 0 },
-			orientation: 5,
-		};
-		const hook = renderHook(() => useDeviceMotion({ initial, availability: false }));
+describe('availability option', () => {
+	it('gets availability info when mounted', async () => {
+		jest.spyOn(Sensors.DeviceMotion, 'isAvailableAsync').mockResolvedValue(true);
 
-		expect(hook.result.current[DATA]).toMatchObject(initial);
+		const hook = renderHook(() => useDeviceMotion({ availability: true }));
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[AVAILABLE]).toBe(true);
 	});
 
-	it('uses interval duration', () => {
+	it('gets availability when rerendered', async () => {
+		jest.spyOn(Sensors.DeviceMotion, 'isAvailableAsync').mockResolvedValue(true);
+
+		const hook = renderHook(useDeviceMotion, { initialProps: { availability: false } });
+		hook.rerender({ availability: true })
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[AVAILABLE]).toBe(true);
+	});
+});
+
+describe('initial option', () => {
+	it('uses initial data when mounted', async () => {
+		const data = fakeData();
+		const hook = renderHook(() => useDeviceMotion({ availability: false, initial: data }));
+
+		expect(hook.result.current[DATA]).toMatchObject(data);
+	});
+
+	it('does not change initial data when rerendered', async () => {
+		const data = { old: fakeData(), new: fakeData() };
+		const hook = renderHook(() => useDeviceMotion({ availability: false, initial: data.old }));
+		hook.rerender({ availability: false, initial: data.new })
+
+		expect(hook.result.current[DATA]).toMatchObject(data.old);
+	});
+});
+
+describe('interval option', () => {
+	it('sets interval duration when mounted', async () => {
 		const setter = jest.spyOn(Sensors.DeviceMotion, 'setUpdateInterval');
 
-		renderHook(() => useDeviceMotion({ interval: 1500, availability: false }));
+		renderHook(() => useDeviceMotion({ availability: false, interval: 1500 }));
 
 		expect(setter).toBeCalledWith(1500);
 	});
 
-	it('skips availability check', () => {
-		const checker = jest.spyOn(Sensors.DeviceMotion, 'isAvailableAsync');
+	it('changes interval duration when rerendered', async () => {
+		const setter = jest.spyOn(Sensors.DeviceMotion, 'setUpdateInterval');
 
-		renderHook(() => useDeviceMotion({ availability: false }));
+		const hook = renderHook(useDeviceMotion, { initialProps: { availability: false } });
+		hook.rerender({ availability: false, interval: 750 });
 
-		expect(checker).not.toBeCalled();
+		expect(setter).toBeCalledWith(750);
 	});
 });

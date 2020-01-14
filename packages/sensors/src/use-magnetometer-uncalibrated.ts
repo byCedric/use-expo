@@ -6,19 +6,22 @@ export function useMagnetometerUncalibrated(
 ): UseMagnetometerUncalibratedSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { availability = true } = options;
+	const {
+		availability = true,
+		interval,
+	} = options;
 
 	useEffect(() => {
 		if (availability) {
 			MagnetometerUncalibrated.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.interval !== undefined) {
-			MagnetometerUncalibrated.setUpdateInterval(options.interval);
+		if (interval !== undefined) {
+			MagnetometerUncalibrated.setUpdateInterval(interval);
 		}
 
 		return MagnetometerUncalibrated.addListener(setData).remove;
-	}, []);
+	}, [availability, interval]);
 
 	return [data, available];
 }

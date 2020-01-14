@@ -4,19 +4,22 @@ import { Barometer, BarometerMeasurement } from 'expo-sensors';
 export function useBarometer(options: BarometerOptions = {}): UseBarometerSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { availability = true } = options;
+	const {
+		availability = true,
+		interval,
+	} = options;
 
 	useEffect(() => {
 		if (availability) {
 			Barometer.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.interval !== undefined) {
-			Barometer.setUpdateInterval(options.interval);
+		if (interval !== undefined) {
+			Barometer.setUpdateInterval(interval);
 		}
 
 		return Barometer.addListener(setData).remove;
-	}, []);
+	}, [availability, interval]);
 
 	return [data, available];
 }

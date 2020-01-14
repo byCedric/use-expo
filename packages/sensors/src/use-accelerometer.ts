@@ -4,19 +4,22 @@ import { Accelerometer, ThreeAxisMeasurement } from 'expo-sensors';
 export function useAccelerometer(options: AccelerometerOptions = {}): UseAccelerometerSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
-	const { availability = true } = options;
+	const {
+		availability = true,
+		interval,
+	} = options;
 
 	useEffect(() => {
 		if (availability) {
 			Accelerometer.isAvailableAsync().then(setAvailable);
 		}
 
-		if (options.interval !== undefined) {
-			Accelerometer.setUpdateInterval(options.interval);
+		if (interval !== undefined) {
+			Accelerometer.setUpdateInterval(interval);
 		}
 
 		return Accelerometer.addListener(setData).remove;
-	}, []);
+	}, [availability, interval]);
 
 	return [data, available];
 }

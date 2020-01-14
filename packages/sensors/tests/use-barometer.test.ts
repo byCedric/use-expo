@@ -5,35 +5,20 @@ import { useBarometer } from '../src/use-barometer';
 const DATA = 0;
 const AVAILABLE = 1;
 
-it('returns data and availability when mounted', () => {
+const fakeData = (): Sensors.BarometerMeasurement => ({
+	pressure: Math.random(),
+	relativeAltitude: Math.random(),
+});
+
+it('returns default values when mounted', async () => {
 	const hook = renderHook(() => useBarometer({ availability: false }));
 
 	expect(hook.result.current[DATA]).toBeUndefined();
 	expect(hook.result.current[AVAILABLE]).toBeUndefined();
 });
 
-it('updates barometer availability', async () => {
-	jest.spyOn(Sensors.Barometer, 'isAvailableAsync').mockResolvedValue(true);
-
-	const hook = renderHook(() => useBarometer());
-	await hook.waitForNextUpdate();
-
-	expect(hook.result.current[AVAILABLE]).toBe(true);
-});
-
-it('updates barometer data', () => {
-	const listener = jest.spyOn(Sensors.Barometer, 'addListener');
-	const data = { pressure: 5, relativeAltitude: 0 };
-
-	const hook = renderHook(() => useBarometer({ availability: false }));
-	const handler = listener.mock.calls[0][0];
-	act(() => handler(data));
-
-	expect(hook.result.current[DATA]).toMatchObject(data);
-});
-
-describe('event listener', () => {
-	it('subscribes when mounted', () => {
+describe('listener', () => {
+	it('subscribes when mounted', async () => {
 		const listener = jest.spyOn(Sensors.Barometer, 'addListener');
 
 		renderHook(() => useBarometer({ availability: false }));
@@ -41,7 +26,7 @@ describe('event listener', () => {
 		expect(listener).toBeCalled();
 	});
 
-	it('unsubscribes when unmounted', () => {
+	it('unsubscribes when unmounted', async () => {
 		const subscription = { remove: jest.fn() };
 		jest.spyOn(Sensors.Barometer, 'addListener').mockReturnValue(subscription);
 
@@ -50,29 +35,75 @@ describe('event listener', () => {
 
 		expect(subscription.remove).toBeCalled();
 	});
+
+	it('updates data from subscription', async () => {
+		const data = fakeData();
+		const listener = jest.spyOn(Sensors.Barometer, 'addListener');
+
+		const hook = renderHook(() => useBarometer({ availability: false }));
+		const handler = listener.mock.calls[0][0];
+		await act(() => {
+			handler(data);
+			return hook.waitForNextUpdate();
+		});
+
+		expect(hook.result.current[DATA]).toBe(data);
+	});
 });
 
-describe('options', () => {
-	test('uses initial data', () => {
-		const initial = { pressure: 5, relativeAltitude: 0 };
-		const hook = renderHook(() => useBarometer({ initial, availability: false }));
+describe('availability option', () => {
+	it('gets availability info when mounted', async () => {
+		jest.spyOn(Sensors.Barometer, 'isAvailableAsync').mockResolvedValue(true);
 
-		expect(hook.result.current[DATA]).toMatchObject(initial);
+		const hook = renderHook(() => useBarometer({ availability: true }));
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[AVAILABLE]).toBe(true);
 	});
 
-	test('uses interval duration', () => {
+	it('gets availability when rerendered', async () => {
+		jest.spyOn(Sensors.Barometer, 'isAvailableAsync').mockResolvedValue(true);
+
+		const hook = renderHook(useBarometer, { initialProps: { availability: false } });
+		hook.rerender({ availability: true })
+		await hook.waitForNextUpdate();
+
+		expect(hook.result.current[AVAILABLE]).toBe(true);
+	});
+});
+
+describe('initial option', () => {
+	it('uses initial data when mounted', async () => {
+		const data = fakeData();
+		const hook = renderHook(() => useBarometer({ availability: false, initial: data }));
+
+		expect(hook.result.current[DATA]).toMatchObject(data);
+	});
+
+	it('does not change initial data when rerendered', async () => {
+		const data = { old: fakeData(), new: fakeData() };
+		const hook = renderHook(() => useBarometer({ availability: false, initial: data.old }));
+		hook.rerender({ availability: false, initial: data.new })
+
+		expect(hook.result.current[DATA]).toMatchObject(data.old);
+	});
+});
+
+describe('interval option', () => {
+	it('sets interval duration when mounted', async () => {
 		const setter = jest.spyOn(Sensors.Barometer, 'setUpdateInterval');
 
-		renderHook(() => useBarometer({ interval: 1500, availability: false }));
+		renderHook(() => useBarometer({ availability: false, interval: 1500 }));
 
 		expect(setter).toBeCalledWith(1500);
 	});
 
-	test('skips availability check', () => {
-		const checker = jest.spyOn(Sensors.Barometer, 'isAvailableAsync');
+	it('changes interval duration when rerendered', async () => {
+		const setter = jest.spyOn(Sensors.Barometer, 'setUpdateInterval');
 
-		renderHook(() => useBarometer({ availability: false }));
+		const hook = renderHook(useBarometer, { initialProps: { availability: false } });
+		hook.rerender({ availability: false, interval: 750 });
 
-		expect(checker).not.toBeCalled();
+		expect(setter).toBeCalledWith(750);
 	});
 });
