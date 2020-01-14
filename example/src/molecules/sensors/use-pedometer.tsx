@@ -7,10 +7,10 @@ import { docs } from '../../providers/urls';
 
 export const UsePedometer: React.SFC<MoleculeProps> = (props) => {
 	const [live, liveAvailable] = usePedometer();
-	const [history, historyAvailable] = usePedometerHistory(
-		new Date(Date.now() - 1000 * 60 * 60 * 24 * 7),
-		new Date(),
-	);
+	const [history, historyAvailable] = usePedometerHistory({
+		start: new Date(Date.now() - 1000 * 60 * 60 * 24 * 7),
+		end: new Date(),
+	});
 
 	return (
 		<Page
