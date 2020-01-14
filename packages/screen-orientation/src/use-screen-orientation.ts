@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { ScreenOrientation } from 'expo';
 
 export function useScreenOrientation(
@@ -6,9 +6,12 @@ export function useScreenOrientation(
 ): UseScreenOrientationSignature {
 	const [orientation, setOrientation] = useState<ScreenOrientation.Orientation>();
 	const [sizeClass, setSizeClass] = useState<ScreenOrientationSizeClass>();
-	const { get = true } = options;
+	const {
+		get = true,
+		listen = true,
+	} = options;
 
-	function setInfo(info: ScreenOrientation.OrientationInfo) {
+	const setInfo = useCallback((info: ScreenOrientation.OrientationInfo) => {
 		setOrientation(info.orientation);
 
 		if (info.horizontalSizeClass && info.verticalSizeClass) {
@@ -17,31 +20,41 @@ export function useScreenOrientation(
 				vertical: info.verticalSizeClass,
 			});
 		}
-	}
+	}, []);
+
+	const getScreenOrientation = useCallback(
+		() => ScreenOrientation.getOrientationAsync().then(setInfo),
+		[setInfo],
+	);
 
 	useEffect(() => {
 		if (get) {
-			ScreenOrientation.getOrientationAsync().then(setInfo);
+			getScreenOrientation();
 		}
 
-		const subscription = ScreenOrientation.addOrientationChangeListener(
-			event => setInfo(event.orientationInfo)
-		);
+		if (listen) {
+			const subscription = ScreenOrientation.addOrientationChangeListener(
+				event => setInfo(event.orientationInfo)
+			);
 
-		return subscription.remove;
-	}, []);
+			return subscription.remove;
+		}
+	}, [get, getScreenOrientation, listen, setInfo]);
 
-	return [orientation, sizeClass];
+	return [orientation, sizeClass, getScreenOrientation];
 }
 
 type UseScreenOrientationSignature = [
 	ScreenOrientation.Orientation | undefined,
 	ScreenOrientationSizeClass | undefined,
+	() => Promise<void>,
 ];
 
 export interface ScreenOrientationOptions {
 	/** If it should fetch the screen orientation when mounted, defaults to `true` */
 	get?: boolean;
+	/** If it should listen to screen orientation changes, defaults to `true` */
+	listen?: boolean;
 }
 
 /** Both the horizontal and vertical size class, only available on iOS */
