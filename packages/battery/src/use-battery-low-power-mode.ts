@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { isLowPowerModeEnabledAsync, addLowPowerModeListener } from 'expo-battery';
 
+/**
+ * Get or track the low power mode of the device.
+ * It returns `true` when enabled, or `false` when disabled.
+ * This feature is also known as battery save mode.
+ * For older devices without this feature, it always returns `false`.
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/battery/#batteryislowpowermodeenabledasync
+ */
 export function useBatteryLowPowerMode(
 	options: BatteryLowPowerModeOptions = {}
 ): UseBatteryLowPowerModeSignature {
