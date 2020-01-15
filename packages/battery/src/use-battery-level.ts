@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getBatteryLevelAsync, addBatteryLevelListener } from 'expo-battery';
 
+/**
+ * Get or track the battery level of the device.
+ * It returns a number between `0..1`, which represents the percentage of power left.
+ * When the device doesn't provide this, it returns `-1`.
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/battery/#batterygetbatterylevelasync
+ */
 export function useBatteryLevel(options: BatteryLevelOptions = {}): UseBatteryLevelSignature {
 	const [data, setData] = useState<number>();
 	const {
