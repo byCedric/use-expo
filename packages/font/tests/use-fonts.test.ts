@@ -8,7 +8,7 @@ const FONTS = {
 	'ComicSans-Regular': require('./assets/comic-sans-regular.ttf'),
 };
 
-it('loads font when mounted', async () => {
+it('loads fonts when mounted', async () => {
 	jest.spyOn(Font, 'loadAsync').mockResolvedValue();
 
 	const hook = renderHook(() => useFonts(FONTS));
@@ -20,24 +20,22 @@ it('loads font when mounted', async () => {
 	expect(hook.result.current[DATA]).toBe(true);
 });
 
-describe('options', () => {
-	it('loads new font map, after initial render', async () => {
-		const loader = jest.spyOn(Font, 'loadAsync').mockResolvedValue();
-		const partialFonts = { ...FONTS };
-		delete partialFonts['ComicSans-Regular'];
+it('loads new fonts map when rerendered', async () => {
+	const loader = jest.spyOn(Font, 'loadAsync').mockResolvedValue();
+	const partialFonts = { ...FONTS };
+	delete partialFonts['ComicSans-Regular'];
 
-		const hook = renderHook(useFonts, { initialProps: partialFonts });
-		await hook.waitForNextUpdate();
+	const hook = renderHook(useFonts, { initialProps: partialFonts });
+	await hook.waitForNextUpdate();
 
-		expect(loader).toBeCalledWith(partialFonts);
+	expect(loader).toBeCalledWith(partialFonts);
 
-		hook.rerender(FONTS);
+	hook.rerender(FONTS);
 
-		expect(hook.result.current[DATA]).toBe(false);
+	expect(hook.result.current[DATA]).toBe(false);
 
-		await hook.waitForNextUpdate();
+	await hook.waitForNextUpdate();
 
-		expect(hook.result.current[DATA]).toBe(true);
-		expect(loader).toBeCalledWith(FONTS);
-	});
+	expect(hook.result.current[DATA]).toBe(true);
+	expect(loader).toBeCalledWith(FONTS);
 });
