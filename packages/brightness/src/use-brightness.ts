@@ -5,11 +5,11 @@ import {
 } from 'expo-brightness';
 
 /**
- * Track, set or get the brightness of the device for the current app.
+ * Track, set, or get the brightness of the device for the current app.
  * It returns a number between `0..1`, which represents the brightness of the screen.
  *
  * Changing this does not change the brightness of the system.
- * When the user exists the app, the brightness is reverted to the system brightness.
+ * When the user exits the app, the brightness reverts to the system's brightness.
  *
  * @see https://docs.expo.io/versions/latest/sdk/brightness/#brightnessgetbrightnessasync
  */

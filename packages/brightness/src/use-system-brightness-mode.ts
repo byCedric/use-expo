@@ -6,11 +6,11 @@ import {
 } from 'expo-brightness';
 
 /**
- * Track, set or get the (global) system brightness mode of the device.
+ * Track, set, or get the (global) system brightness mode of the device.
  * It returns the `BrightnessMode` enum with one of the following values:
  *   - 0 `UNKNOWN` current brightness mode cannot be determined
  *   - 1 `AUTOMATIC` device OS will automatically adjust the screen brightness depending on the ambient light
- *   - 2 `MANUAL` screen brightness will remain constant and will not be adjusted by the OS
+ *   - 2 `MANUAL` device OS won't adjust screen brightness and will remain constant
  *
  * @remarks The set callback requires the `SYSTEM_BRIGHTNESS` permission.
  * @see https://docs.expo.io/versions/latest/sdk/brightness/#brightnessgetsystembrightnessmodeasync
