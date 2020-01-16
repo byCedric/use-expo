@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Slider } from 'react-native';
 import { Caption } from 'react-native-paper';
 import { SYSTEM_BRIGHTNESS } from 'expo-permissions';
 import { usePermissions, useSystemBrightness } from 'use-expo';
-import { round } from 'lodash';
+import { debounce, round } from 'lodash';
 import { Example, Information, Link, Page, MissingPermissions } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
@@ -11,6 +11,10 @@ import { docs } from '../../providers/urls';
 export const UseSystemBrightness: React.SFC<MoleculeProps> = (props) => {
 	const [permission, askPermission] = usePermissions(SYSTEM_BRIGHTNESS);
 	const [brightness, setBrightness] = useSystemBrightness();
+	const setBrightnessDebounced = useCallback(
+		debounce(setBrightness, 100),
+		[setBrightness],
+	);
 
 	return (
 		<Page
@@ -33,7 +37,7 @@ export const UseSystemBrightness: React.SFC<MoleculeProps> = (props) => {
 						<Slider
 							style={{ width: '100%' }}
 							value={brightness}
-							onValueChange={setBrightness}
+							onValueChange={setBrightnessDebounced}
 							step={0.001}
 							minimumValue={0.001}
 							maximumValue={1}

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Slider } from 'react-native';
 import { Caption } from 'react-native-paper';
-import { round } from 'lodash';
+import { debounce, round } from 'lodash';
 import { useBrightness } from 'use-expo';
 import { Example, Information, Link, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
@@ -9,6 +9,10 @@ import { docs } from '../../providers/urls';
 
 export const UseBrightness: React.SFC<MoleculeProps> = (props) => {
 	const [brightness, setBrightness] = useBrightness();
+	const setBrightnessDebounced = useCallback(
+		debounce(setBrightness, 100),
+		[setBrightness],
+	);
 
 	return (
 		<Page
@@ -24,7 +28,7 @@ export const UseBrightness: React.SFC<MoleculeProps> = (props) => {
 				<Slider
 					style={{ width: '100%' }}
 					value={brightness}
-					onValueChange={setBrightness}
+					onValueChange={setBrightnessDebounced}
 					step={0.001}
 					minimumValue={0.001}
 					maximumValue={1}
