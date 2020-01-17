@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
 	"homepage": "https://github.com/bycedric/use-expo/tree/master/example#readme",
+	"main": ".expo/AppEntry.js",
 	"bugs": {
 		"url": "https://github.com/bycedric/use-expo/issues"
 	},
@@ -14,9 +15,11 @@
 		"directory": "example"
 	},
 	"scripts": {
+		"postinstall": "expo-yarn-workspaces postinstall",
 		"start": "expo start",
 		"android": "expo start --android",
-		"ios": "expo start --ios"
+		"ios": "expo start --ios",
+		"web": "expo start --web"
 	},
 	"dependencies": {
 		"expo": "^36.0.2",
@@ -28,6 +31,7 @@
 		"expo-keep-awake": "~8.0.0",
 		"expo-permissions": "~8.0.0",
 		"expo-sensors": "~8.0.0",
+		"expo-yarn-workspaces": "^1.2.1",
 		"lodash": "^4.17.15",
 		"react": "~16.9.0",
 		"react-dom": "~16.9.0",
