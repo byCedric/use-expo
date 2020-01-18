@@ -21,12 +21,12 @@ export const UsePermissions: React.SFC<MoleculeProps> = (props) => {
 				When you grant the <Link url={url.permissions.camera}>CAMERA</Link> permission, it renders a simple camera with a text overlay.
 			</Information>
 			<Example space={false}>
-				{(permission && permission.status !== 'granted') && (
-					<MissingPermissions onConfirm={askPermission}>
+				{(permission?.status !== 'granted') && (
+					<MissingPermissions canConfirm={permission?.canAskAgain} onConfirm={askPermission}>
 						We need permission to use the camera.
 					</MissingPermissions>
 				)}
-				{(permission && permission.status === 'granted') && (
+				{(permission?.status === 'granted') && (
 					<Camera
 						style={styles.camera}
 						type={CameraConstants.Type.front}
