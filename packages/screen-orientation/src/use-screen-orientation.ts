@@ -1,6 +1,15 @@
 import { useEffect, useState, useCallback } from 'react';
 import { ScreenOrientation } from 'expo';
 
+/**
+ * Get or track the screen orientation of the device.
+ * It returns one of the `Orientation` enums, which represents the current orientation.
+ * For iOS, it also returns both the horizontal and vertical size classes.
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/screen-orientation/
+ * @example
+ * const [orientation, sizeClass] = useScreenOrientation(...);
+ */
 export function useScreenOrientation(
 	options: ScreenOrientationOptions = {},
 ): UseScreenOrientationSignature {
