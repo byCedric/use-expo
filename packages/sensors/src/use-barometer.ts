@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Barometer, BarometerMeasurement } from 'expo-sensors';
 
+/**
+ * Track the barometer sensor data from the device.
+ * It returns the `BarometerMeasurement`, with the pressure and relative altitude (if possible).
+ * Optionally, you can provide the update interval (in ms).
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/barometer/
+ * @remarks Changing the update interval will affect all barometer listeners.
+ * @example const [data, isAvailable] = useBarometer(...);
+ */
 export function useBarometer(options: BarometerOptions = {}): UseBarometerSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();

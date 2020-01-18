@@ -2,6 +2,14 @@ import { useEffect, useState } from 'react';
 import { Pedometer } from 'expo-sensors';
 import { PedometerResult, PedometerOptions } from './use-pedometer';
 
+/**
+ * Get a historical step count between two dates from the device.
+ * It returns an object with a `steps` number.
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/pedometer/
+ * @remarks iOS only returns the last 7 days.
+ * @example const [data, isAvailable] = usePedometerHistory(...);
+ */
 export function usePedometerHistory(options: PedometerHistpryOptions): UsePedometerHistorySignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();

@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Magnetometer, ThreeAxisMeasurement } from 'expo-sensors';
 
+/**
+ * Track the (calibrated) magnetometer sensor data from the device.
+ * It returns a `ThreeAxisMeasurement`, with x, y, and z properties.
+ * Optionally, you can provide the update interval (in ms).
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/magnetometer/
+ * @remarks Changing the update interval will affect all magnetometer listeners.
+ * @example const [data, isAvailable] = useMagnetometer(...);
+ */
 export function useMagnetometer(options: MagnetometerOptions = {}): UseMagnetometerSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
