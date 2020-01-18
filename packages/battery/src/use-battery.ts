@@ -8,11 +8,16 @@ import { PowerState, getPowerStateAsync } from 'expo-battery';
  *   - current battery state (e.g., charging or unplugged)
  *   - if low power mode is turned on (a.k.a battery saver)
  *
- * Note, this does not track "live" updates of these values.
- *
  * @see https://docs.expo.io/versions/latest/sdk/battery/#batterygetpowerstateasync
+ * @remarks This does not track "live" updates of these values.
+ * @example const [powerState, getPowerState] = useBattery(...);
  */
-export function useBattery(options: BatteryOptions = {}): UseBatterySignature {
+export function useBattery(
+	options: BatteryOptions = {},
+): [
+	PowerState | undefined,
+	() => Promise<void>,
+] {
 	const [data, setData] = useState<PowerState>();
 	const { get = true } = options;
 
@@ -28,11 +33,6 @@ export function useBattery(options: BatteryOptions = {}): UseBatterySignature {
 
 	return [data, getBatteryPowerState];
 }
-
-type UseBatterySignature = [
-	PowerState | undefined,
-	() => Promise<void>,
-];
 
 export interface BatteryOptions {
 	/** If it should fetch the battery power state when mounted, defaults to `true` */

@@ -5,13 +5,17 @@ import { isLowPowerModeEnabledAsync, addLowPowerModeListener } from 'expo-batter
  * Get or track the low power mode of the device.
  * It returns `true` when enabled, or `false` when disabled.
  * This feature is also known as battery save mode.
- * For older devices without this feature, it always returns `false`.
  *
  * @see https://docs.expo.io/versions/latest/sdk/battery/#batteryislowpowermodeenabledasync
+ * @remarks For older devices without this feature, it always returns `false`.
+ * @example const [isLowPowerMode, getLowPowerMode] = useBatteryLowPowerMode(...);
  */
 export function useBatteryLowPowerMode(
-	options: BatteryLowPowerModeOptions = {}
-): UseBatteryLowPowerModeSignature {
+	options: BatteryLowPowerModeOptions = {},
+): [
+	boolean | undefined,
+	() => Promise<void>,
+] {
 	const [data, setData] = useState<boolean>();
 	const {
 		get = true,
@@ -34,11 +38,6 @@ export function useBatteryLowPowerMode(
 
 	return [data, getBatteryLowPowerMode];
 }
-
-type UseBatteryLowPowerModeSignature = [
-	boolean | undefined,
-	() => Promise<void>,
-];
 
 export interface BatteryLowPowerModeOptions {
 	/** If it should fetch the battery low power mode status when mounted, defaults to `true` */

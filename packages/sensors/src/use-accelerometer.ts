@@ -10,7 +10,12 @@ import { Accelerometer, ThreeAxisMeasurement } from 'expo-sensors';
  * @remarks Changing the update interval will affect all accelerometer listeners.
  * @example const [data, isAvailable] = useAccelerometer(...);
  */
-export function useAccelerometer(options: AccelerometerOptions = {}): UseAccelerometerSignature {
+export function useAccelerometer(
+	options: AccelerometerOptions = {}
+): [
+	ThreeAxisMeasurement | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const {
@@ -33,16 +38,12 @@ export function useAccelerometer(options: AccelerometerOptions = {}): UseAcceler
 	return [data, available];
 }
 
-type UseAccelerometerSignature = [
-	ThreeAxisMeasurement | undefined,
-	boolean | undefined,
-];
-
 export interface AccelerometerOptions {
 	/** The initial data to use before the first update. */
 	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
 	availability?: boolean;
+
 	/**
 	 * The interval, in ms, to update the accelerometer data.
 	 * Note, this is set globally through `Accelerometer.setUpdateInterval`.

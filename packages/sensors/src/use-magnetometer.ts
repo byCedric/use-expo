@@ -10,7 +10,12 @@ import { Magnetometer, ThreeAxisMeasurement } from 'expo-sensors';
  * @remarks Changing the update interval will affect all magnetometer listeners.
  * @example const [data, isAvailable] = useMagnetometer(...);
  */
-export function useMagnetometer(options: MagnetometerOptions = {}): UseMagnetometerSignature {
+export function useMagnetometer(
+	options: MagnetometerOptions = {}
+): [
+	ThreeAxisMeasurement | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const {
@@ -33,16 +38,12 @@ export function useMagnetometer(options: MagnetometerOptions = {}): UseMagnetome
 	return [data, available];
 }
 
-type UseMagnetometerSignature = [
-	ThreeAxisMeasurement | undefined,
-	boolean | undefined,
-];
-
 export interface MagnetometerOptions {
 	/** The initial data to use before the first update. */
 	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
 	availability?: boolean;
+
 	/**
 	 * The interval, in ms, to update the magnetometer data.
 	 * Note, this is set globally through `Magnetometer.setUpdateInterval`.

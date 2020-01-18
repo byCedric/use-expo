@@ -1,10 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
-import {
-	PermissionType,
-	PermissionResponse,
-	askAsync,
-	getAsync,
-} from 'expo-permissions';
+import { useCallback, useEffect, useState } from 'react';
+import { PermissionType, PermissionResponse, askAsync, getAsync } from 'expo-permissions';
 
 /**
  * Get or ask permission for protected functionality within the app.
@@ -13,13 +8,16 @@ import {
  * To ask the user permission, use the `askPermission` callback or `ask` option.
  *
  * @see https://docs.expo.io/versions/latest/sdk/permissions/
- * @example
- * const [permission, askPermission, getPermission] = usePermissions(...);
+ * @example const [permission, askPermission, getPermission] = usePermissions(...);
  */
 export function usePermissions(
 	type: PermissionType | PermissionType[],
 	options: PermissionsOptions = {},
-): UsePermissionsSignature {
+): [
+	PermissionResponse | undefined,
+	() => Promise<void>,
+	() => Promise<void>,
+] {
 	const [data, setData] = useState<PermissionResponse>();
 	const types = Array.isArray(type) ? type : [type];
 	const {
@@ -51,12 +49,6 @@ export function usePermissions(
 
 	return [data, askPermissions, getPermissions];
 }
-
-type UsePermissionsSignature = [
-	PermissionResponse | undefined,
-	() => Promise<void>,
-	() => Promise<void>,
-];
 
 export interface PermissionsOptions {
 	/** If it should ask the permissions when mounted, defaults to `false` */

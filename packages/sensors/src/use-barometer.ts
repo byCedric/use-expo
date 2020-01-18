@@ -10,7 +10,12 @@ import { Barometer, BarometerMeasurement } from 'expo-sensors';
  * @remarks Changing the update interval will affect all barometer listeners.
  * @example const [data, isAvailable] = useBarometer(...);
  */
-export function useBarometer(options: BarometerOptions = {}): UseBarometerSignature {
+export function useBarometer(
+	options: BarometerOptions = {}
+): [
+	BarometerMeasurement | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const {
@@ -33,16 +38,12 @@ export function useBarometer(options: BarometerOptions = {}): UseBarometerSignat
 	return [data, available];
 }
 
-type UseBarometerSignature = [
-	BarometerMeasurement | undefined,
-	boolean | undefined,
-];
-
 export interface BarometerOptions {
 	/** The initial data to use before the first update. */
 	initial?: BarometerMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
 	availability?: boolean;
+
 	/**
 	 * The interval, in ms, to update the barometer data.
 	 * Note, this is set globally through `Barometer.setUpdateInterval`.

@@ -8,7 +8,12 @@ import { Pedometer } from 'expo-sensors';
  * @see https://docs.expo.io/versions/latest/sdk/pedometer/
  * @example const [data, isAvailable] = usePedometer(...);
  */
-export function usePedometer(options: PedometerOptions = {}): UsePedometerSignature {
+export function usePedometer(
+	options: PedometerOptions = {}
+): [
+	PedometerResult | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const { availability = true } = options;
@@ -23,11 +28,6 @@ export function usePedometer(options: PedometerOptions = {}): UsePedometerSignat
 
 	return [data, available];
 }
-
-type UsePedometerSignature = [
-	PedometerResult | undefined,
-	boolean | undefined,
-];
 
 // note: this isn't exported from expo, so we need to duplicate it
 export interface PedometerResult {

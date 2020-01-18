@@ -1,9 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
-import {
-	BrightnessMode,
-	getSystemBrightnessModeAsync,
-	setSystemBrightnessModeAsync,
-} from 'expo-brightness';
+import { useCallback, useEffect, useState } from 'react';
+import { BrightnessMode, getSystemBrightnessModeAsync, setSystemBrightnessModeAsync } from 'expo-brightness';
 
 /**
  * Track, set, or get the (global) system brightness mode of the device.
@@ -12,12 +8,17 @@ import {
  *   - 1 `AUTOMATIC` device OS will automatically adjust the screen brightness depending on the ambient light
  *   - 2 `MANUAL` device OS won't adjust screen brightness and will remain constant
  *
- * @remarks The set callback requires the `SYSTEM_BRIGHTNESS` permission.
  * @see https://docs.expo.io/versions/latest/sdk/brightness/#brightnessgetsystembrightnessmodeasync
+ * @remarks The set callback requires the `SYSTEM_BRIGHTNESS` permission.
+ * @example const [brightnessMode, setBrightnessMode, getBrightnessMode] = useSystemBrightnessMode(...);
  */
 export function useSystemBrightnessMode(
 	options: SystemBrightnessModeOptions = {}
-): UseSystemBrightnessModeSignature {
+): [
+	BrightnessMode | undefined,
+	(brightness: BrightnessMode) => Promise<void>,
+	() => Promise<void>,
+] {
 	const [data, setData] = useState<BrightnessMode>();
 	const { get = true } = options;
 
@@ -37,12 +38,6 @@ export function useSystemBrightnessMode(
 
 	return [data, setSystemBrightnessMode, getSystemBrightnessMode];
 }
-
-type UseSystemBrightnessModeSignature = [
-	BrightnessMode | undefined,
-	(brightness: BrightnessMode) => Promise<void>,
-	() => Promise<void>,
-];
 
 export interface SystemBrightnessModeOptions {
 	/** If it should fetch the brightness mode when mounted, defaults to `true` */

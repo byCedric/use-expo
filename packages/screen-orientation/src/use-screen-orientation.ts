@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ScreenOrientation } from 'expo';
 
 /**
@@ -7,12 +7,15 @@ import { ScreenOrientation } from 'expo';
  * For iOS, it also returns both the horizontal and vertical size classes.
  *
  * @see https://docs.expo.io/versions/latest/sdk/screen-orientation/
- * @example
- * const [orientation, sizeClass] = useScreenOrientation(...);
+ * @example const [orientation, sizeClass, getScreenOrientation] = useScreenOrientation(...);
  */
 export function useScreenOrientation(
 	options: ScreenOrientationOptions = {},
-): UseScreenOrientationSignature {
+): [
+	ScreenOrientation.Orientation | undefined,
+	ScreenOrientationSizeClass | undefined,
+	() => Promise<void>,
+] {
 	const [orientation, setOrientation] = useState<ScreenOrientation.Orientation>();
 	const [sizeClass, setSizeClass] = useState<ScreenOrientationSizeClass>();
 	const {
@@ -52,12 +55,6 @@ export function useScreenOrientation(
 
 	return [orientation, sizeClass, getScreenOrientation];
 }
-
-type UseScreenOrientationSignature = [
-	ScreenOrientation.Orientation | undefined,
-	ScreenOrientationSizeClass | undefined,
-	() => Promise<void>,
-];
 
 export interface ScreenOrientationOptions {
 	/** If it should fetch the screen orientation when mounted, defaults to `true` */
