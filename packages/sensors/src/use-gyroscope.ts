@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Gyroscope, ThreeAxisMeasurement } from 'expo-sensors';
 
+/**
+ * Track the gyroscope sensor data from the device.
+ * It returns a `ThreeAxisMeasurement`, with x, y, and z properties.
+ * Optionally, you can provide the update interval (in ms).
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/gyroscope/
+ * @remarks Changing the update interval will affect all gyroscope listeners.
+ * @example const [data, isAvailable] = useGyroscope(...);
+ */
 export function useGyroscope(options: GyroscopeOptions = {}): UseGyroscopeSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();

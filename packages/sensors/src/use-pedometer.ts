@@ -1,6 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Pedometer } from 'expo-sensors';
 
+/**
+ * Track the current step count from the device.
+ * It returns an object with a `steps` number.
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/pedometer/
+ * @example const [data, isAvailable] = usePedometer(...);
+ */
 export function usePedometer(options: PedometerOptions = {}): UsePedometerSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();

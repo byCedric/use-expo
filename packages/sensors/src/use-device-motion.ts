@@ -1,6 +1,15 @@
 import { useEffect, useState } from 'react';
 import { DeviceMotion, DeviceMotionMeasurement } from 'expo-sensors';
 
+/**
+ * Track the motion of the device using multiple sensors.
+ * It returns a `DeviceMotionMeasurement`, with acceleration, rotation, and orientation.
+ * Optionally, you can provide the update interval (in ms).
+ *
+ * @see https://docs.expo.io/versions/latest/sdk/devicemotion/
+ * @remarks Changing the update interval will affect all device motion listeners.
+ * @example const [data, isAvailable] = useDeviceMotion(...);
+ */
 export function useDeviceMotion(options: DeviceMotionOptions = {}): UseDeviceMotionSignature {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();

@@ -39,7 +39,7 @@ describe('availability option', () => {
 		jest.spyOn(Sensors.Pedometer, 'isAvailableAsync').mockResolvedValue(true);
 
 		const hook = renderHook(usePedometerHistory, { initialProps: { availability: false, ...fakeInput() } });
-		hook.rerender({ availability: true, ...fakeInput() })
+		hook.rerender({ availability: true, ...fakeInput() });
 		await hook.waitForNextUpdate();
 
 		expect(hook.result.current[AVAILABLE]).toBe(true);
