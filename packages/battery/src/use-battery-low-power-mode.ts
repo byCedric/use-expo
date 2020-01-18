@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { isLowPowerModeEnabledAsync, addLowPowerModeListener } from 'expo-battery';
 
 /**
@@ -22,9 +22,9 @@ export function useBatteryLowPowerMode(
 		listen = true,
 	} = options;
 
-	function getBatteryLowPowerMode() {
-		return isLowPowerModeEnabledAsync().then(setData);
-	}
+	const getBatteryLowPowerMode = useCallback(() => (
+		isLowPowerModeEnabledAsync().then(setData)
+	), []);
 
 	useEffect(() => {
 		if (get) {
@@ -34,7 +34,7 @@ export function useBatteryLowPowerMode(
 		if (listen) {
 			return addLowPowerModeListener(state => setData(state.lowPowerMode)).remove;
 		}
-	}, [get, listen]);
+	}, [get, getBatteryLowPowerMode, listen]);
 
 	return [data, getBatteryLowPowerMode];
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { getBatteryLevelAsync, addBatteryLevelListener } from 'expo-battery';
 
 /**
@@ -21,9 +21,9 @@ export function useBatteryLevel(
 		listen = true,
 	} = options;
 
-	function getBatteryLevel() {
-		return getBatteryLevelAsync().then(setData);
-	}
+	const getBatteryLevel = useCallback(() => (
+		getBatteryLevelAsync().then(setData)
+	), []);
 
 	useEffect(() => {
 		if (get) {
@@ -33,7 +33,7 @@ export function useBatteryLevel(
 		if (listen) {
 			return addBatteryLevelListener(state => setData(state.batteryLevel)).remove;
 		}
-	}, [get, listen]);
+	}, [get, getBatteryLevel, listen]);
 
 	return [data, getBatteryLevel];
 }
