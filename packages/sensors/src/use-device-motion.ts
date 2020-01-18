@@ -10,7 +10,12 @@ import { DeviceMotion, DeviceMotionMeasurement } from 'expo-sensors';
  * @remarks Changing the update interval will affect all device motion listeners.
  * @example const [data, isAvailable] = useDeviceMotion(...);
  */
-export function useDeviceMotion(options: DeviceMotionOptions = {}): UseDeviceMotionSignature {
+export function useDeviceMotion(
+	options: DeviceMotionOptions = {}
+): [
+	DeviceMotionMeasurement | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const {
@@ -33,16 +38,12 @@ export function useDeviceMotion(options: DeviceMotionOptions = {}): UseDeviceMot
 	return [data, available];
 }
 
-type UseDeviceMotionSignature = [
-	DeviceMotionMeasurement | undefined,
-	boolean | undefined,
-];
-
 export interface DeviceMotionOptions {
 	/** The initial data to use before the first update. */
 	initial?: DeviceMotionMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
 	availability?: boolean;
+
 	/**
 	 * The interval, in ms, to update the device motion data.
 	 * Note, this is set globally through `DeviceMotion.setUpdateInterval`.

@@ -10,8 +10,14 @@ import { BatteryState, getBatteryStateAsync, addBatteryStateListener } from 'exp
  *   - 3 `FULL` if the battery level is full
  *
  * @see https://docs.expo.io/versions/latest/sdk/battery/#batterygetbatterystateasync
+ * @example const [batteryState, getBatteryState] = useBatteryState(...);
  */
-export function useBatteryState(options: BatteryStateOptions = {}): UseBatteryStateSignature {
+export function useBatteryState(
+	options: BatteryStateOptions = {}
+): [
+	BatteryState | undefined,
+	() => Promise<void>,
+] {
 	const [data, setData] = useState<BatteryState>();
 	const {
 		get = true,
@@ -34,11 +40,6 @@ export function useBatteryState(options: BatteryStateOptions = {}): UseBatterySt
 
 	return [data, getBatteryState];
 }
-
-type UseBatteryStateSignature = [
-	BatteryState | undefined,
-	() => Promise<void>,
-];
 
 export interface BatteryStateOptions {
 	/** If it should fetch the battery state when mounted, defaults to `true` */

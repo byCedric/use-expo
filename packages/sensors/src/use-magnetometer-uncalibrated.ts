@@ -12,7 +12,10 @@ import { MagnetometerUncalibrated, ThreeAxisMeasurement } from 'expo-sensors';
  */
 export function useMagnetometerUncalibrated(
 	options: MagnetometerUncalibratedOptions = {}
-): UseMagnetometerUncalibratedSignature {
+): [
+	ThreeAxisMeasurement | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const {
@@ -35,16 +38,12 @@ export function useMagnetometerUncalibrated(
 	return [data, available];
 }
 
-type UseMagnetometerUncalibratedSignature = [
-	ThreeAxisMeasurement | undefined,
-	boolean | undefined,
-];
-
 export interface MagnetometerUncalibratedOptions {
 	/** The initial data to use before the first update. */
 	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
 	availability?: boolean;
+
 	/**
 	 * The interval, in ms, to update the uncalibrated magnetometer data.
 	 * Note, this is set globally through `MagnetometerUncalibrated.setUpdateInterval`.

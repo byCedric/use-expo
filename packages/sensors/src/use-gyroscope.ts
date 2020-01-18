@@ -10,7 +10,12 @@ import { Gyroscope, ThreeAxisMeasurement } from 'expo-sensors';
  * @remarks Changing the update interval will affect all gyroscope listeners.
  * @example const [data, isAvailable] = useGyroscope(...);
  */
-export function useGyroscope(options: GyroscopeOptions = {}): UseGyroscopeSignature {
+export function useGyroscope(
+	options: GyroscopeOptions = {}
+): [
+	ThreeAxisMeasurement | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const {
@@ -33,16 +38,12 @@ export function useGyroscope(options: GyroscopeOptions = {}): UseGyroscopeSignat
 	return [data, available];
 }
 
-type UseGyroscopeSignature = [
-	ThreeAxisMeasurement | undefined,
-	boolean | undefined,
-];
-
 export interface GyroscopeOptions {
 	/** The initial data to use before the first update. */
 	initial?: ThreeAxisMeasurement;
 	/** If it should check the availability of the sensor, defaults to `true`. */
 	availability?: boolean;
+
 	/**
 	 * The interval, in ms, to update the gyroscope data.
 	 * Note, this is set globally through `Gyroscope.setUpdateInterval`.

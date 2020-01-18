@@ -7,8 +7,7 @@ import { ScreenOrientation } from 'expo';
  * This hook is similar to the `useKeepAwake` hook and does not return anything.
  *
  * @see https://docs.expo.io/versions/latest/sdk/screen-orientation/
- * @example
- * useScreenOrientationLock(...);
+ * @example useScreenOrientationLock(...);
  */
 export function useScreenOrientationLock(orientation: ScreenOrientation.OrientationLock): void {
 	useEffect(() => {

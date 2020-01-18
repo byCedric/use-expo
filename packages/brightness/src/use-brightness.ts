@@ -1,19 +1,21 @@
-import { useEffect, useState, useCallback } from 'react';
-import {
-	getBrightnessAsync,
-	setBrightnessAsync,
-} from 'expo-brightness';
+import { useCallback, useEffect, useState } from 'react';
+import { getBrightnessAsync, setBrightnessAsync } from 'expo-brightness';
 
 /**
  * Track, set, or get the brightness of the device for the current app.
  * It returns a number between `0..1`, which represents the brightness of the screen.
  *
- * Changing this does not change the brightness of the system.
- * When the user exits the app, the brightness reverts to the system's brightness.
- *
  * @see https://docs.expo.io/versions/latest/sdk/brightness/#brightnessgetbrightnessasync
+ * @remarks This does not change the system brightness, and will revert when exiting the app.
+ * @example const [brightness, setBrightness, getBrightness] = useBrightness(...);
  */
-export function useBrightness(options: BrightnessOptions = {}): UseBrightnessSignature {
+export function useBrightness(
+	options: BrightnessOptions = {},
+): [
+	number | undefined,
+	(brightness: number) => Promise<void>,
+	() => Promise<void>,
+] {
 	const [data, setData] = useState<number>();
 	const { get = true } = options;
 
@@ -33,12 +35,6 @@ export function useBrightness(options: BrightnessOptions = {}): UseBrightnessSig
 
 	return [data, setBrightness, getBrightness];
 }
-
-type UseBrightnessSignature = [
-	number | undefined,
-	(brightness: number) => Promise<void>,
-	() => Promise<void>,
-];
 
 export interface BrightnessOptions {
 	/** If it should fetch the brightness when mounted, defaults to `true` */

@@ -10,7 +10,12 @@ import { PedometerResult, PedometerOptions } from './use-pedometer';
  * @remarks iOS only returns the last 7 days.
  * @example const [data, isAvailable] = usePedometerHistory(...);
  */
-export function usePedometerHistory(options: PedometerHistpryOptions): UsePedometerHistorySignature {
+export function usePedometerHistory(
+	options: PedometerHistpryOptions
+): [
+	PedometerResult | undefined,
+	boolean | undefined,
+] {
 	const [data, setData] = useState(options.initial);
 	const [available, setAvailable] = useState<boolean>();
 	const {
@@ -29,11 +34,6 @@ export function usePedometerHistory(options: PedometerHistpryOptions): UsePedome
 
 	return [data, available];
 }
-
-type UsePedometerHistorySignature = [
-	PedometerResult | undefined,
-	boolean | undefined,
-];
 
 export interface PedometerHistpryOptions extends PedometerOptions {
 	/**
