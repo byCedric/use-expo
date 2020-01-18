@@ -28,7 +28,7 @@ module.exports = {
 		// fix: temporary use the "normal" indent until the typescript version rewrite is complete
 		// see: https://github.com/typescript-eslint/typescript-eslint/milestone/1
 		// '@typescript-eslint/indent': ['error', 'tab'],
-		'indent': ['error', 'tab'],
+		'indent': ['error', 'tab', { SwitchCase: 1 }],
 	},
 	settings: {
 		react: {
