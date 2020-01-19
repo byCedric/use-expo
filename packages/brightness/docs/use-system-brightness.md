@@ -1,15 +1,31 @@
 <div align="center">
-    <h1>
-        <br />
-        <code>useSystemBrightness</code>
-        <br />
-        <br />
-    </h1>
-    change the system brightness with <a href="https://docs.expo.io/versions/latest/sdk/brightness/"><code>Brightness</code></a>
+    <h1>useSystemBrightness</h1>
+    <p>Change or track the system screen brightness with <a href="https://docs.expo.io/versions/latest/sdk/brightness/"><code>Brightness</code></a></p>
+    <sup>
+        <a href="https://github.com/bycedric/use-expo/releases">
+            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
+        </a>
+        <a href="https://github.com/bycedric/use-expo/actions">
+            <img src="https://img.shields.io/github/workflow/status/byCedric/use-expo/Packages/master.svg?style=flat-square" alt="builds" />
+        </a>
+        <a href="https://exp.host/@bycedric/use-expo">
+            <img src="https://img.shields.io/badge/demo-expo.io-lightgrey.svg?style=flat-square" alt="demo" />
+        </a>
+    </sup>
+    <br />
+    <p align="center">
+        <a href="https://github.com/byCedric/use-expo#readme"><b>Other hooks</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo#usage"><b>Usage</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
+    </p>
+    <br />
+    <pre>yarn add @use-expo/brightness expo-brightness</pre>
     <br />
 </div>
 
-## Examples
+## Usage
 
 ```jsx
 // full hook
@@ -19,27 +35,33 @@ const [brightness, setBrightness, getBrightness] = useSystemBrightness();
 useSystemBrightness({ get: false });
 ```
 
-With the `useSystemBrightness` and `usePermissions` hooks we can create a simple example.
+
+## Example
 
 ```jsx
+import { useSystemBrightness } from '@use-expo/brightness';
+import { usePermissions } from '@use-expo/permissions';
+import * as Permissions from 'expo-permissions';
+import { Button, Linking, Slider, Text, View } from 'react-native';
+
 function SystemBrightnessExample() {
     const [permission, askPermission] = usePermissions(Permissions.SYSTEM_BRIGHTNESS);
     const [brightness, setBrightness] = useSystemBrightness();
 
-    if (!permission || permission.status !== 'granted') {
+    if (permission?.status !== 'granted') {
         return (
-            <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
+            <View>
                 <Text>We require permissions to set the system brightness</Text>
-                <Button
-                    title='Give permission'
-                    onPress={askPermission}
-                />
+                {permission?.canAskAgain
+                    ? <Button onPress={askPermission} title='Give permission' />
+                    : <Button onPress={Linking.openSettings} title='Open app settings' />
+                }
             </View>
         );
     }
 
     return (
-        <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
+        <View>
             <Text>System brightness:</Text>
             <Text>{percentage(brightness)}</Text>
             <Slider
@@ -53,34 +75,34 @@ function SystemBrightnessExample() {
     );
 }
 
-function percentage(n) {
-    if (!n) {
-        return '0%';
-    }
-
-    return `${Math.floor(n * 1000) / 10}%`;
+function percentage(level = 0) {
+    return `${Math.floor(level * 1000) / 10}%`;
 }
 ```
+
 
 ## API
 
 ```ts
-function useSystemBrightness(options?: SystemBrightnessOptions): [
-    number | undefined,
-    (brightness: number) => Promise<void>,
-    () => Promise<void>,
-];
+function useSystemBrightness(options?: Options): Result;
 
-interface SystemBrightnessOptions {
+interface Options {
     /** If it should fetch the brightness when mounted, defaults to `true` */
     get?: boolean;
 }
+
+type Result = [
+    /** The current system brightness */
+    number | undefined,
+    /** Callback to change the system brightness */
+    (brightness: number) => Promise<void>,
+    /** Callback to manually get the system brightness */
+    () => Promise<void>,
+];
 ```
 
 <div align="center">
     <br />
-    <br />
     with :heart: <strong>byCedric</strong>
-    <br />
     <br />
 </div>

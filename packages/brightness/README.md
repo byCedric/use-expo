@@ -1,52 +1,35 @@
 <div align="center">
-    <h1>
-        <br />
-        brightness hooks
-        <br />
-        <br />
-    </h1>
-    <a href="https://github.com/bycedric/use-expo/releases">
-        <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg" alt="releases" />
-    </a>
-    <a href="https://travis-ci.com/byCedric/use-expo">
-        <img src="https://img.shields.io/travis/com/byCedric/use-expo/master.svg" alt="builds" />
-    </a>
-    <a href="https://exp.host/@bycedric/use-expo">
-        <img src="https://img.shields.io/badge/demo-expo-lightgrey.svg" alt="demo" />
-    </a>
-    <br />
-    <br />
-    <br />
-    <pre>npm i <a href="https://www.npmjs.com/package/@use-expo/brightness">@use-expo/brightness</a> <a href="https://www.npmjs.com/package/expo-brightness">expo-brightness</a></pre>
-    <br />
-</div>
-
-<div align="center">
-    <h1>use-expo</h1>
-    <p>Complementary hooks for <a href="https://github.com/expo/expo">Expo</a></p>
+    <h1>brightness hooks</h1>
+    <p>Complementary hooks for <a href="https://docs.expo.io/versions/latest/sdk/brightness/">Expo Brightness</a></p>
     <sup>
         <a href="https://github.com/bycedric/use-expo/releases">
             <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
         </a>
         <a href="https://github.com/bycedric/use-expo/actions">
-            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="builds" />
+            <img src="https://img.shields.io/github/workflow/status/byCedric/use-expo/Packages/master.svg?style=flat-square" alt="builds" />
         </a>
         <a href="https://exp.host/@bycedric/use-expo">
-            <img src="https://img.shields.io/badge/demo-expo-lightgrey.svg?style=flat-square" alt="demo" />
+            <img src="https://img.shields.io/badge/demo-expo.io-lightgrey.svg?style=flat-square" alt="demo" />
         </a>
     </sup>
     <br />
-	<br />
+    <p align="center">
+        <a href="https://github.com/byCedric/use-expo#readme"><b>Other hooks</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo#usage"><b>Usage</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
+    </p>
     <br />
-    <pre>npm i -S use-expo</pre>
+    <pre>yarn add @use-expo/brightness expo-brightness</pre>
+    <br />
 </div>
 
-- [`useBrightness`](./docs/use-brightness.md) &mdash; change the screen brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
-- [`useSystemBrightness`](./docs/use-system-brightness.md) &mdash; change the system brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
-- [`useSystemBrightnessMode`](./docs/use-system-brightness-mode.md) &mdash; change the brightness mode with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
+- [`useBrightness`](./docs/use-brightness.md) &nbsp;&mdash;&nbsp; change or track the screen brightness
+- [`useSystemBrightness`](./docs/use-system-brightness.md) &nbsp;&mdash;&nbsp; change or track the system screen brightness
+- [`useSystemBrightnessMode`](./docs/use-system-brightness-mode.md) &nbsp;&mdash;&nbsp; change or track the system brightness mode
 
 <div align="center">
-    <br />
     <br />
     with :heart: <strong>byCedric</strong>
     <br />
