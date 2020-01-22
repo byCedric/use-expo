@@ -2,6 +2,7 @@
 	"expo": {
 		"name": "expo hooks",
 		"description": "complementary hooks for expo",
+		"version": "0.0.0",
 		"slug": "use-expo",
 		"privacy": "public",
 		"sdkVersion": "36.0.0",
@@ -11,7 +12,6 @@
 			"android",
 			"web"
 		],
-		"version": "0.0.0",
 		"icon": "./src/assets/images/app-icon.png",
 		"splash": {
 			"image": "./src/assets/images/app-splash.png",

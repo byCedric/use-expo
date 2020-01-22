@@ -1,64 +1,82 @@
 <div align="center">
-    <h1>
-        <br />
-        expo hooks
-        <br />
-        <br />
-    </h1>
+    <h1>expo hooks</h1>
+    <p>Complementary hooks for <a href="https://github.com/expo/expo">Expo</a></p>
     <sup>
         <a href="https://github.com/bycedric/use-expo/releases">
-            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg" alt="releases" />
+            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
         </a>
-        <a href="https://travis-ci.com/byCedric/use-expo">
-            <img src="https://img.shields.io/travis/com/byCedric/use-expo/master.svg" alt="builds" />
+        <a href="https://github.com/bycedric/use-expo/actions">
+            <img src="https://img.shields.io/github/workflow/status/byCedric/use-expo/Packages/master.svg?style=flat-square" alt="builds" />
         </a>
         <a href="https://exp.host/@bycedric/use-expo">
-            <img src="https://img.shields.io/badge/demo-expo-lightgrey.svg" alt="demo" />
+            <img src="https://img.shields.io/badge/demo-expo.io-lightgrey.svg?style=flat-square" alt="demo" />
         </a>
-        <br />
-        Complementary hooks for Expo
     </sup>
     <br />
+    <p align="center">
+        <a href="https://github.com/byCedric/use-expo#usage"><b>Usage</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
+    </p>
     <br />
-    <pre>npm i <a href="https://www.npmjs.com/package/use-expo">use-expo</a></pre>
-    <br />
+    <pre>yarn add use-expo</pre>
 </div>
 
-- [**Battery**](./packages/battery)
-    - [`useBattery`](./packages/battery/docs/use-battery.md) &mdash; get the battery level, state and power mode with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
-    - [`useBatteryLevel`](./packages/battery/docs/use-battery-level.md) &mdash; get and/or listen to the battery level with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
-    - [`useBatteryLowPowerMode`](./packages/battery/docs/use-battery-low-power-mode.md) &mdash; get and/or listen to the battery low power mode with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
-    - [`useBatteryState`](./packages/battery/docs/use-battery-state.md) &mdash; get and/or listen to the battery state with [`battery`](https://docs.expo.io/versions/latest/sdk/battery/)
+### [Battery](./packages/battery)
 
-- [**Brightness**](./packages/brightness)
-    - [`useBrightness`](./packages/brightness/docs/use-brightness.md) &mdash; change the screen brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
-    - [`useSystemBrightness`](./packages/brightness/docs/use-system-brightness.md) &mdash; change the system brightness with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
-    - [`useSystemBrightnessMode`](./packages/brightness/docs/use-system-brightness-mode.md) &mdash; change the brightness mode with [`Brightness`](https://docs.expo.io/versions/latest/sdk/brightness/)
+- [`useBattery`](./packages/battery/docs/use-battery.md) &nbsp;&mdash;&nbsp; get the battery level, state and power mode
+- [`useBatteryLevel`](./packages/battery/docs/use-battery-level.md) &nbsp;&mdash;&nbsp; get or track the battery level or percentage remaining
+- [`useBatteryLowPowerMode`](./packages/battery/docs/use-battery-low-power-mode.md) &nbsp;&mdash;&nbsp; get or track the battery low power mode
+- [`useBatteryState`](./packages/battery/docs/use-battery-state.md) &nbsp;&mdash;&nbsp; get or track the battery (charging) state
 
-- [**Font**](./packages/font)
-    - [`useFonts`](./packages/font/docs/use-fonts.md) &mdash; load a map of fonts with [`Font`](https://docs.expo.io/versions/latest/sdk/font/)
+### [Brightness](./packages/brightness)
 
-- [**Permissions**](./packages/permissions)
-    - [`usePermissions`](./packages/permissions/docs/use-permissions.md) &mdash; get or ask permissions with [`Permissions`](https://docs.expo.io/versions/latest/sdk/permissions/)
+- [`useBrightness`](./packages/brightness/docs/use-brightness.md) &nbsp;&mdash;&nbsp; change or track the screen brightness
+- [`useSystemBrightness`](./packages/brightness/docs/use-system-brightness.md) &nbsp;&mdash;&nbsp; change or track the system screen brightness
+- [`useSystemBrightnessMode`](./packages/brightness/docs/use-system-brightness-mode.md) &nbsp;&mdash;&nbsp; change or track the system brightness mode
 
-- [**Screen Orientation**](./packages/screen-orientation)
-    - [`useScreenOrientation`](./packages/screen-orientation/docs/use-screen-orientation.md) &mdash; tracks changes in screen orientation with [`ScreenOrientation`](https://docs.expo.io/versions/latest/sdk/screen-orientation/)
-    - [`useScreenOrientationLock`](./packages/screen-orientation/docs/use-screen-orientation-lock.md) &mdash; locks the screen to an orientation with [`ScreenOrientation`](https://docs.expo.io/versions/latest/sdk/screen-orientation/)
+### [Font](./packages/font)
 
-- [**Sensors**](./packages/sensors)
-    - [`useAccelerometer`](./packages/sensors/docs/use-accelerometer.md) &mdash; tracks changes in acceleration with [`Accelerometer`](https://docs.expo.io/versions/latest/sdk/accelerometer/)
-    - [`useBarometer`](./packages/sensors/docs/use-barometer.md) &mdash; tracks changes in air pressure with [`Barometer`](https://docs.expo.io/versions/latest/sdk/barometer/)
-    - [`useDeviceMotion`](./packages/sensors/docs/use-device-motion.md) &mdash; tracks device motion and orientation with [`DeviceMotion`](https://docs.expo.io/versions/latest/sdk/devicemotion/)
-    - [`useGyroscope`](./packages/sensors/docs/use-gyroscope.md) &mdash; tracks changes in rotation with [`Gyroscope`](https://docs.expo.io/versions/latest/sdk/gyroscope/)
-    - [`useMagnetometer`](./packages/sensors/docs/use-magnetometer.md) &mdash; tracks changes in the magnetic field with [`Magnetometer`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
-    - [`useMagnetometerUncalibrated`](./packages/sensors/docs/use-magnetometer.md) &mdash; tracks raw changes in the magnetic field with [`MagnetometerUncalibrated`](https://docs.expo.io/versions/latest/sdk/magnetometer/)
-    - [`usePedometer`](./packages/sensors/docs/use-pedometer.md) &mdash; tracks user step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
-    - [`usePedometerHistory`](./packages/sensors/docs/use-pedometer-history.md) &mdash; get historical step count with [`Pedometer`](https://docs.expo.io/versions/latest/sdk/pedometer/)
+- [`useFonts`](./packages/font/docs/use-fonts.md) &nbsp;&mdash;&nbsp; load a map of fonts
+
+### [Permissions](./packages/permissions)
+
+- [`usePermissions`](./packages/permissions/docs/use-permissions.md) &nbsp;&mdash;&nbsp; get or ask permissions
+
+### [Screen Orientation](./packages/screen-orientation)
+
+- [`useScreenOrientation`](./packages/screen-orientation/docs/use-screen-orientation.md) &nbsp;&mdash;&nbsp; track changes in screen orientation
+- [`useScreenOrientationLock`](./packages/screen-orientation/docs/use-screen-orientation-lock.md) &nbsp;&mdash;&nbsp; lock the screen to an orientation
+
+### [Sensors](./packages/sensors)
+
+- [`useAccelerometer`](./packages/sensors/docs/use-accelerometer.md) &nbsp;&mdash;&nbsp; track changes in acceleration
+- [`useBarometer`](./packages/sensors/docs/use-barometer.md) &nbsp;&mdash;&nbsp; track changes in air pressure
+- [`useDeviceMotion`](./packages/sensors/docs/use-device-motion.md) &nbsp;&mdash;&nbsp; track device motion and orientation
+- [`useGyroscope`](./packages/sensors/docs/use-gyroscope.md) &nbsp;&mdash;&nbsp; track changes in rotation
+- [`useMagnetometer`](./packages/sensors/docs/use-magnetometer.md) &nbsp;&mdash;&nbsp; track changes in the magnetic field
+- [`useMagnetometerUncalibrated`](./packages/sensors/docs/use-magnetometer.md) &nbsp;&mdash;&nbsp; track changes in the magnetic field using raw data
+- [`usePedometer`](./packages/sensors/docs/use-pedometer.md) &nbsp;&mdash;&nbsp; track user step count
+- [`usePedometerHistory`](./packages/sensors/docs/use-pedometer-history.md) &nbsp;&mdash;&nbsp; get historical step count between two dates
+
+
+## Usage
+
+You can import these hooks with two methods, install `use-expo` or `@use-expo/<group>` package.
+
+```js
+import { useBrightness, usePermissions } from 'use-expo';
+// or
+import { useBrightness } from '@use-expo/brightness';
+import { usePermissions } from '@use-expo/permissions';
+```
+
+> `use-expo` includes all hooks and, because of that, requires _all peer dependencies_.
+> It's recommended only to install the hooks you use to avoid unnecessary peer dependency warnings.
+
 
 <div align="center">
     <br />
-    <br />
     with :heart: <strong>byCedric</strong>
-    <br />
     <br />
 </div>

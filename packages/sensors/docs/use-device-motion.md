@@ -1,15 +1,31 @@
 <div align="center">
-    <h1>
-        <br />
-        <code>useDeviceMotion</code>
-        <br />
-        <br />
-    </h1>
-    tracks device motion and orientation with <a href="https://docs.expo.io/versions/latest/sdk/devicemotion/"><code>DeviceMotion</code></a>
+    <h1>useDeviceMotion</h1>
+    <p>Track device motion and orientation with <a href="https://docs.expo.io/versions/latest/sdk/devicemotion/"><code>DeviceMotion</code></a></p>
+    <sup>
+        <a href="https://github.com/bycedric/use-expo/releases">
+            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
+        </a>
+        <a href="https://github.com/bycedric/use-expo/actions">
+            <img src="https://img.shields.io/github/workflow/status/byCedric/use-expo/Packages/master.svg?style=flat-square" alt="builds" />
+        </a>
+        <a href="https://exp.host/@bycedric/use-expo">
+            <img src="https://img.shields.io/badge/demo-expo.io-lightgrey.svg?style=flat-square" alt="demo" />
+        </a>
+    </sup>
+    <br />
+    <p align="center">
+        <a href="https://github.com/byCedric/use-expo#readme"><b>Other hooks</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo#usage"><b>Usage</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
+    </p>
+    <br />
+    <pre>yarn add @use-expo/sensors expo-sensors</pre>
     <br />
 </div>
 
-## Examples
+## Usage
 
 ```jsx
 // full hook
@@ -17,20 +33,24 @@ const [data, isAvailable] = useDeviceMotion();
 
 // other options
 useDeviceMotion({ interval: 1000 });
-useDeviceMotion({ initial: { ... } });
 useDeviceMotion({ availability: false });
+useDeviceMotion({ initial: { ... } });
 ```
 
-With the `useDeviceMotion` hook we can create a simple component.
+
+## Example
 
 ```jsx
+import { useDeviceMotion } from '@use-expo/sensors';
+import { Text, View } from 'react-native';
+
 function DeviceMotionSensor() {
-    const [data, isAvailable] = useDeviceMotion({ interval: 100 });
+    const [data, available] = useDeviceMotion({ interval: 100 });
 
     return (
-        <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
+        <View>
             <Text>DeviceMotion:</Text>
-            {(isAvailable && data)
+            {(available && data)
                 ? <Text>{JSON.stringify(data, null, 2)}</Text>
                 : <Text>unavailable</Text>
             }
@@ -39,21 +59,20 @@ function DeviceMotionSensor() {
 }
 ```
 
+
 ## API
 
 ```ts
 import { DeviceMotionMeasurement } from 'expo-sensors';
 
-function useDeviceMotion(options?: DeviceMotionOptions): [
-    DeviceMotionMeasurement | undefined,
-    boolean | undefined,
-];
+function useDeviceMotion(options?: Options): Result;
 
-interface DeviceMotionOptions {
+interface Options {
     /** The initial data to use before the first update. */
     initial?: DeviceMotionMeasurement;
     /** If it should check the availability of the sensor, defaults to `true`. */
     availability?: boolean;
+
     /**
      * The interval, in ms, to update the device motion data.
      * Note, this is set globally through `DeviceMotion.setUpdateInterval`.
@@ -61,12 +80,15 @@ interface DeviceMotionOptions {
      */
     interval?: number;
 }
+
+type Result = [
+    DeviceMotionMeasurement | undefined,
+    boolean | undefined,
+];
 ```
 
 <div align="center">
     <br />
-    <br />
     with :heart: <strong>byCedric</strong>
-    <br />
     <br />
 </div>

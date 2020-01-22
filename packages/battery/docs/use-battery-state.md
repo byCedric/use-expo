@@ -1,15 +1,31 @@
 <div align="center">
-    <h1>
-        <br />
-        <code>useBatteryState</code>
-        <br />
-        <br />
-    </h1>
-    get and/or listen to the battery state with <a href="https://docs.expo.io/versions/latest/sdk/battery/"><code>Battery</code></a>
+    <h1>useBatteryState</h1>
+    <p>Get or track the battery (charging) state <a href="https://docs.expo.io/versions/latest/sdk/battery/"><code>Battery</code></a></p>
+    <sup>
+        <a href="https://github.com/bycedric/use-expo/releases">
+            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
+        </a>
+        <a href="https://github.com/bycedric/use-expo/actions">
+            <img src="https://img.shields.io/github/workflow/status/byCedric/use-expo/Packages/master.svg?style=flat-square" alt="builds" />
+        </a>
+        <a href="https://exp.host/@bycedric/use-expo">
+            <img src="https://img.shields.io/badge/demo-expo.io-lightgrey.svg?style=flat-square" alt="demo" />
+        </a>
+    </sup>
+    <br />
+    <p align="center">
+        <a href="https://github.com/byCedric/use-expo#readme"><b>Other hooks</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo#usage"><b>Usage</b></a>
+        &nbsp;&nbsp;&mdash;&nbsp;&nbsp;
+        <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
+    </p>
+    <br />
+    <pre>yarn add @use-expo/battery expo-battery</pre>
     <br />
 </div>
 
-## Examples
+## Usage
 
 ```jsx
 // full hook
@@ -19,50 +35,58 @@ const [batteryState, getBatteryState] = useBatteryState();
 useBatteryState({ get: false, listen: false });
 ```
 
-With the `useBatteryState` hook we can create a simple example.
+
+## Example
 
 ```jsx
-const states = {
-    [BatteryState.UNKNOWN]: 'unkown',
-    [BatteryState.UNPLUGGED]: 'unplugged',
-    [BatteryState.CHARGING]: 'charging',
-    [BatteryState.FULL]: 'full',
-}
+import { useBatteryState } from '@use-expo/battery';
+import { Text, View } from 'react-native';
+import { BatteryState } from 'expo-battery';
 
 function BatteryStateExample() {
     const [batteryState] = useBatteryState();
 
     return (
-        <View style={{ marginTop: 15, paddingHorizontal: 10 }}>
-            <Text>Battery state:</Text>
+        <View>
+            <Text>Battery (charging) state:</Text>
             <Text>{states[batteryState] || ''}</Text>
         </View>
     );
 }
+
+const states = {
+    [BatteryState.UNKNOWN]: 'unkown',
+    [BatteryState.UNPLUGGED]: 'unplugged',
+    [BatteryState.CHARGING]: 'charging',
+    [BatteryState.FULL]: 'full',
+};
 ```
+
 
 ## API
 
 ```ts
 import { BatteryState } from 'expo-battery';
 
-function useBatteryState(options?: BatteryStateOptions): [
-    BatteryState | undefined,
-    () => Promise<void>,
-];
+function useBatteryState(options?: Options): Result;
 
-interface BatteryStateOptions {
+interface Options {
     /** If it should fetch the battery state when mounted, defaults to `true` */
     get?: boolean;
     /** If it should listen to any change in battery state, defaults to `true` */
     listen?: boolean;
 }
+
+type Result = [
+    /** The current battery (charging) state */
+    BatteryState | undefined,
+    /** Callback to manually get the battery state */
+    () => Promise<void>,
+];
 ```
 
 <div align="center">
     <br />
-    <br />
     with :heart: <strong>byCedric</strong>
-    <br />
     <br />
 </div>

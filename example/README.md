@@ -1,27 +1,21 @@
 <div align="center">
-    <h1>
-        <br />
-        expo hooks
-        <br />
-        <br />
-    </h1>
+    <h1>expo hooks</h1>
+    <p>Complementary hooks for <a href="https://github.com/expo/expo">Expo</a></p>
     <sup>
         <a href="https://github.com/bycedric/use-expo/releases">
-            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg" alt="releases" />
+            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
         </a>
-        <a href="https://travis-ci.com/byCedric/use-expo">
-            <img src="https://img.shields.io/travis/com/byCedric/use-expo/master.svg" alt="builds" />
+        <a href="https://github.com/bycedric/use-expo/actions">
+            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="builds" />
         </a>
         <a href="https://exp.host/@bycedric/use-expo">
-            <img src="https://img.shields.io/badge/demo-expo-lightgrey.svg" alt="demo" />
+            <img src="https://img.shields.io/badge/demo-expo-lightgrey.svg?style=flat-square" alt="demo" />
         </a>
-        <br />
-        Complementary hooks for Expo
     </sup>
     <br />
+	<br />
     <br />
-    <pre>npm i <a href="https://www.npmjs.com/package/use-expo">use-expo</a></pre>
-    <br />
+    <pre>npm i -S use-expo</pre>
 </div>
 
 > See [`README.md`](https://github.com/bycedric/use-expo) in root.
@@ -30,6 +24,5 @@
     <br />
     <br />
     with :heart: <strong>byCedric</strong>
-    <br />
     <br />
 </div>
