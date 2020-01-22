@@ -40,7 +40,7 @@
 		"@types/react": "^16.9.17",
 		"expo-asset": "^8.0.0",
 		"expo-font": "^8.0.0",
-		"react": "~16.9.0"
+		"react": "~16.12.0"
 	},
 	"peerDependencies": {
 		"expo-asset": ">=5.0.1",
