@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/brightness",
-	"version": "0.10.1",
+	"version": "1.0.0",
 	"description": "Complementary hooks for expo-brightness",
 	"keywords": [
 		"expo",
