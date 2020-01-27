@@ -42,7 +42,7 @@
 		"@use-expo/sensors": "^1.0.0"
 	},
 	"devDependencies": {
-		"@react-native-community/bob": "^0.7.1"
+		"@react-native-community/bob": "^0.8.0"
 	},
 	"@react-native-community/bob": {
 		"source": "src",

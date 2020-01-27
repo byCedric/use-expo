@@ -32,28 +32,7 @@
     invariant "^2.2.4"
     semver "^5.5.0"
 
-"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.4.5", "@babel/core@^7.7.7":
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.8.0.tgz#fd273d4faf69cc20ee3ccfd32d42df916bb4a15c"
-  integrity sha512-3rqPi/bv/Xfu2YzHvBz4XqMI1fKVwnhntPA1/fjoECrSjrhbOCxlTrbVu5gUtr8zkxW+RpkDOa/HCW93gzS2Dw==
-  dependencies:
-    "@babel/code-frame" "^7.8.0"
-    "@babel/generator" "^7.8.0"
-    "@babel/helpers" "^7.8.0"
-    "@babel/parser" "^7.8.0"
-    "@babel/template" "^7.8.0"
-    "@babel/traverse" "^7.8.0"
-    "@babel/types" "^7.8.0"
-    convert-source-map "^1.7.0"
-    debug "^4.1.0"
-    gensync "^1.0.0-beta.1"
-    json5 "^2.1.0"
-    lodash "^4.17.13"
-    resolve "^1.3.2"
-    semver "^5.4.1"
-    source-map "^0.5.0"
-
-"@babel/core@^7.7.5":
+"@babel/core@^7.0.0", "@babel/core@^7.1.0", "@babel/core@^7.4.5", "@babel/core@^7.7.5", "@babel/core@^7.7.7":
   version "7.8.3"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.8.3.tgz#30b0ebb4dd1585de6923a0b4d179e0b9f5d82941"
   integrity sha512-4XFkf8AwyrEG7Ziu3L2L0Cv+WyY47Tcsp70JFmpftbAA1K7YL/sgE9jh9HyNj08Y/U50ItUchpN0w6HxAoX1rA==
@@ -307,15 +286,6 @@
   integrity sha512-2j6idN2jt8Y+8nJ4UPN/6AZa53DAkcETMVmroJQh50qZc59PuQKVjgOIIqmrLoQf6Ia9bs90MHRcID1OW5tfag==
   dependencies:
     "@babel/helper-function-name" "^7.8.0"
-    "@babel/template" "^7.8.0"
-    "@babel/traverse" "^7.8.0"
-    "@babel/types" "^7.8.0"
-
-"@babel/helpers@^7.8.0":
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/@babel/helpers/-/helpers-7.8.0.tgz#3d3e6e08febf5edbbf63b1cf64395525aa3ece37"
-  integrity sha512-srWKpjAFbiut5JoCReZJ098hLqoZ9HufOnKZPggc7j74XaPuQ+9b3RYPV1M/HfjL63lCNd8uI1O487qIWxAFNA==
-  dependencies:
     "@babel/template" "^7.8.0"
     "@babel/traverse" "^7.8.0"
     "@babel/types" "^7.8.0"
@@ -2833,10 +2803,10 @@
   dependencies:
     "@types/node" ">= 8"
 
-"@react-native-community/bob@^0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@react-native-community/bob/-/bob-0.7.1.tgz#481bf46704c5846ab5a9551c90d25a59bfd5bb0c"
-  integrity sha512-lTTRVfk1crR3HT6vxT+JFrhWATy/HVtbMxewkfWqaxiiYtnIc19y/WuguvSyOGpGgDniuGBU62fUVnlD8n7pWg==
+"@react-native-community/bob@^0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@react-native-community/bob/-/bob-0.8.0.tgz#8eb33d18393584b2769adde55a042337c5311c80"
+  integrity sha512-b4I3YY/3RrJtsBN7BBE56QGH2/jEoEKeEJqnkXiK4hbEEOnHl6/4mEQTZRM1OX8UUhQy9xHdmFfne+xjhSvs9g==
   dependencies:
     "@babel/core" "^7.7.7"
     chalk "^3.0.0"
