@@ -3122,11 +3122,10 @@
   integrity sha512-c4zji5CjWv1tJxIZkz1oUtGcdOlsH3aza28Nqmm+uNDWBRHoMsjooBEN4czZp1V3iXPihE/VRUOBqg+4Xq0W4g==
 
 "@types/react-native@^0.61.2":
-  version "0.61.2"
-  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.2.tgz#1ee4f1e1ad246d671399d1112a8a703020b7a38b"
-  integrity sha512-z15qGoBmZD6KIx3ZRYsqjelwBYXRMylPqz34swCH2exEk1EwOcPG2cp/TIpiN72lpByHlPvoMKbu8v1lzQrayw==
+  version "0.61.10"
+  resolved "https://registry.yarnpkg.com/@types/react-native/-/react-native-0.61.10.tgz#d010b9093322bc781151638f74124f58fc87cc90"
+  integrity sha512-z+RWEFfdwHnOLpq70DO//4mjyNqoZypdR3uBqpBB82t2HJg2YbY4j6XIow7sFqeO/r8XibgV9UFEVG2tYIRlSA==
   dependencies:
-    "@types/prop-types" "*"
     "@types/react" "*"
 
 "@types/react-test-renderer@*":
