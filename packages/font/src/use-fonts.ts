@@ -18,7 +18,7 @@ export function useFonts(map: FontMap): [boolean] {
 		loadAsync(map).then(() => setLoaded(true))
 	}, []); // eslint-disable-line
 
-	// note: to avoid any ambigouty fonts are only loaded once
+	// note: to avoid any ambiguity fonts are only loaded once
 	// since every rerender is a new object, we have no way of
 	// detecting a new map and updating the loaded state based on that
 
