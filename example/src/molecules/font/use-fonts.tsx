@@ -5,12 +5,10 @@ import { Example, Information, Link, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-const customFonts = {
-	ComicSans: require('../../assets/fonts/comic-sans-ms/regular.ttf'),
-};
-
 export const UseFonts: React.SFC<MoleculeProps> = (props) => {
-	const [loaded] = useFonts(customFonts);
+	const [loaded] = useFonts({
+		ComicSans: require('../../assets/fonts/comic-sans-ms/regular.ttf'),
+	});
 
 	return (
 		<Page
