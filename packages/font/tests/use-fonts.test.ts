@@ -20,22 +20,32 @@ it('loads fonts when mounted', async () => {
 	expect(hook.result.current[DATA]).toBe(true);
 });
 
-it('loads new fonts map when rerendered', async () => {
+it('skips new font map when rerendered', async () => {
 	const loader = jest.spyOn(Font, 'loadAsync').mockResolvedValue();
+
+	const hook = renderHook(useFonts, { initialProps: FONTS });
+	await hook.waitForNextUpdate();
+
+	expect(loader).toBeCalledWith(FONTS);
+
 	const partialFonts = { ...FONTS };
 	delete partialFonts['ComicSans-Regular'];
 
-	const hook = renderHook(useFonts, { initialProps: partialFonts });
-	await hook.waitForNextUpdate();
+	hook.rerender(partialFonts);
 
-	expect(loader).toBeCalledWith(partialFonts);
+	expect(hook.result.current[DATA]).toBe(true);
+	expect(loader).not.toBeCalledWith(partialFonts);
+});
 
-	hook.rerender(FONTS);
+it('keeps fonts loaded when unmounted', async () => {
+	jest.spyOn(Font, 'loadAsync').mockResolvedValue();
 
-	expect(hook.result.current[DATA]).toBe(false);
-
+	const hook = renderHook(useFonts, { initialProps: FONTS });
 	await hook.waitForNextUpdate();
 
 	expect(hook.result.current[DATA]).toBe(true);
-	expect(loader).toBeCalledWith(FONTS);
+
+	hook.unmount();
+
+	expect(hook.result.current[DATA]).toBe(true);
 });
