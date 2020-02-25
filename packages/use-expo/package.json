@@ -1,6 +1,6 @@
 {
 	"name": "use-expo",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Complementary hooks for expo",
 	"keywords": [
 		"expo",
@@ -34,12 +34,12 @@
 		"build": "bob build"
 	},
 	"dependencies": {
-		"@use-expo/battery": "^1.0.0",
-		"@use-expo/brightness": "^1.0.0",
-		"@use-expo/font": "^1.0.0",
-		"@use-expo/permissions": "^1.0.0",
-		"@use-expo/screen-orientation": "^1.0.0",
-		"@use-expo/sensors": "^1.0.0"
+		"@use-expo/battery": "^1.0.1",
+		"@use-expo/brightness": "^1.0.1",
+		"@use-expo/font": "^1.0.1",
+		"@use-expo/permissions": "^1.0.1",
+		"@use-expo/screen-orientation": "^1.0.1",
+		"@use-expo/sensors": "^1.0.1"
 	},
 	"devDependencies": {
 		"@react-native-community/bob": "^0.9.7"
