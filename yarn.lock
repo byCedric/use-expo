@@ -3683,15 +3683,6 @@
     regexpp "^3.0.0"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@2.20.0":
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.20.0.tgz#3b6fa5a6b8885f126d5a4280e0d44f0f41e73e32"
-  integrity sha512-fEBy9xYrwG9hfBLFEwGW2lKwDRTmYzH3DwTmYbT+SMycmxAoPl0eGretnBFj/s+NfYBG63w/5c3lsvqqz5mYag==
-  dependencies:
-    "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/typescript-estree" "2.20.0"
-    eslint-scope "^5.0.0"
-
 "@typescript-eslint/experimental-utils@2.21.0", "@typescript-eslint/experimental-utils@^2.5.0":
   version "2.21.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.21.0.tgz#71de390a3ec00b280b69138d80733406e6e86bfa"
@@ -3710,19 +3701,6 @@
     "@typescript-eslint/experimental-utils" "2.21.0"
     "@typescript-eslint/typescript-estree" "2.21.0"
     eslint-visitor-keys "^1.1.0"
-
-"@typescript-eslint/typescript-estree@2.20.0":
-  version "2.20.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.20.0.tgz#90a0f5598826b35b966ca83483b1a621b1a4d0c9"
-  integrity sha512-WlFk8QtI8pPaE7JGQGxU7nGcnk1ccKAJkhbVookv94ZcAef3m6oCE/jEDL6dGte3JcD7reKrA0o55XhBRiVT3A==
-  dependencies:
-    debug "^4.1.1"
-    eslint-visitor-keys "^1.1.0"
-    glob "^7.1.6"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^6.3.0"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@2.21.0":
   version "2.21.0"
@@ -8187,13 +8165,6 @@ gzip-size@5.1.1, gzip-size@^5.0.0:
     duplexer "^0.1.1"
     pify "^4.0.1"
 
-"hammerjs@https://github.com/naver/hammer.js.git":
-  version "2.0.17-snapshot"
-  uid "54bc698b25edd6e1b76ca975ebaced5ce0467d51"
-  resolved "https://github.com/naver/hammer.js.git#54bc698b25edd6e1b76ca975ebaced5ce0467d51"
-  dependencies:
-    "@types/hammerjs" "^2.0.36"
-
 handlebars@^4.4.0:
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.1.tgz#052bd2618964dcb8aebad0940bfeb2d8d1cfbfde"
@@ -8333,14 +8304,7 @@ hoist-non-react-statics@^2.3.1, hoist-non-react-statics@^2.5.0:
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
 
-hoist-non-react-statics@^3.1.0:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz#101685d3aff3b23ea213163f6e8e12f4f111e19f"
-  integrity sha512-wbg3bpgA/ZqWrZuMOeJi8+SKMhr7X9TesL/rXMjTzh0p0JUBo3II8DHboYbuIXWRlttrUFxwcu/5kygrCw8fJw==
-  dependencies:
-    react-is "^16.7.0"
-
-hoist-non-react-statics@^3.3.2:
+hoist-non-react-statics@^3.1.0, hoist-non-react-statics@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -13162,13 +13126,12 @@ react-lifecycles-compat@^3.0.4:
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
   integrity sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
 
-react-native-gesture-handler@~1.5.0:
-  version "1.5.6"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.5.6.tgz#5d90145f624e3707db2930f43ab41579683e2375"
-  integrity sha512-z2jLUkRiRc0PBAC9UcXYkqy3VUzBG0cYQAGMsDHsd90JgrzudHAFRJV9fvFm18wNauFTNnJievjZ0C3rI2ydhw==
+react-native-gesture-handler@~1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-1.6.0.tgz#e9a4e1d0c7ac21eb0d6b6ec013e73f9c0c33a629"
+  integrity sha512-KulGCWKTxa6xBpPP4LWEPmmLqBqOe2jbtdlILOVF/dR4EgImiaBVrKdOHeRMyMzJOYAWxs5uDZsyA8hgSsm+lw==
   dependencies:
     "@egjs/hammerjs" "^2.0.17"
-    hammerjs "https://github.com/naver/hammer.js.git"
     hoist-non-react-statics "^2.3.1"
     invariant "^2.2.4"
     prop-types "^15.7.2"
