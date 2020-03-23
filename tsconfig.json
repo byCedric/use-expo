@@ -24,7 +24,7 @@
 				"./packages/*/src"
 			],
 		},
-		"removeComments": true,
+		"removeComments": false,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
