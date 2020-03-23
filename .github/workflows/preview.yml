@@ -1,6 +1,8 @@
 ---
 name: Preview
-on: [pull_request]
+on:
+  pull_request:
+    branches-ignore: [master]
 jobs:
   preview:
     name: Publish preview
