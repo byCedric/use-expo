@@ -33,7 +33,7 @@ export function useAccelerometer(
 		}
 
 		return Accelerometer.addListener(setData).remove;
-	}, [available, availability, interval]);
+	}, [availability, interval]);
 
 	return [data, available];
 }

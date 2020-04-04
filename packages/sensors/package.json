@@ -37,12 +37,13 @@
 	"devDependencies": {
 		"@react-native-community/bob": "^0.10.0",
 		"@testing-library/react-hooks": "^3.2.1",
-		"@types/react": "^16.9.17",
-		"expo-sensors": "^8.0.0",
-		"react": "~16.9.0"
+		"@types/react": "^16.9.32",
+		"expo-sensors": "~8.1.0",
+		"react": "16.9.0",
+		"typescript": "^3.8.3"
 	},
 	"peerDependencies": {
-		"expo-sensors": ">=5.0.1"
+		"expo-sensors": "*"
 	},
 	"@react-native-community/bob": {
 		"source": "src",
