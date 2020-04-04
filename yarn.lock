@@ -7508,10 +7508,10 @@ expo-brightness@^8.0.0, expo-brightness@~8.0.0:
   resolved "https://registry.yarnpkg.com/expo-brightness/-/expo-brightness-8.0.0.tgz#c1ab143a5c1127e48539e70217cfc10ead577bf5"
   integrity sha512-6Lg0IH+ofEaj1+YRS3p3Ad/pgXQGjzf9m7jVZf1oznDIpwkf4oCutum73EuT2oEc+CYgiAmj9sKhtwYROJPOfA==
 
-expo-camera@~8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-8.0.0.tgz#a0caee7baf1f2013203fe6a4635125ade12ec164"
-  integrity sha512-mtP4NV2R4e+JTXUZBiA0ok4xSzTfRLxirvqJ5T7kjyozuCWUJeOhGk3hqNsBbWhwXDA+hirAge7169UB3vKfDQ==
+expo-camera@~8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/expo-camera/-/expo-camera-8.2.0.tgz#9c849f0dc409e1fe6ee886f479e0ee0050b6d386"
+  integrity sha512-wGVqQVVR4YCkHuI7u+qloI1p2UbYwpU8hs0IEM+1Th4JQekAPUEfOmJI6ZHGj36El8f87ghRed2MXzOssn4hHg==
   dependencies:
     lodash "^4.6.0"
     prop-types "^15.6.0"
