@@ -18,15 +18,9 @@ export function useWarmBrowser(browser?: string): void {
 		if (browser) {
 			warmUpAsync(browser);
 		}
-<<<<<<< HEAD
-		return () => {
-			coolDownAsync(browser);
-		}
-=======
 
 		return () => {
 			coolDownAsync(browser);
 		};
->>>>>>> fix(web-browser): add tests, fix lint errors and finish docs
 	}, [browser]);
 }
