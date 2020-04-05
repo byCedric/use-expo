@@ -1,7 +1,7 @@
 import React from 'react';
 import { Caption, Text } from 'react-native-paper';
 import { useScreenOrientation } from 'use-expo';
-import { SizeClassIOS } from 'expo-screen-orientation';
+import { Orientation, SizeClassIOS } from 'expo-screen-orientation';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
@@ -20,14 +20,17 @@ export const UseScreenOrientation: React.SFC<MoleculeProps> = (props) => {
 			</Information>
 			<Example>
 				<Caption>screen orientation</Caption>
-				<Text>{orientation?.orientation}</Text>
+				{orientation?.orientation
+					? <Text>{orientationNames[orientation.orientation]}</Text>
+					: <Text>unknown</Text>
+				}
 				{(!orientation?.verticalSizeClass || !orientation?.horizontalSizeClass)
 					? <Caption>size class unavailable on this device</Caption>
 					: (
 						<>
 							<Caption>size class</Caption>
-							<Measurement name='horizontal' value={sizeClass[orientation.horizontalSizeClass]} />
-							<Measurement name='vertical' value={sizeClass[orientation.verticalSizeClass]} />
+							<Measurement name='horizontal' value={sizeClassNames[orientation.horizontalSizeClass]} />
+							<Measurement name='vertical' value={sizeClassNames[orientation.verticalSizeClass]} />
 						</>
 					)}
 			</Example>
@@ -40,7 +43,15 @@ UseScreenOrientation.defaultProps = {
 	description: 'tracks changes in screen orientation',
 };
 
-const sizeClass = {
+const orientationNames = {
+	[Orientation.UNKNOWN]: 'unknown',
+	[Orientation.PORTRAIT_UP]: 'portrait-up',
+	[Orientation.PORTRAIT_DOWN]: 'portrait-down',
+	[Orientation.LANDSCAPE_LEFT]: 'landscape-left',
+	[Orientation.LANDSCAPE_RIGHT]: 'landscape-right',
+};
+
+const sizeClassNames = {
 	[SizeClassIOS.REGULAR]: 'regular',
 	[SizeClassIOS.COMPACT]: 'compact',
 	[SizeClassIOS.UNKNOWN]: 'unknown',
