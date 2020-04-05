@@ -32,23 +32,32 @@
 const browsers = useBrowsers();
 ```
 
+
 ## Example
 
 ```jsx
-import { useBrowsers } from "@use-expo/web-browser";
-import { Text, View } from "react-native";
+import { useBrowsers } from '@use-expo/web-browser';
+import { Text, View } from 'react-native';
 
-function App() {
+function AndroidBrowsers() {
   const browsers = useBrowsers();
 
   return (
     <View>
       <Text>Android Browsers:</Text>
-      {browsers && <Text>{JSON.stringify(browsers, null, 2)}</Text>}
+      <Text>{browsers.join(', ')}</Text>
     </View>
   );
 }
 ```
+
+
+## API
+
+```ts
+function useBrowsers(): string[];
+```
+
 
 <div align="center">
     <br />

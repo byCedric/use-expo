@@ -7,23 +7,12 @@
 		"src"
 	],
 	"references": [
-		{
-			"path": "../battery"
-		},
-		{
-			"path": "../brightness"
-		},
-		{
-			"path": "../font"
-		},
-		{
-			"path": "../permissions"
-		},
-		{
-			"path": "../screen-orientation"
-		},
-		{
-			"path": "../sensors"
-		}
+		{ "path": "../battery" },
+		{ "path": "../brightness" },
+		{ "path": "../font" },
+		{ "path": "../permissions" },
+		{ "path": "../screen-orientation" },
+		{ "path": "../sensors" },
+		{ "path": "../web-browser" },
 	]
 }

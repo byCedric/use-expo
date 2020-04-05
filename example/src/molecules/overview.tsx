@@ -11,6 +11,7 @@ import * as Font from './font';
 import * as Permissions from './permissions';
 import * as ScreenOrientation from './screen-orientation';
 import * as Sensors from './sensors';
+import * as WebBrowser from './web-browser';
 
 export const molecules = {
 	Battery,
@@ -19,6 +20,7 @@ export const molecules = {
 	Permissions,
 	ScreenOrientation,
 	Sensors,
+	WebBrowser,
 };
 
 export const Overview: React.SFC = () => (
