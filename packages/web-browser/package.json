@@ -1,0 +1,60 @@
+{
+	"name": "@use-expo/web-browser",
+	"version": "1.0.0",
+	"description": "Complementary hooks for expo-web-browser",
+	"keywords": [
+		"expo",
+		"web-browser",
+		"auth",
+		"hooks"
+	],
+	"license": "MIT",
+	"author": "Evan Bacon <bacon@expo.com> (https://evanbacon.dev)",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/web-browser#readme",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bycedric/use-expo.git",
+		"directory": "packages/web-browser"
+	},
+	"directories": {
+		"lib": "src",
+		"test": "tests"
+	},
+	"main": "build/commonjs/index.js",
+	"react-native": "src/index.ts",
+	"module": "build/module/index.js",
+	"types": "build/typescript/src/index.d.ts",
+	"files": [
+		"build",
+		"src"
+	],
+	"scripts": {
+		"prepare": "bob build",
+		"build": "bob build"
+	},
+	"devDependencies": {
+		"@react-native-community/bob": "^0.10.0",
+		"@testing-library/react-hooks": "^3.2.1",
+		"@types/react": "^16.9.17",
+		"expo-web-browser": "^8.1.0",
+		"react": "~16.9.0"
+	},
+	"peerDependencies": {
+		"expo-web-browser": ">=8.1.0"
+	},
+	"@react-native-community/bob": {
+		"source": "src",
+		"output": "build",
+		"targets": [
+			"commonjs",
+			"module",
+			"typescript"
+		]
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
