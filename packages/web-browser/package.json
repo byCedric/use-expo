@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/web-browser",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"description": "Complementary hooks for expo-web-browser",
 	"keywords": [
 		"expo",

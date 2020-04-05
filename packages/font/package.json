@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/font",
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"description": "Complementary hooks for expo-font",
 	"keywords": [
 		"expo",
