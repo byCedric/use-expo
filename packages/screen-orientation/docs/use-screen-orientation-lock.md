@@ -21,7 +21,7 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>yarn add @use-expo/screen-orientation</pre>
+    <pre>expo install @use-expo/screen-orientation</pre>
     <br />
 </div>
 
@@ -29,22 +29,26 @@
 
 ```jsx
 // full hook
-useScreenOrientationLock(OrientationLock.LANDSCAPE_LEFT);
+const [lockInfo, lockError] = useScreenOrientationLock(OrientationLock.LANDSCAPE_LEFT);
 ```
 
 
 ## Example
 
 ```jsx
+import { OrientationLock } from 'expo-screen-orientation';
 import { useScreenOrientationLock } from '@use-expo/screen-orientation';
 import { Text, View } from 'react-native';
 
 function ScreenOrientationLockExample() {
-    useScreenOrientationLock(OrientationLock.PORTRAIT_UP);
+    const [lockInfo, lockError] = useScreenOrientationLock(OrientationLock.PORTRAIT);
 
     return (
         <View>
-            <Text>This screen is now locked to portrait mode</Text>
+            {lockError
+                ? <Text>Could not lock the screen to portrait mode</Text>
+                : <Text>This screen is now locked to portrait mode</Text>
+            }
         </View>
     );
 }
@@ -54,9 +58,14 @@ function ScreenOrientationLockExample() {
 ## API
 
 ```ts
-import { ScreenOrientation } from 'expo';
+import { OrientationLock } from 'expo-screen-orientation';
 
-function useScreenOrientationLock(orientation: ScreenOrientation.OrientationLock): void;
+function useScreenOrientationLock(orientation?: OrientationLock): Result;
+
+type Result = [
+    OrientationLock | undefined,
+	Error | undefined,
+];
 ```
 
 <div align="center">

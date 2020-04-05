@@ -21,7 +21,7 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>yarn add @use-expo/battery expo-battery</pre>
+    <pre>expo install @use-expo/battery expo-battery</pre>
     <br />
 </div>
 

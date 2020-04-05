@@ -19,7 +19,7 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>yarn add use-expo</pre>
+    <pre>expo install use-expo</pre>
 </div>
 
 ### [Battery](./packages/battery)
@@ -47,6 +47,7 @@
 
 - [`useScreenOrientation`](./packages/screen-orientation/docs/use-screen-orientation.md) &nbsp;&mdash;&nbsp; track changes in screen orientation
 - [`useScreenOrientationLock`](./packages/screen-orientation/docs/use-screen-orientation-lock.md) &nbsp;&mdash;&nbsp; lock the screen to an orientation
+- [`useScreenOrientationPlatformLock`](./packages/screen-orientation/docs/use-screen-orientation-platform-lock.md) &nbsp;&mdash;&nbsp; lock multiple platforms to an orientation
 
 ### [Sensors](./packages/sensors)
 

@@ -1,6 +1,6 @@
 <div align="center">
-    <h1>usePedometerHistory</h1>
-    <p>Get historical step count between two dates with <a href="https://docs.expo.io/versions/latest/sdk/pedometer/"><code>Pedometer</code></a></p>
+    <h1>useScreenOrientationPlatformLock</h1>
+    <p>Lock multiple platforms to an orientation with <a href="https://docs.expo.io/versions/latest/sdk/screen-orientation/"><code>ScreenOrientation</code></a></p>
     <sup>
         <a href="https://github.com/bycedric/use-expo/releases">
             <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
@@ -21,7 +21,7 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>expo install @use-expo/sensors expo-sensors</pre>
+    <pre>expo install @use-expo/screen-orientation</pre>
     <br />
 </div>
 
@@ -29,32 +29,31 @@
 
 ```jsx
 // full hook
-const [data, isAvailable] = usePedometerHistory(start, end);
-
-// other options
-usePedometerHistory({ start, end, availability: false });
-usePedometerHistory({ start, end, initial: { steps: 5 } });
+const [lockInfo, lockError] = useScreenOrientationPlatformLock(...);
 ```
 
 
 ## Example
 
 ```jsx
-import { usePedometerHistory } from '@use-expo/sensors';
+import { OrientationLock, WebOrientationLock } from 'expo-screen-orientation';
+import { useScreenOrientationPlatformLock } from '@use-expo/screen-orientation';
 import { Text, View } from 'react-native';
 
-function PedometerHistorySensor() {
-    const [data, available] = usePedometerHistory(
-        new Date('2019-07-03T12:00:00+02:00'),
-        new Date('2019-07-03T16:00:00+02:00'),
-    );
+function ScreenOrientationPlatformLockExample() {
+    const [lockInfo, lockError] = useScreenOrientationPlatformLock({
+        screenOrientationConstantAndroid: OrientationLock.PORTRAIT,
+        screenOrientationLockWeb: WebOrientationLock.PORTRAIT,
+        screenOrientationArrayIOS: [
+            OrientationLock.PORTRAIT,
+        ],
+    });
 
     return (
         <View>
-            <Text>Pedometer:</Text>
-            {(available && data)
-                ? <Text>{data.steps} steps done in 4 hours</Text>
-                : <Text>unavailable</Text>
+            {lockError
+                ? <Text>Could not lock the screen to portrait mode</Text>
+                : <Text>This screen is now locked to portrait mode</Text>
             }
         </View>
     );
@@ -65,24 +64,14 @@ function PedometerHistorySensor() {
 ## API
 
 ```ts
-function usePedometerHistory(options?: Options): Result;
+import { PlatformOrientationInfo } from 'expo-screen-orientation';
 
-interface Options {
-    /** The initial data to use before the first update. */
-    initial?: PedometerMeasurement;
-    /** If it should check the availability of the sensor, defaults to `true`. */
-    availability?: boolean;
-}
+function useScreenOrientationPlatformLock(orientation?: PlatformOrientationInfo): Result;
 
 type Result = [
-    PedometerMeasurement | undefined,
-    boolean | undefined,
+    PlatformOrientationInfo | undefined,
+	Error | undefined,
 ];
-
-interface PedometerMeasurement {
-    /** The amount of steps made */
-    steps: number;
-}
 ```
 
 <div align="center">

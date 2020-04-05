@@ -5,7 +5,6 @@
 		"version": "0.0.0",
 		"slug": "use-expo",
 		"privacy": "public",
-		"sdkVersion": "36.0.0",
 		"githubUrl": "https://github.com/bycedric/use-expo",
 		"platforms": [
 			"ios",

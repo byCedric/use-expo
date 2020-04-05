@@ -21,7 +21,7 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>yarn add @use-expo/screen-orientation</pre>
+    <pre>expo install @use-expo/screen-orientation</pre>
     <br />
 </div>
 
@@ -29,7 +29,7 @@
 
 ```jsx
 // full hook
-const [orientation, sizeClass] = useScreenOrientation();
+const [orientation, getOrientation] = useScreenOrientation();
 
 // other options
 useScreenOrientation({ get: false, listen: false });
@@ -43,14 +43,20 @@ import { useScreenOrientation } from '@use-expo/screen-orientation';
 import { Text, View } from 'react-native';
 
 function ScreenOrientationExample() {
-    const [orientation, sizeClass] = useScreenOrientation();
+    const [orientation] = useScreenOrientation();
+    const sizeClass = !orientation ? undefined : {
+        horizontal: orientation.horizontalSizeClass,
+        vertical: orientation.verticalSizeClass,
+    };
 
     return (
         <View>
             <Text>Screen orientation:</Text>
-            <Text>{orientation}</Text>
+            <Text>{orientation?.orientation}</Text>
             <Text>Screen size class: (only available on iOS)</Text>
-            <Text>{JSON.stringify(sizeClass, null, 2)}</Text>
+            {!!sizeClass && (
+                <Text>{JSON.stringify(sizeClass, null, 2)}</Text>
+            )}
         </View>
     );
 }
@@ -60,6 +66,8 @@ function ScreenOrientationExample() {
 ## API
 
 ```ts
+import * as ScreenOrientation from 'expo-screen-orientation';
+
 function useScreenOrientation(options?: Options): Result;
 
 interface Options {
@@ -71,18 +79,10 @@ interface Options {
 
 type Result = [
     /** The current orientation of the screen */
-    ScreenOrientation.Orientation | undefined,
-    /** The (iOS) screen size class */
-    ScreenOrientationSizeClass | undefined,
+    ScreenOrientation.ScreenOrientationInfo | undefined,
     /** Callback to manually get the screen orientation */
-    () => Promise<void>;
+    () => Promise<ScreenOrientation.Orientation>,
 ];
-
-/** Both the horizontal and vertical size class, only available on iOS */
-interface ScreenOrientationSizeClass {
-    horizontal: ScreenOrientation.SizeClassIOS;
-    vertical: ScreenOrientation.SizeClassIOS;
-}
 ```
 
 <div align="center">

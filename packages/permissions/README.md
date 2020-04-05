@@ -21,7 +21,7 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>yarn add @use-expo/permissions expo-permissions</pre>
+    <pre>expo install @use-expo/permissions expo-permissions</pre>
     <br />
 </div>
 
