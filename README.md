@@ -47,6 +47,7 @@
 
 - [`useScreenOrientation`](./packages/screen-orientation/docs/use-screen-orientation.md) &nbsp;&mdash;&nbsp; track changes in screen orientation
 - [`useScreenOrientationLock`](./packages/screen-orientation/docs/use-screen-orientation-lock.md) &nbsp;&mdash;&nbsp; lock the screen to an orientation
+- [`useScreenOrientationPlatformLock`](./packages/screen-orientation/docs/use-screen-orientation-platform-lock.md) &nbsp;&mdash;&nbsp; lock multiple platforms to an orientation
 
 ### [Sensors](./packages/sensors)
 
