@@ -17,6 +17,8 @@ export function useWarmBrowser(browser?: string): void {
 		if (browser) {
 			warmUpAsync(browser);
 		}
-		return () => coolDownAsync(browser);
+		return () => {
+			coolDownAsync(browser);
+		}
 	}, [browser]);
 }
