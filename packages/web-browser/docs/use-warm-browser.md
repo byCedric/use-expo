@@ -29,14 +29,15 @@
 
 ```jsx
 // full hook
-const browsers = useWarmBrowser("com.android.chrome");
+useWarmBrowser('com.android.chrome');
 ```
+
 
 ## Example
 
 ```jsx
-import { useBrowsers, useWarmBrowser } from "@use-expo/web-browser";
-import { Text, View } from "react-native";
+import { useBrowsers, useWarmBrowser } from '@use-expo/web-browser';
+import { Text, View } from 'react-native';
 
 function App() {
   const browsers = useBrowsers();
@@ -44,6 +45,13 @@ function App() {
 
   return <View />;
 }
+```
+
+
+## API
+
+```ts
+function useWarmBrowser(browser: string): void;
 ```
 
 <div align="center">

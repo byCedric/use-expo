@@ -39,7 +39,8 @@
 		"@use-expo/font": "^1.0.1",
 		"@use-expo/permissions": "^1.0.1",
 		"@use-expo/screen-orientation": "^1.0.1",
-		"@use-expo/sensors": "^1.0.1"
+		"@use-expo/sensors": "^1.0.1",
+		"@use-expo/web-browser": "^1.0.0"
 	},
 	"devDependencies": {
 		"@react-native-community/bob": "^0.10.0",

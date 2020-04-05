@@ -13,6 +13,7 @@ export const docs = {
 	pedometer: 'https://docs.expo.io/versions/latest/sdk/pedometer/',
 	permissions: 'https://docs.expo.io/versions/latest/sdk/permissions/',
 	screenOrientation: 'https://docs.expo.io/versions/latest/sdk/screen-orientation/',
+	webBrowser: 'https://docs.expo.io/versions/latest/sdk/webbrowser/',
 };
 
 export const permissions = {

@@ -60,6 +60,11 @@
 - [`usePedometer`](./packages/sensors/docs/use-pedometer.md) &nbsp;&mdash;&nbsp; track user step count
 - [`usePedometerHistory`](./packages/sensors/docs/use-pedometer-history.md) &nbsp;&mdash;&nbsp; get historical step count between two dates
 
+### [WebBrowser](./packages/web-browser)
+
+- [`useBrowsers`](./packages/web-browser/docs/use-browsers.md) &nbsp;&mdash;&nbsp; Get a list of Android browsers
+- [`useWarmBrowser`](./packages/web-browser/docs/use-warm-browser.md) &nbsp;&mdash;&nbsp; Warm up and cool down and android browser
+
 
 ## Usage
 
