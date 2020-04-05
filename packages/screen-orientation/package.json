@@ -44,7 +44,7 @@
 		"typescript": "^3.8.3"
 	},
 	"peerDependencies": {
-		"expo-screen-orientation": "*"
+		"expo-screen-orientation": ">=1.0.0"
 	},
 	"@react-native-community/bob": {
 		"source": "src",

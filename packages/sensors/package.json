@@ -43,7 +43,7 @@
 		"typescript": "^3.8.3"
 	},
 	"peerDependencies": {
-		"expo-sensors": "*"
+		"expo-sensors": ">=8.1.0"
 	},
 	"@react-native-community/bob": {
 		"source": "src",
