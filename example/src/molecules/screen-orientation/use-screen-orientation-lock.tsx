@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { Button } from 'react-native-paper';
-import * as ScreenOrientation from 'expo-screen-orientation';
+import { OrientationLock } from 'expo-screen-orientation';
 import { useScreenOrientationLock } from 'use-expo';
 import { Example, Information, Link, Page, Space } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-const orientations = [
-	ScreenOrientation.OrientationLock.ALL,
-	ScreenOrientation.OrientationLock.LANDSCAPE,
-	ScreenOrientation.OrientationLock.LANDSCAPE_LEFT,
-	ScreenOrientation.OrientationLock.LANDSCAPE_RIGHT,
-	ScreenOrientation.OrientationLock.PORTRAIT,
-	ScreenOrientation.OrientationLock.PORTRAIT_UP,
+const orientations: OrientationLock[] = [
+	OrientationLock.ALL,
+	OrientationLock.LANDSCAPE,
+	OrientationLock.LANDSCAPE_LEFT,
+	OrientationLock.LANDSCAPE_RIGHT,
+	OrientationLock.PORTRAIT,
+	OrientationLock.PORTRAIT_UP,
 ];
 
 export const UseScreenOrientationLock: React.SFC<MoleculeProps> = (props) => {
-	const [orientation, setOrientation] = useState(ScreenOrientation.OrientationLock.ALL);
+	const [orientation, setOrientation] = useState(OrientationLock.ALL);
 	useScreenOrientationLock(orientation);
 
 	return (
@@ -36,7 +36,7 @@ export const UseScreenOrientationLock: React.SFC<MoleculeProps> = (props) => {
 							mode={orientation === type ? 'contained' : 'outlined'}
 							onPress={() => setOrientation(type)}
 						>
-							{type}
+							{orientationName[type]}
 						</Button>
 					</Space>
 				))}
@@ -48,4 +48,17 @@ export const UseScreenOrientationLock: React.SFC<MoleculeProps> = (props) => {
 UseScreenOrientationLock.defaultProps = {
 	name: 'useScreenOrientationLock',
 	description: 'locks the screen to an orientation with',
+};
+
+const orientationName: Record<OrientationLock, string> = {
+	[OrientationLock.DEFAULT]: 'default',
+	[OrientationLock.ALL]: 'all',
+	[OrientationLock.PORTRAIT]: 'portrait',
+	[OrientationLock.PORTRAIT_UP]: 'portrait up',
+	[OrientationLock.PORTRAIT_DOWN]: 'portrait down',
+	[OrientationLock.LANDSCAPE]: 'landscape',
+	[OrientationLock.LANDSCAPE_LEFT]: 'landscape left',
+	[OrientationLock.LANDSCAPE_RIGHT]: 'landscape right',
+	[OrientationLock.OTHER]: 'other',
+	[OrientationLock.UNKNOWN]: 'unknown',
 };
