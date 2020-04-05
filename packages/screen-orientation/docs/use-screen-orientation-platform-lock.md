@@ -1,6 +1,6 @@
 <div align="center">
-    <h1>useScreenOrientationLock</h1>
-    <p>Lock the screen to an orientation with <a href="https://docs.expo.io/versions/latest/sdk/screen-orientation/"><code>ScreenOrientation</code></a></p>
+    <h1>useScreenOrientationPlatformLock</h1>
+    <p>Lock multiple platforms to an orientation with <a href="https://docs.expo.io/versions/latest/sdk/screen-orientation/"><code>ScreenOrientation</code></a></p>
     <sup>
         <a href="https://github.com/bycedric/use-expo/releases">
             <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
@@ -29,19 +29,25 @@
 
 ```jsx
 // full hook
-const [lockInfo, lockError] = useScreenOrientationLock(OrientationLock.LANDSCAPE_LEFT);
+const [lockInfo, lockError] = useScreenOrientationPlatformLock(...);
 ```
 
 
 ## Example
 
 ```jsx
-import { OrientationLock } from 'expo-screen-orientation';
-import { useScreenOrientationLock } from '@use-expo/screen-orientation';
+import { OrientationLock, WebOrientationLock } from 'expo-screen-orientation';
+import { useScreenOrientationPlatformLock } from '@use-expo/screen-orientation';
 import { Text, View } from 'react-native';
 
-function ScreenOrientationLockExample() {
-    const [lockInfo, lockError] = useScreenOrientationLock(OrientationLock.PORTRAIT);
+function ScreenOrientationPlatformLockExample() {
+    const [lockInfo, lockError] = useScreenOrientationPlatformLock({
+        screenOrientationConstantAndroid: OrientationLock.PORTRAIT,
+        screenOrientationLockWeb: WebOrientationLock.PORTRAIT,
+        screenOrientationArrayIOS: [
+            OrientationLock.PORTRAIT,
+        ],
+    });
 
     return (
         <View>
@@ -58,12 +64,12 @@ function ScreenOrientationLockExample() {
 ## API
 
 ```ts
-import { OrientationLock } from 'expo-screen-orientation';
+import { PlatformOrientationInfo } from 'expo-screen-orientation';
 
-function useScreenOrientationLock(orientation?: OrientationLock): Result;
+function useScreenOrientationPlatformLock(orientation?: PlatformOrientationInfo): Result;
 
 type Result = [
-    OrientationLock | undefined,
+    PlatformOrientationInfo | undefined,
 	Error | undefined,
 ];
 ```

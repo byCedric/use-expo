@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ScreenOrientation } from 'expo';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 /**
  * Get or track the screen orientation of the device.
@@ -7,53 +7,42 @@ import { ScreenOrientation } from 'expo';
  * For iOS, it also returns both the horizontal and vertical size classes.
  *
  * @see https://docs.expo.io/versions/latest/sdk/screen-orientation/
- * @example const [orientation, sizeClass, getScreenOrientation] = useScreenOrientation(...);
+ * @example const [orientation, getOrientation] = useScreenOrientation(...);
  */
 export function useScreenOrientation(
 	options: ScreenOrientationOptions = {},
 ): [
-	ScreenOrientation.Orientation | undefined,
-	ScreenOrientationSizeClass | undefined,
-	() => Promise<void>,
+	ScreenOrientation.ScreenOrientationInfo | undefined,
+	() => Promise<ScreenOrientation.Orientation>,
 ] {
-	const [orientation, setOrientation] = useState<ScreenOrientation.Orientation>();
-	const [sizeClass, setSizeClass] = useState<ScreenOrientationSizeClass>();
+	const [orientation, setOrientation] = useState<ScreenOrientation.ScreenOrientationInfo>();
 	const {
 		get = true,
 		listen = true,
 	} = options;
 
-	const setInfo = useCallback((info: ScreenOrientation.OrientationInfo) => {
-		setOrientation(info.orientation);
-
-		if (info.horizontalSizeClass && info.verticalSizeClass) {
-			setSizeClass({
-				horizontal: info.horizontalSizeClass,
-				vertical: info.verticalSizeClass,
-			});
-		}
-	}, []);
-
-	const getScreenOrientation = useCallback(
-		() => ScreenOrientation.getOrientationAsync().then(setInfo),
-		[setInfo],
-	);
+	const getOrientation = useCallback(() => (
+		ScreenOrientation.getOrientationAsync().then(orientation => {
+			setOrientation({ orientation });
+			return orientation;
+		})
+	), []);
 
 	useEffect(() => {
 		if (get) {
-			getScreenOrientation();
+			getOrientation();
 		}
 
 		if (listen) {
 			const subscription = ScreenOrientation.addOrientationChangeListener(
-				event => setInfo(event.orientationInfo)
+				event => setOrientation(event.orientationInfo),
 			);
 
 			return subscription.remove;
 		}
-	}, [get, getScreenOrientation, listen, setInfo]);
+	}, [get, listen, getOrientation]);
 
-	return [orientation, sizeClass, getScreenOrientation];
+	return [orientation, getOrientation];
 }
 
 export interface ScreenOrientationOptions {
@@ -61,10 +50,4 @@ export interface ScreenOrientationOptions {
 	get?: boolean;
 	/** If it should listen to screen orientation changes, defaults to `true` */
 	listen?: boolean;
-}
-
-/** Both the horizontal and vertical size class, only available on iOS */
-export interface ScreenOrientationSizeClass {
-	horizontal: ScreenOrientation.SizeClassIOS;
-	vertical: ScreenOrientation.SizeClassIOS;
 }
