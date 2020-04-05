@@ -21,7 +21,7 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>yarn add @use-expo/font expo-font</pre>
+    <pre>expo install @use-expo/font expo-font</pre>
     <br />
 </div>
 
