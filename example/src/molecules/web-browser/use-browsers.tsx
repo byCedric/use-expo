@@ -6,7 +6,7 @@ import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 import { View } from 'react-native';
 
-export const UseAccelerometer: React.SFC<MoleculeProps> = (props) => {
+export const UseBrowsers: React.SFC<MoleculeProps> = (props) => {
 	const browsers = useBrowsers();
 
 	return (
@@ -30,7 +30,7 @@ export const UseAccelerometer: React.SFC<MoleculeProps> = (props) => {
 	);
 };
 
-UseAccelerometer.defaultProps = {
+UseBrowsers.defaultProps = {
 	name: 'useBrowsers',
 	description: 'Get a list of Android browsers',
 };
