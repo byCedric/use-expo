@@ -1259,13 +1259,13 @@
     "@babel/preset-typescript" "^7.3.3"
     typescript "3.7.3"
 
-"@expo/config@3.0.8":
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/@expo/config/-/config-3.0.8.tgz#1f32a5e30ab426763c0feec307263107a55f7f32"
-  integrity sha512-G7IsSpybU50pAQ5L7/uD1K4L5a08a9iBGmRocPSjlE0Vl+Cbg9111GtuM+ikwOwN1lS9AsCEiXsELsxNSoxslA==
+"@expo/config@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@expo/config/-/config-3.1.0.tgz#6a2915c78fb246f82cb33bbfcccfb3caba87ef6b"
+  integrity sha512-FTWwLI7mzs8Cxuj02WFWYYQZLu+ZZZLnMi7SVS8IWiWlpPFDRNvEgj3hIuStz0BqfRGZ1IAQgOFkpoOEulB69g==
   dependencies:
     "@babel/register" "^7.8.3"
-    "@expo/json-file" "8.2.8"
+    "@expo/json-file" "8.2.9"
     "@expo/plist" "0.0.2"
     "@types/invariant" "^2.2.30"
     find-yarn-workspace-root "^1.2.1"
@@ -1296,10 +1296,10 @@
     slugify "^1.3.4"
     xml2js "^0.4.23"
 
-"@expo/image-utils@0.2.18":
-  version "0.2.18"
-  resolved "https://registry.yarnpkg.com/@expo/image-utils/-/image-utils-0.2.18.tgz#b4a454e150295808337f7cfa02ff9aad2c2f1e7f"
-  integrity sha512-CEV/kOSxpK6BdzZbty9HO00+L5qEs4u1bi8yZGrV8P25Nf30VvY5Ff56KMQFuAEVucfEMcSMMAz5DNR+ndu36w==
+"@expo/image-utils@0.2.19":
+  version "0.2.19"
+  resolved "https://registry.yarnpkg.com/@expo/image-utils/-/image-utils-0.2.19.tgz#bf9c8d84e9f5e1d448167141a49cbd08147bce6d"
+  integrity sha512-DuxycU6ipJOmgPWV9PtQawThExwQmiTFF9LTBZDSCKMhn90ixxVj6YvxiqKjNoAjsMdl8LL4L7G1iFrWYVB6jA==
   dependencies:
     "@expo/spawn-async" "1.5.0"
     fs-extra "^9.0.0"
@@ -1323,10 +1323,10 @@
     util.promisify "^1.0.0"
     write-file-atomic "^2.3.0"
 
-"@expo/json-file@8.2.8":
-  version "8.2.8"
-  resolved "https://registry.yarnpkg.com/@expo/json-file/-/json-file-8.2.8.tgz#8d6c37281fdf837b1c413c182109debdc4c9c148"
-  integrity sha512-6h579oROsDNfsrHsnCJSE/LtVtAKSkqqi7apdqsb//kdcvUryiopMF/X8UaAhEjHvXllzfCcS/u0qiDqPbsqGA==
+"@expo/json-file@8.2.9":
+  version "8.2.9"
+  resolved "https://registry.yarnpkg.com/@expo/json-file/-/json-file-8.2.9.tgz#b52b29d066d025a9ff26dd9989caa6d8df41acd1"
+  integrity sha512-1RmungNliM9S+XvGW9XbVTLNNN+EQWiqYuxcE77Clj8YFyf9oHOs0nsF1/oL0xLxPM/Y+OoEwXB3BZOxb8T5KA==
   dependencies:
     "@babel/code-frame" "^7.0.0-beta.44"
     fs-extra "^8.0.1"
@@ -1359,19 +1359,19 @@
     lodash "^4.17.4"
 
 "@expo/webpack-config@^0.11.1":
-  version "0.11.21"
-  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.11.21.tgz#27427857111e5631f67be889c0bb8327902556a4"
-  integrity sha512-BQtgH/8SPdAizuYRs9o+0gkBWhLf8XUY56sx1TvprtGtFJUJRLXHVf2YrLcTrsD08xa0PmE/JSTNZD4q87txuQ==
+  version "0.11.22"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.11.22.tgz#003c228ad9ef79222546c177c6ff154f4263518e"
+  integrity sha512-DM42XALwRBP0fzJ/M2sehirYOTVaRu4nYgmw8v07IjKIzMl8yjTOn5F0jkcdi+FrLjBNfsRpOIqYN9vHUm9PeQ==
   dependencies:
     "@babel/core" "7.9.0"
     "@babel/runtime" "7.9.0"
-    "@expo/config" "3.0.8"
+    "@expo/config" "3.1.0"
     babel-loader "8.1.0"
     chalk "^2.4.2"
     clean-webpack-plugin "^3.0.0"
     copy-webpack-plugin "5.0.0"
     css-loader "^2.1.1"
-    expo-pwa "0.0.4"
+    expo-pwa "0.0.5"
     file-loader "4.2.0"
     getenv "^0.7.0"
     html-loader "^0.5.5"
@@ -3350,16 +3350,6 @@
     regexpp "^3.0.0"
     tsutils "^3.17.1"
 
-"@typescript-eslint/experimental-utils@2.27.0":
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.27.0.tgz#801a952c10b58e486c9a0b36cf21e2aab1e9e01a"
-  integrity sha512-vOsYzjwJlY6E0NJRXPTeCGqjv5OHgRU1kzxHKWJVPjDYGbPgLudBXjIlc+OD1hDBZ4l1DLbOc5VjofKahsu9Jw==
-  dependencies:
-    "@types/json-schema" "^7.0.3"
-    "@typescript-eslint/typescript-estree" "2.27.0"
-    eslint-scope "^5.0.0"
-    eslint-utils "^2.0.0"
-
 "@typescript-eslint/experimental-utils@2.28.0", "@typescript-eslint/experimental-utils@^2.5.0":
   version "2.28.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/experimental-utils/-/experimental-utils-2.28.0.tgz#1fd0961cd8ef6522687b4c562647da6e71f8833d"
@@ -3379,19 +3369,6 @@
     "@typescript-eslint/experimental-utils" "2.28.0"
     "@typescript-eslint/typescript-estree" "2.28.0"
     eslint-visitor-keys "^1.1.0"
-
-"@typescript-eslint/typescript-estree@2.27.0":
-  version "2.27.0"
-  resolved "https://registry.yarnpkg.com/@typescript-eslint/typescript-estree/-/typescript-estree-2.27.0.tgz#a288e54605412da8b81f1660b56c8b2e42966ce8"
-  integrity sha512-t2miCCJIb/FU8yArjAvxllxbTiyNqaXJag7UOpB5DVoM3+xnjeOngtqlJkLRnMtzaRcJhe3CIR9RmL40omubhg==
-  dependencies:
-    debug "^4.1.1"
-    eslint-visitor-keys "^1.1.0"
-    glob "^7.1.6"
-    is-glob "^4.0.1"
-    lodash "^4.17.15"
-    semver "^6.3.0"
-    tsutils "^3.17.1"
 
 "@typescript-eslint/typescript-estree@2.28.0":
   version "2.28.0"
@@ -6783,15 +6760,15 @@ expo-permissions@~8.1.0:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.1.0.tgz#a7f2ee91ba76ce3a467e7b10adaa9ca5201b226f"
   integrity sha512-QBHD+1J9+sGFnhoEGzMRchPweeEE0OJ9ehG/0l1BMRBA7qsLS9vRC1FTJ55NwjI0Kr4RTha9r6ZX1kZHT09f/w==
 
-expo-pwa@0.0.4:
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/expo-pwa/-/expo-pwa-0.0.4.tgz#76e31e3a96efb9fa38a0901411f854a655030203"
-  integrity sha512-OeSxZe2y+sC7mm+Vgu4PUYL8EzLARmdyZw2A8GHYBG84e8hWqkizep5/NM/xX4Hj7k/Jnl/Xy4HMEl2ecsSEjw==
+expo-pwa@0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/expo-pwa/-/expo-pwa-0.0.5.tgz#b138cc889aa5d5fc7c48c7b420bd19923023d9a8"
+  integrity sha512-2DNyqyazsHKZZjPeagWTBWFjoXFl1PZW5cS01H7nISCEM38czztFfQfy9dAGzTS7mKlTWUBdBKeXmr8GkftyCA==
   dependencies:
     "@expo/babel-preset-cli" "0.2.8"
-    "@expo/config" "3.0.8"
-    "@expo/image-utils" "0.2.18"
-    "@expo/json-file" "8.2.8"
+    "@expo/config" "3.1.0"
+    "@expo/image-utils" "0.2.19"
+    "@expo/json-file" "8.2.9"
     chalk "2.4.2"
     commander "2.20.0"
     fs-extra "^9.0.0"
