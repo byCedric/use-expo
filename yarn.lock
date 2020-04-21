@@ -1358,10 +1358,10 @@
   dependencies:
     lodash "^4.17.4"
 
-"@expo/webpack-config@^0.11.1":
-  version "0.11.25"
-  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.11.25.tgz#0bba187a324caa164ff5f4ec3b974be0cfec7166"
-  integrity sha512-Tr8i7qKE22NVhu2s7cZrl5FRyiA18eKUyoWu1j4nAAo5rT2ANpE7nUaDfeGdTrFSPxti49byIFB2eFBS/bqHIQ==
+"@expo/webpack-config@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.12.0.tgz#c45abe178695105ce889345bb3de8f55b6f82dbb"
+  integrity sha512-ZrMb9+LicCvHbT4KJOHpNDEb/UUJHeJ6PdJ8Y6iXVMrjqb/Vu/YbRT+kT7nCxoF0jiOmkvahi1F40rRadPZ8VQ==
   dependencies:
     "@babel/core" "7.9.0"
     "@babel/runtime" "7.9.0"
