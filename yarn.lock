@@ -12670,12 +12670,10 @@ react-native-safe-area-view@^0.14.9:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
-react-native-screens@~2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.2.0.tgz#cc4cdf17426fdda97ad93a5e812a1899390f1978"
-  integrity sha512-a0VzxOWot7F9B/GQyDSssBRd3jUJazFnTQS61IiyReWB6aHlFhf3Xz10jBRoURXy1EMCDCHgenmTVTkKHpKyqQ==
-  dependencies:
-    debounce "^1.2.0"
+react-native-screens@~2.6.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.6.0.tgz#6f6e4a79221d4060e3531d12544c581cd82e0a83"
+  integrity sha512-nYXJluCj5hdgW4wMc2/12jvKC2sE1Kfc6hl42+L+b+kuvRj7VgevvD1eOuIoLoM5kXb9DKNP65E51ML/uKA9Ig==
 
 react-native-view-shot@3.1.2:
   version "3.1.2"
