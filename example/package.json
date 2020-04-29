@@ -47,7 +47,7 @@
 		"react-navigation-stack": "^1.10.3"
 	},
 	"devDependencies": {
-		"@expo/webpack-config": "^0.11.1",
+		"@expo/webpack-config": "^0.12.2",
 		"@types/lodash": "^4.14.149",
 		"@types/react": "^16.9.11",
 		"@types/react-native": "^0.60.22",
