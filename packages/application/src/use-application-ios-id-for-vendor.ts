@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import * as Application from 'expo-application';
+import { getIosIdForVendorAsync } from 'expo-application';
 
 /**
  * Get the app's vendor ID.
@@ -11,16 +11,13 @@ export function useApplicationIosIdForVendor(
 	options: ApplicationIosIdForVendorOptions = {},
 ): [
 	string | undefined,
-	() => Promise<string>,
+	() => Promise<void>,
 ] {
 	const [applicationIdForVendor, setApplicationIdForVendor] = useState<string>();
 	const { get = true } = options;
 
 	const getApplicationIdForVendor = useCallback(() => (
-		Application.getIosIdForVendorAsync().then(vendorId => {
-			setApplicationIdForVendor(vendorId);
-			return vendorId;
-		})
+		getIosIdForVendorAsync().then(setApplicationIdForVendor)
 	), []);
 
 	useEffect(() => {

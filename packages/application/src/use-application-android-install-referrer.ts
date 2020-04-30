@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import * as Application from 'expo-application';
+import { getInstallReferrerAsync } from 'expo-application';
 
 /**
  * Get the referrer URL of the installed app.
@@ -11,16 +11,13 @@ export function useApplicationAndroidInstallReferrer(
 	options: ApplicationAndroidInstallReferrerOptions = {},
 ): [
 	string | undefined,
-	() => Promise<string>,
+	() => Promise<void>,
 ] {
 	const [applicationInstallReferrer, setApplicationInstallReferrer] = useState<string>();
 	const { get = true } = options;
 
 	const getApplicationInstallReferrer = useCallback(() => (
-		Application.getInstallReferrerAsync().then(referrer => {
-			setApplicationInstallReferrer(referrer);
-			return referrer;
-		})
+		getInstallReferrerAsync().then(setApplicationInstallReferrer)
 	), []);
 
 	useEffect(() => {

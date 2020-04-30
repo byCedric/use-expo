@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import * as Application from 'expo-application';
+import { getLastUpdateTimeAsync } from 'expo-application';
 
 /**
  * Get the time the app was last updated via the Google Play Store
@@ -11,16 +11,13 @@ export function useApplicationAndroidLastUpdateTime(
 	options: ApplicationAndroidLastUpdateTimeOptions = {},
 ): [
 	Date | undefined,
-	() => Promise<Date>,
+	() => Promise<void>,
 ] {
 	const [applicationLastUpdateTime, setApplicationLastUpdateTime] = useState<Date>();
 	const { get = true } = options;
 
 	const getApplicationLastUpdateTime = useCallback(() => (
-		Application.getLastUpdateTimeAsync().then(date => {
-			setApplicationLastUpdateTime(date);
-			return date;
-		})
+		getLastUpdateTimeAsync().then(setApplicationLastUpdateTime)
 	), []);
 
 	useEffect(() => {

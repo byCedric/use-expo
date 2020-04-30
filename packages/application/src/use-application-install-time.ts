@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import * as Application from 'expo-application';
+import { getInstallationTimeAsync } from 'expo-application';
 
 /**
  * Get the time the app was installed on the device.
@@ -11,16 +11,13 @@ export function useApplicationInstallTime(
 	options: ApplicationInstallTimeOptions = {},
 ): [
 	Date | undefined,
-	() => Promise<Date>,
+	() => Promise<void>,
 ] {
 	const [applicationInstallTime, setApplicationInstallTime] = useState<Date>();
 	const { get = true } = options;
 
 	const getApplicationInstallTime = useCallback(() => (
-		Application.getInstallationTimeAsync().then(date => {
-			setApplicationInstallTime(date);
-			return date;
-		})
+		getInstallationTimeAsync().then(setApplicationInstallTime)
 	), []);
 
 	useEffect(() => {
