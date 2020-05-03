@@ -1,0 +1,27 @@
+{
+	"badgeTemplate": "<img src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square\" alt=\"contributors\" />",
+	"commit": false,
+	"contributors": [
+		{
+			"login": "byCedric",
+			"name": "Cedric van Putten",
+			"avatar_url": "https://avatars2.githubusercontent.com/u/1203991?v=4",
+			"profile": "https://bycedric.com",
+			"contributions": [
+				"code",
+				"doc",
+				"example"
+			]
+		}
+	],
+	"contributorsPerLine": 7,
+	"files": [
+		"README.md"
+	],
+	"imageSize": 100,
+	"projectName": "use-expo",
+	"projectOwner": "byCedric",
+	"repoHost": "https://github.com",
+	"repoType": "github",
+	"skipCi": true
+}

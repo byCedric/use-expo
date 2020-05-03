@@ -2,8 +2,10 @@
     <h1>expo hooks</h1>
     <p>Complementary hooks for <a href="https://github.com/expo/expo">Expo</a></p>
     <sup>
-        <a href="https://github.com/bycedric/use-expo/releases">
-            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
+        <a href="https://github.com/bycedric/use-expo#contributors">
+            <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+            <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="contributors" />
+            <!-- ALL-CONTRIBUTORS-BADGE:END -->
         </a>
         <a href="https://github.com/bycedric/use-expo/actions">
             <img src="https://img.shields.io/github/workflow/status/byCedric/use-expo/Packages/master.svg?style=flat-square" alt="builds" />
@@ -86,6 +88,23 @@ import { usePermissions } from '@use-expo/permissions';
 
 > `use-expo` includes all hooks and, because of that, requires _all peer dependencies_.
 > It's recommended only to install the hooks you use to avoid unnecessary peer dependency warnings.
+
+
+## Contributors
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification ([emoji key](https://allcontributors.org/docs/en/emoji-key)). Contributions of any kind welcome!
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://bycedric.com"><img src="https://avatars2.githubusercontent.com/u/1203991?v=4" width="100px;" alt=""/><br /><sub><b>Cedric van Putten</b></sub></a><br /><a href="https://github.com/byCedric/use-expo/commits?author=byCedric" title="Code">💻</a> <a href="https://github.com/byCedric/use-expo/commits?author=byCedric" title="Documentation">📖</a> <a href="#example-byCedric" title="Examples">💡</a></td>
+  </tr>
+</table>
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 
 
 <div align="center">
