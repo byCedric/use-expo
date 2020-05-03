@@ -1,6 +1,7 @@
 import { sample } from 'lodash';
 
 export const docs = {
+	application: 'https://docs.expo.io/versions/latest/sdk/application/',
 	accelerometer: 'https://docs.expo.io/versions/latest/sdk/accelerometer/',
 	barometer: 'https://docs.expo.io/versions/latest/sdk/barometer/',
 	battery: 'https://docs.expo.io/versions/latest/sdk/battery/',

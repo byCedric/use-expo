@@ -5,6 +5,7 @@ import { startCase } from 'lodash';
 import { Link, ListHeader, ListItem, Page, Space } from '../atoms';
 import { repo } from '../providers/urls';
 
+import * as Application from './application';
 import * as Battery from './battery';
 import * as Brightness from './brightness';
 import * as Font from './font';
@@ -14,6 +15,7 @@ import * as Sensors from './sensors';
 import * as WebBrowser from './web-browser';
 
 export const molecules = {
+	Application,
 	Battery,
 	Brightness,
 	Font,
