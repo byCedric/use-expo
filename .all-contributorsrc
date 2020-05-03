@@ -1,5 +1,5 @@
 {
-  "badgeTemplate": "<img src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square\" alt=\"contributors\" />",
+  "badgeTemplate": "            <img src=\"https://img.shields.io/badge/all_contributors-<%= contributors.length %>-orange.svg?style=flat-square\" alt=\"contributors\" />\n            ",
   "commit": false,
   "contributors": [
     {
@@ -20,8 +20,7 @@
       "profile": "https://twitter.com/baconbrix",
       "contributions": [
         "code",
-        "doc",
-        "example"
+        "doc"
       ]
     }
   ],
