@@ -1,6 +1,6 @@
 {
 	"name": "use-expo",
-	"version": "2.0.0",
+	"version": "3.0.0",
 	"description": "Complementary hooks for expo",
 	"keywords": [
 		"expo",
@@ -34,7 +34,7 @@
 		"build": "bob build"
 	},
 	"dependencies": {
-		"@use-expo/application": "^0.0.0",
+		"@use-expo/application": "^1.0.0",
 		"@use-expo/battery": "^2.0.0",
 		"@use-expo/brightness": "^2.0.0",
 		"@use-expo/font": "^2.0.0",

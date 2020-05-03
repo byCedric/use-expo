@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/application",
-	"version": "0.0.0",
+	"version": "1.0.0",
 	"description": "Complementary hooks for expo-application",
 	"keywords": [
 		"expo",
