@@ -22,6 +22,13 @@
     <pre>expo install use-expo</pre>
 </div>
 
+### [Application](./packages/application)
+
+- [`useApplicationInstallTime`](./packages/application/docs/use-application-install-time.md) &nbsp;&mdash;&nbsp; get the time the app was installed on the device
+- [`useApplicationAndroidInstallReferrer`](./packages/application/docs/use-application-android-install-referrer.md) &nbsp;&mdash;&nbsp; get the referrer URL of the installed app
+- [`useApplicationAndroidLastUpdateTime`](./packages/application/docs/use-application-android-last-update-time.md) &nbsp;&mdash;&nbsp; get the time the app was last updated via the Google Play Store
+- [`useApplicationIosIdForVendor`](./packages/application/docs/use-application-ios-id-for-vendor.md) &nbsp;&mdash;&nbsp; get the referrer URL of the installed app
+
 ### [Battery](./packages/battery)
 
 - [`useBattery`](./packages/battery/docs/use-battery.md) &nbsp;&mdash;&nbsp; get the battery level, state and power mode
