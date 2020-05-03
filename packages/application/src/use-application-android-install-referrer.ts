@@ -2,9 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { getInstallReferrerAsync } from 'expo-application';
 
 /**
- * Get the referrer URL of the installed app.
+ * Get the referrer URL of the installed app from the Google Play Store.
+ * This URL may not be a complete or absolute URL.
  *
- * @see https://docs.expo.io/versions/latest/sdk/application/
+ * @see https://docs.expo.io/versions/latest/sdk/application/#applicationgetinstallreferrerasync
+ * @see https://developer.android.com/google/play/installreferrer
  * @example const [installReferrer, getInstallReferrer] = useApplicationAndroidInstallReferrer(...);
  */
 export function useApplicationAndroidInstallReferrer(
