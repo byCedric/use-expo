@@ -3,9 +3,8 @@
     <p>Complementary hooks for <a href="https://github.com/expo/expo">Expo</a></p>
     <sup>
         <a href="https://github.com/bycedric/use-expo#contributors">
-            <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
             <img src="https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square" alt="contributors" />
-            
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
         </a>
         <a href="https://github.com/bycedric/use-expo/actions">
