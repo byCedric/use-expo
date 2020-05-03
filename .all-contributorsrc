@@ -32,6 +32,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "JB1905",
+      "name": "Jakub Biesiada",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/28870390?v=4",
+      "profile": "https://jb1905.github.io/portfolio/",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

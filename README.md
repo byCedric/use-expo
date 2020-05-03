@@ -4,7 +4,7 @@
     <sup>
         <a href="https://github.com/bycedric/use-expo#contributors">
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-            <img src="https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square" alt="contributors" />
+            <img src="https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square" alt="contributors" />
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
         </a>
         <a href="https://github.com/bycedric/use-expo/actions">
@@ -102,6 +102,7 @@ This project follows the [all-contributors](https://github.com/all-contributors/
     <td align="center"><a href="https://bycedric.com"><img src="https://avatars2.githubusercontent.com/u/1203991?v=4" width="100px;" alt=""/><br /><sub><b>Cedric van Putten</b></sub></a><br /><a href="https://github.com/byCedric/use-expo/commits?author=byCedric" title="Code">💻</a> <a href="https://github.com/byCedric/use-expo/commits?author=byCedric" title="Documentation">📖</a> <a href="#example-byCedric" title="Examples">💡</a></td>
     <td align="center"><a href="https://twitter.com/baconbrix"><img src="https://avatars1.githubusercontent.com/u/9664363?v=4" width="100px;" alt=""/><br /><sub><b>Evan Bacon</b></sub></a><br /><a href="https://github.com/byCedric/use-expo/commits?author=EvanBacon" title="Code">💻</a> <a href="https://github.com/byCedric/use-expo/commits?author=EvanBacon" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/rodw1995"><img src="https://avatars1.githubusercontent.com/u/3266698?v=4" width="100px;" alt=""/><br /><sub><b>Robbie op de Weegh</b></sub></a><br /><a href="https://github.com/byCedric/use-expo/commits?author=rodw1995" title="Code">💻</a> <a href="https://github.com/byCedric/use-expo/commits?author=rodw1995" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://jb1905.github.io/portfolio/"><img src="https://avatars2.githubusercontent.com/u/28870390?v=4" width="100px;" alt=""/><br /><sub><b>Jakub Biesiada</b></sub></a><br /><a href="https://github.com/byCedric/use-expo/issues?q=author%3AJB1905" title="Bug reports">🐛</a> <a href="https://github.com/byCedric/use-expo/commits?author=JB1905" title="Code">💻</a></td>
   </tr>
 </table>
 
