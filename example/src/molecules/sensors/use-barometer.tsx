@@ -1,6 +1,6 @@
 import React from 'react';
 import { Caption } from 'react-native-paper';
-import { useBarometer } from 'use-expo';
+import { useBarometer } from '@use-expo/sensors';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';

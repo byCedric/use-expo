@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { Slider } from 'react-native';
 import { Caption } from 'react-native-paper';
 import { debounce, round } from 'lodash';
-import { useBrightness } from 'use-expo';
+import { useBrightness } from '@use-expo/brightness';
 import { Example, Information, Link, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';

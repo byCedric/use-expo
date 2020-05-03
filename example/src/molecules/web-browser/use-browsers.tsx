@@ -1,6 +1,6 @@
 import React from 'react';
 import { Caption, Text } from 'react-native-paper';
-import { useBrowsers } from 'use-expo';
+import { useBrowsers } from '@use-expo/web-browser';
 import { Example, Information, Link, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';

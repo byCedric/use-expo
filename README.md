@@ -21,7 +21,6 @@
         <a href="https://github.com/byCedric/use-expo/blob/master/CHANGELOG.md"><b>Changelog</b></a>
     </p>
     <br />
-    <pre>expo install use-expo</pre>
 </div>
 
 ### [Application](./packages/application)
@@ -77,17 +76,12 @@
 
 ## Usage
 
-You can import these hooks with two methods, install `use-expo` or `@use-expo/<group>` package.
+You can import these hooks by installing the `@use-expo/<group>` packages.
 
 ```js
-import { useBrightness, usePermissions } from 'use-expo';
-// or
 import { useBrightness } from '@use-expo/brightness';
 import { usePermissions } from '@use-expo/permissions';
 ```
-
-> `use-expo` includes all hooks and, because of that, requires _all peer dependencies_.
-> It's recommended only to install the hooks you use to avoid unnecessary peer dependency warnings.
 
 
 ## Contributors

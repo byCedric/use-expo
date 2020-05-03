@@ -2,7 +2,8 @@ import React from 'react';
 import { Button } from 'react-native-paper';
 import { SYSTEM_BRIGHTNESS } from 'expo-permissions';
 import { BrightnessMode } from 'expo-brightness';
-import { usePermissions, useSystemBrightnessMode } from 'use-expo';
+import { useSystemBrightnessMode } from '@use-expo/brightness';
+import { usePermissions } from '@use-expo/permissions'
 import { Example, Information, Link, Page, Space, MissingPermissions } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import * as url from '../../providers/urls';
