@@ -1,0 +1,60 @@
+{
+	"name": "@use-expo/application",
+	"version": "2.0.0",
+	"description": "Complementary hooks for expo-application",
+	"keywords": [
+		"expo",
+		"application",
+		"hooks"
+	],
+	"license": "MIT",
+	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/application#readme",
+	"bugs": {
+		"url": "https://github.com/bycedric/use-expo/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bycedric/use-expo.git",
+		"directory": "packages/application"
+	},
+	"directories": {
+		"lib": "src",
+		"test": "tests"
+	},
+	"main": "build/commonjs/index.js",
+	"react-native": "src/index.ts",
+	"module": "build/module/index.js",
+	"types": "build/typescript/src/index.d.ts",
+	"files": [
+		"build",
+		"src"
+	],
+	"scripts": {
+		"prepare": "bob build",
+		"build": "bob build"
+	},
+	"devDependencies": {
+		"@react-native-community/bob": "^0.10.0",
+		"@testing-library/react-hooks": "^3.2.1",
+		"@types/react": "~16.9.32",
+	  	"expo-application": "~2.1.1",
+		"react": "16.9.0",
+		"typescript": "^3.8.3"
+	},
+	"peerDependencies": {
+		"expo-application": ">=2.1.0"
+	},
+	"@react-native-community/bob": {
+		"source": "src",
+		"output": "build",
+		"targets": [
+			"commonjs",
+			"module",
+			"typescript"
+		]
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}
