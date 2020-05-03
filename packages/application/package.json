@@ -1,6 +1,6 @@
 {
 	"name": "@use-expo/application",
-	"version": "2.0.0",
+	"version": "0.0.0",
 	"description": "Complementary hooks for expo-application",
 	"keywords": [
 		"expo",
@@ -38,7 +38,7 @@
 		"@react-native-community/bob": "^0.10.0",
 		"@testing-library/react-hooks": "^3.2.1",
 		"@types/react": "~16.9.32",
-	  	"expo-application": "~2.1.1",
+		"expo-application": "~2.1.1",
 		"react": "16.9.0",
 		"typescript": "^3.8.3"
 	},
