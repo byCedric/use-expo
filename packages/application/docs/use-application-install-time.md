@@ -24,55 +24,55 @@
     <pre>expo install @use-expo/application expo-application</pre>  
     <br />  
 </div>  
-  
-## Usage  
-  
-```jsx  
-// full hook  
-const [installTime, getInstallTime] = useApplicationInstallTime();  
 
-// other options  
-useApplicationInstallTime({ get: false });  
-```  
-  
-  
-## Example  
-  
-```jsx  
-import { useApplicationInstallTime } from '@use-expo/application';  
-import { Text, View } from 'react-native';  
-  
-function ApplicationInstallTimeExample() {  
- const [installTime] = useApplicationInstallTime(); 
-  
- return (
-   <View>
-     <Text>Install time: {installTime ? installTime.toString() : '-'}</Text>
-   </View>
- );
-}   
-```  
-  
-  
-## API  
-  
-```ts    
-function useApplicationInstallTime(options?: Options): Result;  
-  
-interface Options {  
-  /** If it should fetch the application install time when mounted, defaults to `true` */  
-  get?: boolean;  
+## Usage
+
+```jsx
+// full hook
+const [installTime, getInstallTime] = useApplicationInstallTime(); 
+
+// other options
+useApplicationInstallTime({ get: false });
+```
+
+## Example
+
+```jsx
+import { useApplicationInstallTime } from '@use-expo/application';
+import React from 'react';
+import { Text, View } from 'react-native';
+
+function ApplicationInstallTimeExample() {
+  const [installTime] = useApplicationInstallTime();
+
+  return (
+    <View>
+      <Text>Install time: {installTime ? installTime.toString() : '-'}</Text>
+    </View>
+  );
 }
-  
-type Result = [  
- /** The current application install time */
- Date | undefined,
- /** Callback to manually get the application install time */
- () => Promise<Date>,];  
-```  
-  
-<div align="center">  
-    <br />  
-    with :heart: <strong>byCedric</strong>  
-    <br />  
+```
+
+## API
+
+```ts
+function useApplicationInstallTime(options?: Options): Result;
+
+interface Options {
+  /** If it should fetch the application install time when mounted, defaults to `true` */
+  get?: boolean;
+}
+
+type Result = [
+  /** The current application install time */
+  Date | undefined,
+  /** Callback to manually get the application install time */
+  () => Promise<void>,
+];
+```
+
+<div align="center">
+    <br />
+    with :heart: <strong>byCedric</strong>
+    <br />
 </div>

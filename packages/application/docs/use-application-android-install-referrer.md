@@ -24,55 +24,55 @@
     <pre>expo install @use-expo/application expo-application</pre>  
     <br />  
 </div>  
-  
-## Usage  
-  
-```jsx  
-// full hook  
-const [installReferrer, getInstallReferrer] = useApplicationAndroidInstallReferrer();  
 
-// other options  
-useApplicationAndroidInstallReferrer({ get: false });  
-```  
-  
-  
+## Usage
+
+```jsx
+// full hook
+const [installReferrer, getInstallReferrer] = useApplicationAndroidInstallReferrer();
+
+// other options
+useApplicationAndroidInstallReferrer({ get: false });
+```
+
 ## Example  
   
 ```jsx  
-import { useApplicationAndroidInstallReferrer } from '@use-expo/application';  
-import { Text, View } from 'react-native';  
-  
+import { useApplicationAndroidInstallReferrer } from '@use-expo/application';
+import React from 'react';
+import { Text, View } from 'react-native';
+
 function ApplicationAndroidInstallReferrerExample() {  
- const [installReferrer] = useApplicationAndroidInstallReferrer(); 
-  
- return (
-   <View>
-     <Text>Install referrer: {installReferrer || '-'}</Text>
-   </View>
- );
-}   
-```  
-  
-  
-## API  
-  
-```ts    
-function useApplicationAndroidInstallReferrer(options?: Options): Result;  
-  
-interface Options {  
-  /** If it should fetch the application install referrer when mounted, defaults to `true` */  
-  get?: boolean;  
+  const [installReferrer] = useApplicationAndroidInstallReferrer();
+
+  return (
+    <View>
+      <Text>Install referrer: {installReferrer || '-'}</Text>
+    </View>
+  );
 }
-  
-type Result = [  
- /** The current application install referrer */
- string | undefined,
- /** Callback to manually get the application install referrer */
- () => Promise<string>,];  
-```  
-  
-<div align="center">  
-    <br />  
-    with :heart: <strong>byCedric</strong>  
-    <br />  
+```
+
+## API
+
+```ts
+function useApplicationAndroidInstallReferrer(options?: Options): Result;
+
+interface Options {
+  /** If it should fetch the application install referrer when mounted, defaults to `true` */
+  get?: boolean;
+}
+
+type Result = [
+  /** The current application install referrer */
+  string | undefined,
+  /** Callback to manually get the application install referrer */
+  () => Promise<void>,
+];  
+```
+
+<div align="center">
+    <br />
+    with :heart: <strong>byCedric</strong>
+    <br />
 </div>

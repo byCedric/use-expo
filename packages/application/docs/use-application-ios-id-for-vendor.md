@@ -24,55 +24,55 @@
     <pre>expo install @use-expo/application expo-application</pre>  
     <br />  
 </div>  
-  
-## Usage  
-  
-```jsx  
+
+## Usage
+
+```jsx
 // full hook  
-const [vendorId, getVendorId] = useApplicationIosIdForVendor();  
+const [vendorId, getVendorId] = useApplicationIosIdForVendor();
 
 // other options  
-useApplicationIosIdForVendor({ get: false });  
-```  
-  
-  
-## Example  
-  
+useApplicationIosIdForVendor({ get: false });
+```
+
+## Example
+
 ```jsx  
-import { useApplicationInstallTime } from '@use-expo/application';  
+import { useApplicationIosIdForVendor } from '@use-expo/application';  
+import React from 'react';
 import { Text, View } from 'react-native';  
-  
+
 function ApplicationIosIdForVendorExample() {  
- const [vendorId] = useApplicationIosIdForVendor(); 
-  
- return (
-   <View>
-     <Text>Application vendor id: {vendorId || '-'}</Text>
-   </View>
- );
-}   
-```  
-  
-  
-## API  
-  
-```ts    
-function useApplicationIosIdForVendor(options?: Options): Result;  
-  
-interface Options {  
-  /** If it should fetch the application vendor id when mounted, defaults to `true` */  
-  get?: boolean;  
+  const [vendorId] = useApplicationIosIdForVendor();
+
+  return (
+    <View>
+      <Text>Application vendor id: {vendorId || '-'}</Text>
+    </View>
+  );
 }
-  
-type Result = [  
- /** The current application vendor id */
- string | undefined,
- /** Callback to manually get the application vendor id */
- () => Promise<string>,];  
-```  
-  
-<div align="center">  
-    <br />  
-    with :heart: <strong>byCedric</strong>  
-    <br />  
+```
+
+## API
+
+```ts
+function useApplicationIosIdForVendor(options?: Options): Result;
+
+interface Options {
+  /** If it should fetch the application vendor id when mounted, defaults to `true` */
+  get?: boolean;
+}
+
+type Result = [ 
+  /** The current application vendor id */
+  string | undefined,
+  /** Callback to manually get the application vendor id */
+  () => Promise<void>,
+];
+```
+
+<div align="center">
+    <br />
+    with :heart: <strong>byCedric</strong>
+    <br />
 </div>
