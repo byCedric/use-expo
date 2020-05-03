@@ -1,6 +1,6 @@
 import React from 'react';
 import { Caption } from 'react-native-paper';
-import { useAccelerometer } from 'use-expo';
+import { useAccelerometer } from '@use-expo/sensors';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';

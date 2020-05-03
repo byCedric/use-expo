@@ -1,6 +1,6 @@
 import React from 'react';
 import { Caption, Text } from 'react-native-paper';
-import { useScreenOrientation } from 'use-expo';
+import { useScreenOrientation } from '@use-expo/screen-orientation';
 import { Orientation, SizeClassIOS } from 'expo-screen-orientation';
 import { Example, Information, Link, Measurement, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';

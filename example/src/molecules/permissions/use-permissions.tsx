@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { Caption } from 'react-native-paper';
 import { Camera, Constants as CameraConstants } from 'expo-camera';
 import { CAMERA } from 'expo-permissions';
-import { usePermissions } from 'use-expo';
+import { usePermissions } from '@use-expo/permissions';
 import { Example, Information, Link, Page, Space, MissingPermissions } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import * as url from '../../providers/urls';

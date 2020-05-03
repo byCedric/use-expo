@@ -1,6 +1,6 @@
 import React from 'react';
 import { Caption, Text } from 'react-native-paper';
-import { useFonts } from 'use-expo';
+import { useFonts } from '@use-expo/font';
 import { Example, Information, Link, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';

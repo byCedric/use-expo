@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'react-native-paper';
 import { OrientationLock } from 'expo-screen-orientation';
-import { useScreenOrientationLock } from 'use-expo';
+import { useScreenOrientationLock } from '@use-expo/screen-orientation';
 import { Example, Information, Link, Page, Space } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';

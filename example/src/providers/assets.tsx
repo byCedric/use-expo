@@ -1,6 +1,6 @@
 import React from 'react';
 import { AppLoading } from 'expo';
-import { useFonts } from 'use-expo';
+import { useFonts } from '@use-expo/font';
 
 export const AssetsProvider: React.SFC<AssetsProviderProps> = (props) => {
 	const [loaded] = useFonts({

@@ -46,7 +46,8 @@
   ],
   "contributorsPerLine": 7,
   "files": [
-    "README.md"
+    "README.md",
+    "example/README.md"
   ],
   "imageSize": 100,
   "projectName": "use-expo",
