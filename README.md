@@ -4,7 +4,7 @@
     <sup>
         <a href="https://github.com/bycedric/use-expo#contributors">
             <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-            <img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square" alt="contributors" />
+            <img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square" alt="contributors" />
             <!-- ALL-CONTRIBUTORS-BADGE:END -->
         </a>
         <a href="https://github.com/bycedric/use-expo/actions">
@@ -100,8 +100,10 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 <table>
   <tr>
     <td align="center"><a href="https://bycedric.com"><img src="https://avatars2.githubusercontent.com/u/1203991?v=4" width="100px;" alt=""/><br /><sub><b>Cedric van Putten</b></sub></a><br /><a href="https://github.com/byCedric/use-expo/commits?author=byCedric" title="Code">💻</a> <a href="https://github.com/byCedric/use-expo/commits?author=byCedric" title="Documentation">📖</a> <a href="#example-byCedric" title="Examples">💡</a></td>
+    <td align="center"><a href="https://twitter.com/baconbrix"><img src="https://avatars1.githubusercontent.com/u/9664363?v=4" width="100px;" alt=""/><br /><sub><b>Evan Bacon</b></sub></a><br /><a href="https://github.com/byCedric/use-expo/commits?author=EvanBacon" title="Code">💻</a> <a href="https://github.com/byCedric/use-expo/commits?author=EvanBacon" title="Documentation">📖</a> <a href="#example-EvanBacon" title="Examples">💡</a></td>
   </tr>
 </table>
+
 <!-- markdownlint-enable -->
 <!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
