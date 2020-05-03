@@ -2,8 +2,8 @@
     <h1>web-browser hooks</h1>
     <p>Complementary hooks for <a href="https://docs.expo.io/versions/latest/sdk/webbrowser/">Expo Web Browser</a></p>
     <sup>
-        <a href="https://github.com/bycedric/use-expo/releases">
-            <img src="https://img.shields.io/github/release/byCedric/use-expo/all.svg?style=flat-square" alt="releases" />
+        <a href="https://github.com/byCedric/use-expo/blob/master/packages/web-browser/CHANGELOG.md">
+            <img src="https://img.shields.io/npm/v/@use-expo/web-browser?style=flat-square" alt="changelog" />
         </a>
         <a href="https://github.com/bycedric/use-expo/actions">
             <img src="https://img.shields.io/github/workflow/status/byCedric/use-expo/Packages/master.svg?style=flat-square" alt="builds" />
