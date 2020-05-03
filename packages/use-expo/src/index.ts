@@ -1,3 +1,4 @@
+export * from '@use-expo/application';
 export * from '@use-expo/battery';
 export * from '@use-expo/brightness';
 export * from '@use-expo/font';
