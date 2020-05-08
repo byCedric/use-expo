@@ -12,6 +12,7 @@ import * as Font from './font';
 import * as Permissions from './permissions';
 import * as ScreenOrientation from './screen-orientation';
 import * as Sensors from './sensors';
+import * as StoreReview from './store-review';
 import * as WebBrowser from './web-browser';
 
 export const molecules = {
@@ -22,6 +23,7 @@ export const molecules = {
 	Permissions,
 	ScreenOrientation,
 	Sensors,
+	StoreReview,
 	WebBrowser,
 };
 
