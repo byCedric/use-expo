@@ -20,7 +20,6 @@ jobs:
         with:
           expo-version: 3.x
           expo-username: bycedric
-          expo-password: wrongpassword
           expo-cache: true
 
       - name: Install dependencies
