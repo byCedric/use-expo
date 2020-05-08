@@ -16,7 +16,7 @@ jobs:
           node-version: 12.x
 
       - name: Setup Expo
-        uses: expo/expo-github-action@master
+        uses: expo/expo-github-action@fix/unhandled-promise-rejection
         with:
           expo-version: 3.x
           expo-username: bycedric
