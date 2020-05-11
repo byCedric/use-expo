@@ -1,61 +1,61 @@
 {
-  	"name": "@use-expo/store-review",
-  	"version": "1.0.0",
-  	"description": "Complementary hooks for expo-store-review",
-  	"keywords": [
+	"name": "@use-expo/store-review",
+	"version": "1.0.0",
+	"description": "Complementary hooks for expo-store-review",
+	"keywords": [
 		"expo",
 		"store",
 		"review",
 		"hooks"
-  	],
-  	"license": "MIT",
-  	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
-  	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/store-review#readme",
-  	"bugs": {
+	],
+	"license": "MIT",
+	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
+	"homepage": "https://github.com/bycedric/use-expo/tree/master/packages/store-review#readme",
+	"bugs": {
 		"url": "https://github.com/bycedric/use-expo/issues"
-  	},
-  	"repository": {
+	},
+	"repository": {
 		"type": "git",
-		"url": "https://github.com/bycedric/use-expo.git",
+		"url": "https://github.com/bycedric/use-expo",
 		"directory": "packages/store-review"
-  	},
-  	"directories": {
+	},
+	"directories": {
 		"lib": "src",
 		"test": "tests"
-  	},
-  	"main": "build/commonjs/index.js",
-  	"react-native": "src/index.ts",
-  	"module": "build/module/index.js",
-  	"types": "build/typescript/src/index.d.ts",
-  	"files": [
+	},
+	"main": "build/commonjs/index.js",
+	"react-native": "src/index.ts",
+	"module": "build/module/index.js",
+	"types": "build/typescript/src/index.d.ts",
+	"files": [
 		"build",
 		"src"
-  	],
-  	"scripts": {
+	],
+	"scripts": {
 		"prepare": "bob build",
 		"build": "bob build"
-  	},
-  	"devDependencies": {
+	},
+	"devDependencies": {
 		"@react-native-community/bob": "^0.10.0",
 		"@testing-library/react-hooks": "^3.2.1",
 		"@types/react": "~16.9.32",
 		"expo-store-review": "~2.1.0",
 		"react": "16.9.0",
 		"typescript": "^3.8.3"
-  	},
-  	"peerDependencies": {
+	},
+	"peerDependencies": {
 		"expo-store-review": ">=2.1.0"
-  	},
-  	"@react-native-community/bob": {
+	},
+	"@react-native-community/bob": {
 		"source": "src",
 		"output": "build",
 		"targets": [
-	  	"commonjs",
-	  	"module",
-	  	"typescript"
+			"commonjs",
+			"module",
+			"typescript"
 		]
-  	},
-  	"publishConfig": {
+	},
+	"publishConfig": {
 		"access": "public"
-  	}
+	}
 }
