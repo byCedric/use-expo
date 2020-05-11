@@ -2,7 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { isAvailableAsync } from 'expo-store-review';
 
 /**
- * Determines if the platform has the capabilities to use request review
+ * Determines if the platform has the capabilities to use the request review method.
+ * This returns `true` for Android and iOS 10.3+, on web this returns with `false`.
  *
  * @see https://docs.expo.io/versions/latest/sdk/storereview/#storereviewisavailableasync
  * @example const [isAvailable, getIsAvailable] = useStoreReviewIsAvailable(...);
