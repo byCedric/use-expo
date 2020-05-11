@@ -68,6 +68,12 @@
 - [`usePedometer`](./packages/sensors/docs/use-pedometer.md) &nbsp;&mdash;&nbsp; track user step count
 - [`usePedometerHistory`](./packages/sensors/docs/use-pedometer-history.md) &nbsp;&mdash;&nbsp; get historical step count between two dates
 
+### [Store Review](./packages/store-review)
+
+- [`useStoreReviewHasAction`](./packages/store-review/docs/use-store-review-has-action.md) &nbsp;&mdash;&nbsp; determines if the store review can perform any action
+- [`useStoreReviewIsAvailable`](./packages/store-review/docs/use-store-review-is-available.md) &nbsp;&mdash;&nbsp; determines if the platform has the capabilities to use request review
+- [`useStoreReviewRequest`](./packages/store-review/docs/use-store-review-request.md) &nbsp;&mdash;&nbsp; request a store review if available
+
 ### [WebBrowser](./packages/web-browser)
 
 - [`useBrowsers`](./packages/web-browser/docs/use-browsers.md) &nbsp;&mdash;&nbsp; Get a list of Android browsers
