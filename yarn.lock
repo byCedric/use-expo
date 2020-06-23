@@ -6913,10 +6913,10 @@ expo-asset@~8.1.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-battery@~2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/expo-battery/-/expo-battery-2.1.1.tgz#dfd2cd466d2142796234f1a331e2fbe88bdf7176"
-  integrity sha512-vHBn/P1Da1O9I29z2qpEp4Gqk1sw34WSheIMV4rU4kbQPg0VWHwE0EyX21OMdNdFeObqZjL/Sv2NMEZ4dXN5eg==
+expo-battery@~2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/expo-battery/-/expo-battery-2.2.1.tgz#0643dc3803e33fe324a1a0e8990b6d7a4343009d"
+  integrity sha512-POb9qkXP/TQ5P2Aah9Xyk+E/7JwHBJpBNDXNB0NGGSiDhgdNAHAQm0kYLkp6tTYqki8hJOdntHbRPnS6sq/H4Q==
   dependencies:
     fbjs "1.0.0"
 
