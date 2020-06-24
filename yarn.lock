@@ -1399,10 +1399,10 @@
     "@babel/preset-typescript" "^7.3.3"
     typescript "3.7.3"
 
-"@expo/config@3.2.11":
-  version "3.2.11"
-  resolved "https://registry.yarnpkg.com/@expo/config/-/config-3.2.11.tgz#40ebe40f30de92acebcf19b0fd17b0de3b4af7cf"
-  integrity sha512-f4MglwZncOctkoDixUz91JLYQVm/RzOBzcXdeoQxCyEaGHZ7hV4QTwvX9NoF3OW/AHDzJDMfkP24oS34t2Qvdg==
+"@expo/config@3.2.13":
+  version "3.2.13"
+  resolved "https://registry.yarnpkg.com/@expo/config/-/config-3.2.13.tgz#7e0c2386ea87863cc432fba500e147fbff8e8c53"
+  integrity sha512-ThZoLx5HmhtmmVSXnpgZvGjJVvdVpdHlHBp57ivTqlCH3sY+dfi4o38HagKYZONvAzHhdT/a28PeGtt8wd9AVw==
   dependencies:
     "@babel/register" "^7.8.3"
     "@expo/babel-preset-cli" "0.2.16"
@@ -1496,19 +1496,19 @@
     lodash "^4.17.4"
 
 "@expo/webpack-config@^0.12.3":
-  version "0.12.14"
-  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.12.14.tgz#806a3e4e867f573da75655bb5b856c5df4ea966e"
-  integrity sha512-nXsq8kZEMNBusdNMu8smR7Q+Enx8y/yfTFwfpg5CB6nl4lntLoLCGccZluxmKyvct9mAaV3FIPFEtWsJ2YqnXw==
+  version "0.12.16"
+  resolved "https://registry.yarnpkg.com/@expo/webpack-config/-/webpack-config-0.12.16.tgz#5acf3a677498e982cf27a97c13e19016dcf6c172"
+  integrity sha512-WnUioYBdY+YvuSNep5AVlDCGTOmGKp05Y1xsZsfq4M1mtN5pYk30MPch6tDOfwLgC/z/Zblbl+QAPWyDjm7m0g==
   dependencies:
     "@babel/core" "7.9.0"
     "@babel/runtime" "7.9.0"
-    "@expo/config" "3.2.11"
+    "@expo/config" "3.2.13"
     babel-loader "8.1.0"
     chalk "^4.0.0"
     clean-webpack-plugin "^3.0.0"
     copy-webpack-plugin "5.0.0"
     css-loader "^2.1.1"
-    expo-pwa "0.0.22"
+    expo-pwa "0.0.24"
     file-loader "4.2.0"
     find-yarn-workspace-root "~2.0.0"
     getenv "^0.7.0"
@@ -6979,12 +6979,12 @@ expo-permissions@~8.1.0:
   resolved "https://registry.yarnpkg.com/expo-permissions/-/expo-permissions-8.1.0.tgz#a7f2ee91ba76ce3a467e7b10adaa9ca5201b226f"
   integrity sha512-QBHD+1J9+sGFnhoEGzMRchPweeEE0OJ9ehG/0l1BMRBA7qsLS9vRC1FTJ55NwjI0Kr4RTha9r6ZX1kZHT09f/w==
 
-expo-pwa@0.0.22:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/expo-pwa/-/expo-pwa-0.0.22.tgz#7f25737d52f37200110912608b4c9d9905d290ad"
-  integrity sha512-ORgMs0Sb2ESFuUZThfqGZp+9+zNT1P5OKs2xGh+ev6JcNjzBIA1fTwI+K3PLhlo4fGYTM4n7p5qVOcRFjbtOEw==
+expo-pwa@0.0.24:
+  version "0.0.24"
+  resolved "https://registry.yarnpkg.com/expo-pwa/-/expo-pwa-0.0.24.tgz#bdfa9bcce0f4b6c561eb1540731565dbd0f5189b"
+  integrity sha512-Sir6FnoO4cFI3V5V0Lc2LVGQuRKCbLoLpObZ9xpP0Eoy0FLV9GBLjuYljco7mtb/CdOaaBIh/2vcLfyaouOhWA==
   dependencies:
-    "@expo/config" "3.2.11"
+    "@expo/config" "3.2.13"
     "@expo/image-utils" "0.3.0"
     "@expo/json-file" "8.2.21"
     chalk "^4.0.0"
