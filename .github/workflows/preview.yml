@@ -31,6 +31,8 @@ jobs:
 
       - name: Publish preview
         run: expo publish example --release-channel=pr-${{ github.event.number }}
+        env:
+          EXPO_USE_DEV_SERVER: true
 
       - name: Get deployment link
         run: echo "::set-output name=path::@bycedric/use-expo?release-channel=pr-${{ github.event.number }}"
