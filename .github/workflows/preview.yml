@@ -22,15 +22,29 @@ jobs:
           expo-username: bycedric
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
+      
+      - name: Find Yarn Cache
+        id: yarn-cache-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+        
+      - name: Cache Yarn
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --frozen-lockfile
 
       - name: Build packages
         run: yarn build
 
       - name: Publish preview
         run: expo publish example --release-channel=pr-${{ github.event.number }}
+        env:
+          EXPO_USE_DEV_SERVER: true
 
       - name: Get deployment link
         run: echo "::set-output name=path::@bycedric/use-expo?release-channel=pr-${{ github.event.number }}"
