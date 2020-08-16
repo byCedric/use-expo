@@ -1,6 +1,9 @@
 ---
 name: Packages
-on: [pull_request]
+on:
+  pull_request:
+    paths-ignore:
+      - 'example/**'
 jobs:
   ci:
     name: Install, test and lint
