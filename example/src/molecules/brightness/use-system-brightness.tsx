@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { Slider } from 'react-native';
 import { Caption } from 'react-native-paper';
 import { SYSTEM_BRIGHTNESS } from 'expo-permissions';
@@ -9,30 +9,29 @@ import { Example, Information, Link, Page, MissingPermissions } from '../../atom
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-export const UseSystemBrightness: React.SFC<MoleculeProps> = (props) => {
+export const UseSystemBrightness: React.SFC<MoleculeProps> = props => {
 	const [permission, askPermission] = usePermissions(SYSTEM_BRIGHTNESS);
 	const [brightness, setBrightness] = useSystemBrightness();
-	const setBrightnessDebounced = useCallback(
-		debounce(setBrightness, 100),
+	const setBrightnessDebounced = useMemo(
+		() => debounce(setBrightness, 100),
 		[setBrightness],
 	);
 
 	return (
-		<Page
-			title={props.name}
-			subtitle={props.description}
-		>
+		<Page title={props.name} subtitle={props.description}>
 			<Information>
-				This is example uses both the <Link url={docs.brightness}>Brightness</Link> and <Link url={docs.permissions}>Permissions</Link> modules.
-				When you grant the <Link url={docs.permissions}>SYSTEM_BRIGHTNESS</Link> permission, it renders a slider to change the system brightness.
+				This is example uses both the <Link url={docs.brightness}>Brightness</Link> and{' '}
+				<Link url={docs.permissions}>Permissions</Link> modules. When you grant the{' '}
+				<Link url={docs.permissions}>SYSTEM_BRIGHTNESS</Link> permission, it renders a slider to change the system
+				brightness.
 			</Information>
 			<Example>
-				{(permission && permission.status !== 'granted') && (
+				{permission && permission.status !== 'granted' && (
 					<MissingPermissions onConfirm={askPermission}>
 						We need permission to modify the system brightness.
 					</MissingPermissions>
 				)}
-				{(permission && permission.status === 'granted') && (
+				{permission && permission.status === 'granted' && (
 					<>
 						<Caption>{round(Number(brightness) * 100, 1).toFixed(1)}%</Caption>
 						<Slider
