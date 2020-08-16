@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { Slider } from 'react-native';
 import { Caption } from 'react-native-paper';
 import { debounce, round } from 'lodash';
@@ -7,21 +7,18 @@ import { Example, Information, Link, Page } from '../../atoms';
 import { MoleculeProps } from '../../providers/molecule';
 import { docs } from '../../providers/urls';
 
-export const UseBrightness: React.SFC<MoleculeProps> = (props) => {
+export const UseBrightness: React.SFC<MoleculeProps> = props => {
 	const [brightness, setBrightness] = useBrightness();
-	const setBrightnessDebounced = useCallback(
-		debounce(setBrightness, 100),
+	const setBrightnessDebounced = useMemo(
+		() => debounce(setBrightness, 100),
 		[setBrightness],
 	);
 
 	return (
-		<Page
-			title={props.name}
-			subtitle={props.description}
-		>
+		<Page title={props.name} subtitle={props.description}>
 			<Information>
-				This example only uses the <Link url={docs.brightness}>Brightness</Link> module.
-				It renders the current screen brightness and a slider to change that.
+				This example only uses the <Link url={docs.brightness}>Brightness</Link> module. It renders the current screen
+				brightness and a slider to change that.
 			</Information>
 			<Example>
 				<Caption>{round(Number(brightness) * 100, 1).toFixed(1)}%</Caption>
