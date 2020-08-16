@@ -10,10 +10,10 @@ jobs:
       - name: Setup repository
         uses: actions/checkout@v2
 
-      - name: Setup node
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 14.x
 
       - name: Setup Expo
         uses: expo/expo-github-action@v5
@@ -22,11 +22,11 @@ jobs:
           expo-username: bycedric
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
-      
+
       - name: Find Yarn Cache
         id: yarn-cache-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-        
+
       - name: Cache Yarn
         uses: actions/cache@v2
         with:
