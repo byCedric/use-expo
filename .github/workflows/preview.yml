@@ -22,15 +22,11 @@ jobs:
           expo-username: bycedric
           expo-password: ${{ secrets.EXPO_CLI_PASSWORD }}
           expo-cache: true
-      
-      - name: Find Yarn Cache
-        id: yarn-cache-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-        
+
       - name: Cache Yarn
         uses: actions/cache@v2
         with:
-          path: ${{ steps.yarn-cache-path.outputs.dir }}
+          path: $(yarn cache dir)
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
