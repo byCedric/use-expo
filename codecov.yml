@@ -1,8 +1,6 @@
 coverage:
   status:
     project:
-      default:
-        target: auto
       application:
         target: auto
         flags: [application]
