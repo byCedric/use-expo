@@ -23,7 +23,7 @@
 	},
 	"dependencies": {
 		"expo": "^37.0.0",
-		"expo-battery": "~2.2.1",
+		"expo-battery": "~3.0.0",
 		"expo-brightness": "~8.1.0",
 		"expo-camera": "~8.2.0",
 		"expo-constants": "~9.0.0",
