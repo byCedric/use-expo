@@ -1,0 +1,65 @@
+coverage:
+  status:
+    project:
+      application:
+        flags:
+          - application
+      battery:
+        flags:
+          - battery
+      brightness:
+        flags:
+          - brightness
+      font:
+        flags:
+          - font
+      permissions:
+        flags:
+          - permissions
+      screen-orientation:
+        flags:
+          - screen-orientation
+      sensors:
+        flags:
+          - sensors
+      store-review:
+        flags:
+          - store-review
+      web-browser:
+        flags:
+          - web-browser
+comment:
+  layout: "reach, diff, flags, files"
+  behavior: default
+  require_changes: false
+  require_base: yes
+  require_head: yes
+  branches: null
+flags:
+  application:
+    paths:
+      - src/packages/application
+  battery:
+    paths:
+      - src/packages/battery
+  brightness:
+    paths:
+      - src/packages/brightness
+  font:
+    paths:
+      - src/packages/font
+  permissions:
+    paths:
+      - src/packages/permissions
+  screen-orientation:
+    paths:
+      - src/packages/screen-orientation
+  sensors:
+    paths:
+      - src/packages/sensors
+  store-review:
+    paths:
+      - src/packages/store
+  web-browser:
+    paths:
+      - src/packages/web

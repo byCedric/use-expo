@@ -32,7 +32,8 @@
 	],
 	"scripts": {
 		"prepare": "bob build",
-		"build": "bob build"
+		"build": "bob build",
+		"test": "jest"
 	},
 	"devDependencies": {
 		"@react-native-community/bob": "^0.14.3",
