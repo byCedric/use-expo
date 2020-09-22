@@ -1,4 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { createMetroConfiguration } = require('expo-yarn-workspaces');
 
-module.exports = createMetroConfiguration(__dirname);
+const config = createMetroConfiguration(__dirname);
+
+console.log(config);
+
+module.exports = config;
