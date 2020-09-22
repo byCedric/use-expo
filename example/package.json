@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"author": "Cedric van Putten <me@bycedric.com> (https://bycedric.com)",
 	"homepage": "https://github.com/bycedric/use-expo/tree/master/example#readme",
-	"main": "./__generated__/AppEntry.js",
+	"main": "./AppEntry.js",
 	"bugs": {
 		"url": "https://github.com/bycedric/use-expo/issues"
 	},

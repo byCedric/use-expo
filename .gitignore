@@ -29,3 +29,6 @@ web-report
 
 # misc
 .DS_Store
+
+# see: https://github.com/expo/expo/issues/10285
+example/AppEntry.js
