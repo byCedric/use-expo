@@ -1,45 +1,39 @@
-coverage:
-  notify:
-    require_ci_to_pass: yes
-  status:
-    project:
-      default:
-        target: auto
-      application:
-        target: auto
-        paths: [packages/application]
-      battery:
-        target: auto
-        paths: [packages/battery]
-      brightness:
-        target: auto
-        paths: [packages/brightness]
-      font:
-        target: auto
-        paths: [packages/font]
-      permissions:
-        target: auto
-        paths: [packages/permissions]
-      screen-orientation:
-        target: auto
-        paths: [packages/screen-orientation]
-      sensors:
-        target: auto
-        paths: [packages/sensors]
-      store-review:
-        target: auto
-        paths: [packages/store-review]
-      web-browser:
-        target: auto
-        paths: [packages/web-browser]
-
+comment: false
 coverage:
   round: up
   precision: 2
   range: '30...100'
+  notify:
+    require_ci_to_pass: yes
   status:
     changes: no
     patch: yes
-    project: yes
-
-comment: false
+    project:
+      default: false
+      application:
+        target: auto
+        paths: packages/application/
+      battery:
+        target: auto
+        paths: packages/battery/
+      brightness:
+        target: auto
+        paths: packages/brightness/
+      font:
+        target: auto
+        paths: packages/font/
+      permissions:
+        target: auto
+        paths: packages/permissions/
+      screen-orientation:
+        target: auto
+        paths: packages/screen-orientation/
+      sensors:
+        target: auto
+        paths: packages/sensors/
+      store-review:
+        target: auto
+        paths: packages/store-review/
+      web-browser:
+        target: auto
+        paths: packages/web-browser/
