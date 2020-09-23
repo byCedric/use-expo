@@ -2,7 +2,7 @@ comment: false
 coverage:
   round: up
   precision: 2
-  range: '30...100'
+  range: 30..100
   status:
     patch: false
     project:
