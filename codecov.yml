@@ -4,32 +4,33 @@ coverage:
   precision: 2
   range: '30...100'
   status:
+    patch: false
     project:
       default: false
       application:
-        target: auto
+        informational: true
         paths: [packages/application]
       battery:
-        target: auto
+        informational: true
         paths: [packages/battery]
       brightness:
-        target: auto
+        informational: true
         paths: [packages/brightness]
       font:
-        target: auto
+        informational: true
         paths: [packages/font]
       permissions:
-        target: auto
+        informational: true
         paths: [packages/permissions]
       screen-orientation:
-        target: auto
+        informational: true
         paths: [packages/screen-orientation]
       sensors:
-        target: auto
+        informational: true
         paths: [packages/sensors]
       store-review:
-        target: auto
+        informational: true
         paths: [packages/store-review]
       web-browser:
-        target: auto
+        informational: true
         paths: [packages/web-browser]
