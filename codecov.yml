@@ -12,28 +12,28 @@ coverage:
       default: false
       application:
         target: auto
-        paths: packages/application/
+        paths: [packages/application]
       battery:
         target: auto
-        paths: packages/battery/
+        paths: [packages/battery]
       brightness:
         target: auto
-        paths: packages/brightness/
+        paths: [packages/brightness]
       font:
         target: auto
-        paths: packages/font/
+        paths: [packages/font]
       permissions:
         target: auto
-        paths: packages/permissions/
+        paths: [packages/permissions]
       screen-orientation:
         target: auto
-        paths: packages/screen-orientation/
+        paths: [packages/screen-orientation]
       sensors:
         target: auto
-        paths: packages/sensors/
+        paths: [packages/sensors]
       store-review:
         target: auto
-        paths: packages/store-review/
+        paths: [packages/store-review]
       web-browser:
         target: auto
-        paths: packages/web-browser/
+        paths: [packages/web-browser]
