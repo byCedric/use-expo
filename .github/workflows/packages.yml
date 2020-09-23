@@ -11,6 +11,9 @@ jobs:
     strategy:
       matrix:
         node: [10, 12, 14]
+        include:
+          - node: 14
+            coverage: true
     steps:
       - name: Setup repository
         uses: actions/checkout@v2
@@ -42,8 +45,13 @@ jobs:
         run: yarn lint
 
       - name: Test packages
+        if: ${{ !matrix.coverage }}
+        run: yarn test
+
+      - name: Test coverage
+        if: ${{ matrix.coverage }}
         run: yarn test --coverage
 
       - name: Report coverage
-        if: ${{ matrix.node == 14 }}
+        if: ${{ matrix.coverage }}
         uses: codecov/codecov-action@v1
