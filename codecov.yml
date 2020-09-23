@@ -1,49 +1,45 @@
 coverage:
+  notify:
+    require_ci_to_pass: yes
   status:
     project:
       default:
         target: auto
-        threshold: 0%
       application:
         target: auto
-        threshold: 0%
-        paths: packages/application
+        paths: [packages/application]
       battery:
         target: auto
-        threshold: 0%
-        paths: packages/battery
+        paths: [packages/battery]
       brightness:
         target: auto
-        threshold: 0%
-        paths: packages/brightness
+        paths: [packages/brightness]
       font:
         target: auto
-        threshold: 0%
-        paths: packages/font
+        paths: [packages/font]
       permissions:
         target: auto
-        threshold: 0%
-        paths: packages/permissions
+        paths: [packages/permissions]
       screen-orientation:
         target: auto
-        threshold: 0%
-        paths: packages/screen-orientation
+        paths: [packages/screen-orientation]
       sensors:
         target: auto
-        threshold: 0%
-        paths: packages/sensors
+        paths: [packages/sensors]
       store-review:
         target: auto
-        threshold: 0%
-        paths: packages/store-review
+        paths: [packages/store-review]
       web-browser:
         target: auto
-        threshold: 0%
-        paths: packages/web-browser
-comment:
-  layout: "reach, diff, flags, files"
-  behavior: default
-  require_changes: false
-  require_base: yes
-  require_head: yes
-  branches: null
+        paths: [packages/web-browser]
+
+coverage:
+  round: up
+  precision: 2
+  range: '30...100'
+  status:
+    changes: no
+    patch: yes
+    project: yes
+
+comment: false
