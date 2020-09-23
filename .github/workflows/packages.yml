@@ -42,4 +42,8 @@ jobs:
         run: yarn lint
 
       - name: Test packages
-        run: yarn test
+        run: yarn test --coverage
+
+      - name: Report coverage
+        if: ${{ matrix.node == 14 }}
+        uses: codecov/codecov-action@v1
