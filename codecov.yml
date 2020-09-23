@@ -1,33 +1,45 @@
 coverage:
   status:
     project:
+      default:
+        target: auto
+        threshold: 0%
       application:
-        flags:
-          - application
+        target: auto
+        threshold: 0%
+        paths: packages/application
       battery:
-        flags:
-          - battery
+        target: auto
+        threshold: 0%
+        paths: packages/battery
       brightness:
-        flags:
-          - brightness
+        target: auto
+        threshold: 0%
+        paths: packages/brightness
       font:
-        flags:
-          - font
+        target: auto
+        threshold: 0%
+        paths: packages/font
       permissions:
-        flags:
-          - permissions
+        target: auto
+        threshold: 0%
+        paths: packages/permissions
       screen-orientation:
-        flags:
-          - screen-orientation
+        target: auto
+        threshold: 0%
+        paths: packages/screen-orientation
       sensors:
-        flags:
-          - sensors
+        target: auto
+        threshold: 0%
+        paths: packages/sensors
       store-review:
-        flags:
-          - store-review
+        target: auto
+        threshold: 0%
+        paths: packages/store-review
       web-browser:
-        flags:
-          - web-browser
+        target: auto
+        threshold: 0%
+        paths: packages/web-browser
 comment:
   layout: "reach, diff, flags, files"
   behavior: default
@@ -35,31 +47,3 @@ comment:
   require_base: yes
   require_head: yes
   branches: null
-flags:
-  application:
-    paths:
-      - src/packages/application
-  battery:
-    paths:
-      - src/packages/battery
-  brightness:
-    paths:
-      - src/packages/brightness
-  font:
-    paths:
-      - src/packages/font
-  permissions:
-    paths:
-      - src/packages/permissions
-  screen-orientation:
-    paths:
-      - src/packages/screen-orientation
-  sensors:
-    paths:
-      - src/packages/sensors
-  store-review:
-    paths:
-      - src/packages/store
-  web-browser:
-    paths:
-      - src/packages/web
