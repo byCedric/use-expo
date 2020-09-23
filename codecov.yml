@@ -3,8 +3,6 @@ coverage:
   round: up
   precision: 2
   range: '30...100'
-  notify:
-    require_ci_to_pass: yes
   status:
     changes: no
     patch: yes
