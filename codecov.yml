@@ -4,8 +4,6 @@ coverage:
   precision: 2
   range: '30...100'
   status:
-    changes: no
-    patch: yes
     project:
       default: false
       application:
