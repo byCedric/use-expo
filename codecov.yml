@@ -10,28 +10,28 @@ coverage:
         informational: true
       application:
         informational: true
-        paths: packages/application
+        paths: [packages/application]
       battery:
         informational: true
-        paths: packages/battery
+        paths: [packages/battery]
       brightness:
         informational: true
-        paths: packages/brightness
+        paths: [packages/brightness]
       font:
         informational: true
-        paths: packages/font
+        paths: [packages/font]
       permissions:
         informational: true
-        paths: packages/permissions
+        paths: [packages/permissions]
       screen-orientation:
         informational: true
-        paths: packages/screen-orientation
+        paths: [packages/screen-orientation]
       sensors:
         informational: true
-        paths: packages/sensors
+        paths: [packages/sensors]
       store-review:
         informational: true
-        paths: packages/store-review
+        paths: [packages/store-review]
       web-browser:
         informational: true
-        paths: packages/web-browser
+        paths: [packages/web-browser]
