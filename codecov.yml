@@ -4,43 +4,34 @@ coverage:
   precision: 2
   range: 30..100
   status:
+    patch: false
     project:
       default:
         informational: true
-        target: auto
       application:
         informational: true
-        target: auto
-        paths: [packages/application]
+        paths: packages/application
       battery:
         informational: true
-        target: auto
-        paths: [packages/battery]
+        paths: packages/battery
       brightness:
         informational: true
-        target: auto
-        paths: [packages/brightness]
+        paths: packages/brightness
       font:
         informational: true
-        target: auto
-        paths: [packages/font]
+        paths: packages/font
       permissions:
         informational: true
-        target: auto
-        paths: [packages/permissions]
+        paths: packages/permissions
       screen-orientation:
         informational: true
-        target: auto
-        paths: [packages/screen-orientation]
+        paths: packages/screen-orientation
       sensors:
         informational: true
-        target: auto
-        paths: [packages/sensors]
+        paths: packages/sensors
       store-review:
         informational: true
-        target: auto
-        paths: [packages/store-review]
+        paths: packages/store-review
       web-browser:
         informational: true
-        target: auto
-        paths: [packages/web-browser]
+        paths: packages/web-browser
