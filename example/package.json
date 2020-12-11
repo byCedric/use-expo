@@ -26,7 +26,7 @@
 		"expo-battery": "~2.2.1",
 		"expo-brightness": "~8.1.0",
 		"expo-camera": "~8.2.0",
-		"expo-constants": "~9.0.0",
+		"expo-constants": "~9.3.5",
 		"expo-font": "~8.1.0",
 		"expo-keep-awake": "~8.1.0",
 		"expo-permissions": "~8.1.0",
