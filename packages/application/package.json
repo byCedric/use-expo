@@ -38,7 +38,7 @@
 		"@react-native-community/bob": "^0.14.3",
 		"@testing-library/react-hooks": "^3.2.1",
 		"@types/react": "~16.9.32",
-		"expo-application": "~2.1.1",
+		"expo-application": "~3.0.0",
 		"react": "16.9.0",
 		"typescript": "^3.8.3"
 	},
