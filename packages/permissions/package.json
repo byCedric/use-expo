@@ -40,7 +40,7 @@
 		"@types/react": "~16.9.32",
 		"expo-permissions": "~8.1.0",
 		"react": "16.9.0",
-		"typescript": "^3.8.3"
+		"typescript": "^4.2.2"
 	},
 	"peerDependencies": {
 		"expo-permissions": ">=8.1.0"
