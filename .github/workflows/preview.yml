@@ -9,23 +9,19 @@ jobs:
     steps:
       - name: Setup repository
         uses: actions/checkout@v2
-
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 14.x
-
       - name: Setup Expo
         uses: expo/expo-github-action@v5
         with:
           expo-version: 3.x
           expo-token: ${{ secrets.EXPO_TOKEN }}
           expo-cache: true
-
       - name: Find Yarn Cache
         id: yarn-cache-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Cache Yarn
         uses: actions/cache@v2
         with:
@@ -33,22 +29,17 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
       - name: Build packages
         run: yarn build
-
       - name: Publish preview
         run: expo publish example --release-channel=pr-${{ github.event.number }}
         env:
           EXPO_USE_DEV_SERVER: true
-
       - name: Get deployment link
         run: echo "::set-output name=path::@bycedric/use-expo?release-channel=pr-${{ github.event.number }}"
         id: expo
-
       - name: Comment deployment link
         uses: unsplash/comment-on-pr@master
         env:

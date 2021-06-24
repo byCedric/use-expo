@@ -14,16 +14,13 @@ jobs:
     steps:
       - name: Setup repository
         uses: actions/checkout@v2
-
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node }}
-
       - name: Find Yarn Cache
         id: yarn-cache-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
-
       - name: Cache Yarn
         uses: actions/cache@v2
         with:
@@ -31,15 +28,18 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
       - name: Build packages
         run: yarn build
-
       - name: Lint packages
         run: yarn lint
-
       - name: Test packages
-        run: yarn test
+        run: yarn test --coverage
+      - name: Report coverage
+        uses: codecov/codecov-action@v1
+        if: ${{ matrix.node == 14 }}
+        with:
+          flags: application,battery,brightness,font,permissions,screen-orientation,sensors,store-review,web-browser
+          directory: coverage
+          fail_ci_if_error: true

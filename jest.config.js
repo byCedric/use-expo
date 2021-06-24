@@ -10,4 +10,7 @@ module.exports = {
 	modulePathIgnorePatterns: [
 		'<rootDir>/example',
 	],
+	collectCoverageFrom: [
+		'<rootDir>/packages/*/src/**/*.{ts,tsx}'
+	],
 };

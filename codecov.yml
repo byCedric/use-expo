@@ -1,0 +1,51 @@
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+      application:
+        target: auto
+        flags: [application]
+      battery:
+        target: auto
+        flags: [battery]
+      brightness:
+        target: auto
+        flags: [brightness]
+      font:
+        target: auto
+        flags: [font]
+      permissions:
+        target: auto
+        flags: [permissions]
+      screen-orientation:
+        target: auto
+        flags: [screen-orientation]
+      sensors:
+        target: auto
+        flags: [sensors]
+      store-review:
+        target: auto
+        flags: [store-review]
+      web-browser:
+        target: auto
+        flags: [web-browser]
+flags:
+  application:
+    paths: [packages/application]
+  battery:
+    paths: [packages/battery]
+  brightness:
+    paths: [packages/brightness]
+  font:
+    paths: [packages/font]
+  permissions:
+    paths: [packages/permissions]
+  screen-orientation:
+    paths: [packages/screen-orientation]
+  sensors:
+    paths: [packages/sensors]
+  store-review:
+    paths: [packages/store-review]
+  web-browser:
+    paths: [packages/web-browser]
