@@ -6,5 +6,6 @@ coverage/
 node_modules/
 
 # expo
-web-build/
-web-report/
+example/web-build/
+example/web-report/
+example/AppEntry.js

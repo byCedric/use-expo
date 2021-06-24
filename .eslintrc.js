@@ -30,6 +30,14 @@ module.exports = {
 		// '@typescript-eslint/indent': ['error', 'tab'],
 		'indent': ['error', 'tab', { SwitchCase: 1 }],
 	},
+	overrides: [
+    {
+      files: ['example/*.js', '*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    }
+  ],
 	settings: {
 		react: {
 			version: 'detect',
